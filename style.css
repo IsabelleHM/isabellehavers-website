@@ -161,7 +161,7 @@ h1, h2, h3, h4, .logo, .vibe-en {
 }
 .app-header { background: rgba(0,0,0,0.2); padding: 25px 10px 10px; text-align: center; font-size: 12px; letter-spacing: 2px; }
 .app-content { padding: 0; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
-.app-profile-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transform: translateY(-60px); }
+.app-profile-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .app-avatar { width: 70px; height: 70px; background: #B10058; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 24px; }
 .app-stats { font-size: 14px; margin: 5px 0 15px; color: #FDFDF3; }
 .app-badge { background: #A5A58D; display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 11px; margin-bottom: 25px; }
@@ -210,7 +210,7 @@ h1, h2, h3, h4, .logo, .vibe-en {
     width: 100% !important;
     height: 100% !important;
 }
-.close-btn { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #6A6B4A; z-index: 10; }
+.close-btn { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #6A6B4A; z-index: 10; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; line-height: 1; }
 .popup-content.popup-brevo .close-btn {
     background: #FFF;
     width: 40px;
