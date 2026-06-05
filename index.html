@@ -202,7 +202,7 @@
                 <h4>Kontakt</h4>
                 <ul role="list">
                     <li><a href="mailto:info@isabellehavers.com">E-Mail</a></li>
-                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://www.instagram.com/isabellehavers/" target="_blank" rel="noopener">Instagram</a></li>
                     <li><a href="https://insig.ht/MwS7VVzTl3b" target="_blank" rel="noopener">Insight Timer</a></li>
                 </ul>
             </div>
@@ -343,12 +343,14 @@
             }
         });
 
-        // Open popup on page load
+        // Open popup on page load - MIT 5 SEKUNDEN VERZÖGERUNG
         window.addEventListener('load', function() {
             const popupShown = sessionStorage.getItem('popup-shown');
             if (!popupShown) {
-                openClearTheNoisePopup();
-                sessionStorage.setItem('popup-shown', 'true');
+                setTimeout(() => {
+                    openClearTheNoisePopup();
+                    sessionStorage.setItem('popup-shown', 'true');
+                }, 5000); // 5 Sekunden Verzögerung
             }
         });
     </script>
