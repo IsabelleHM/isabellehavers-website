@@ -197,6 +197,21 @@
         <button class="cookie-btn" onclick="acceptCookies()">Akzeptiert</button>
     </div>
 
+    <!-- BERATUNG SECTION -->
+    <section style="background-color: #6A6B4A; padding: 80px 5%; text-align: center;">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 44px; color: #FDFDF3; margin-bottom: 20px; font-weight: 700;">
+                Unsicher, welches Angebot passt?
+            </h2>
+            <p style="font-family: 'Plus Jakarta Sans', sans-serif; color: #FDFDF3; font-size: 16px; line-height: 1.8; margin-bottom: 40px; opacity: 0.95;">
+                Schreib mir eine kurze Nachricht – ich helfe dir gerne weiter und finde das perfekte Angebot für dich.
+            </p>
+            <a href="mailto:hello@isabellehavers.com" style="display: inline-block; padding: 16px 40px; background-color: #B10058; color: #FDFDF3; text-decoration: none; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">
+                Jetzt anfragen
+            </a>
+        </div>
+    </section>
+
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-column">
@@ -226,7 +241,7 @@
                 <h4>Kontakt</h4>
                 <ul role="list">
                     <li><a href="mailto:info@isabellehavers.com">E-Mail</a></li>
-                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://www.instagram.com/isabellehavers/" target="_blank" rel="noopener">Instagram</a></li>
                     <li><a href="https://insig.ht/MwS7VVzTl3b" target="_blank" rel="noopener">Insight Timer</a></li>
                 </ul>
             </div>
@@ -361,12 +376,14 @@
             }
         });
 
-        // Open popup on page load
+        // Open popup on page load - MIT 5 SEKUNDEN VERZÖGERUNG
         window.addEventListener('load', function() {
             const popupShown = sessionStorage.getItem('popup-shown');
             if (!popupShown) {
-                openClearTheNoisePopup();
-                sessionStorage.setItem('popup-shown', 'true');
+                setTimeout(() => {
+                    openClearTheNoisePopup();
+                    sessionStorage.setItem('popup-shown', 'true');
+                }, 5000); // 5 Sekunden Verzögerung
             }
         });
     </script>
