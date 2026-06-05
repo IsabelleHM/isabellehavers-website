@@ -305,10 +305,10 @@
         function showCookieBanner() {
             const banner = document.getElementById('cookie-banner');
             const cookieAccepted = localStorage.getItem('cookies-accepted');
-            if (!cookieAccepted) {
-                banner.classList.remove('hidden');
-            } else {
+            if (cookieAccepted) {
                 banner.classList.add('hidden');
+            } else {
+                banner.classList.remove('hidden');
             }
         }
 
@@ -350,7 +350,7 @@
                 setTimeout(() => {
                     openClearTheNoisePopup();
                     sessionStorage.setItem('popup-shown', 'true');
-                }, 5000); // 5 Sekunden Verzögerung
+                }, 3000); // 3 Sekunden Verzögerung
             }
         });
     </script>
