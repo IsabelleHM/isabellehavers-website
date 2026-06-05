@@ -317,6 +317,7 @@
                             submitBtn.textContent = originalText;
                         }, 3000);
                     } else {
+            }
                         throw new Error('API Error');
                     }
                 } catch (error) {
@@ -338,9 +339,10 @@
         function showCookieBanner() {
             const banner = document.getElementById('cookie-banner');
             const cookieAccepted = localStorage.getItem('cookies-accepted');
-            if (!cookieAccepted) {
+            if (cookieAccepted) {
                 banner.classList.remove('hidden');
             } else {
+            }
                 banner.classList.add('hidden');
             }
         }
@@ -383,7 +385,7 @@
                 setTimeout(() => {
                     openClearTheNoisePopup();
                     sessionStorage.setItem('popup-shown', 'true');
-                }, 5000); // 5 Sekunden Verzögerung
+                }, 3000); // 3 Sekunden Verzögerung
             }
         });
     </script>
