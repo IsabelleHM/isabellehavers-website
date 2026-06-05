@@ -203,6 +203,7 @@ h1, h2, h3, h4, .logo, .vibe-en {
     height: 550px;
     background: transparent;
     box-shadow: none;
+    position: relative;
 }
 .popup-content.popup-brevo iframe {
     border-radius: 20px;
@@ -213,13 +214,22 @@ h1, h2, h3, h4, .logo, .vibe-en {
 .close-btn { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #6A6B4A; z-index: 10; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; line-height: 1; }
 .popup-content.popup-brevo .close-btn {
     background: #FFF;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 28px;
+    color: #6A6B4A;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 100;
 }
 .popup-content h3 { font-size: 32px; margin-bottom: 10px; color: #0A1F44; }
 .popup-sub { color: #B10058; font-weight: 600; margin-bottom: 20px; }
