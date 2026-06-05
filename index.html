@@ -119,6 +119,27 @@
         </div>
     </div>
 
+    <!-- CLEAR THE NOISE POPUP -->
+    <div id="clear-the-noise-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-content popup-brevo">
+            <span class="close-btn" onclick="closeClearTheNoisePopup()">&times;</span>
+            <div class="brevo-wrapper">
+                <h3>Clear The Noise 🎯</h3>
+                <p>Dein kostenloses Meditationspaket - 7 Tage für dich selbst.</p>
+                <iframe width="540" height="305" src="https://6d5a492e.sibforms.com/v2/serve/MUIFAFZ9nk1moyQs8z-9h7nkcdObV_CHcICx9cAd5t2ACGEC6dS-qgKvY0scoLEBLs5PUt5bP37L3j5KDKMDdt4heiYIkrBQ0ezjjqchc4QfG4W6yueauI6SAEL7I3CabDW_GD-uCurCdMLEJZQ6Kr8p0aBZvKtWfFa0aJnJMyJ-s5azVT1E7ip0UFAa8LtTvFHywxGFkvQtalD9_g==" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin-left: auto;margin-right: auto;max-width: 100%; width: 100% !important; height: auto !important; min-height: 350px;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-text">
+            <strong>🍪 Wir nutzen Cookies</strong><br>
+            Diese Website nutzt Cookies für Formulare und essenzielle Funktionen. Durch die Nutzung akzeptierst du unsere <a href="/datenschutz.html">Datenschutzerklärung</a>.
+        </div>
+        <button class="cookie-btn" onclick="acceptCookies()">Akzeptiert</button>
+    </div>
+
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-column">
@@ -173,6 +194,58 @@
                 // openPopup(); // Aktivieren, wenn es automatisch kommen soll
             }, 8000);
         }
+    </script>    <script>
+        // COOKIE BANNER
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            const cookieAccepted = localStorage.getItem('cookies-accepted');
+            if (!cookieAccepted) {
+                banner.classList.remove('hidden');
+            } else {
+                banner.classList.add('hidden');
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        // Show cookie banner on page load
+        window.addEventListener('load', showCookieBanner);
+
+        // CLEAR THE NOISE POPUP
+        function openClearTheNoisePopup() {
+            const popup = document.getElementById('clear-the-noise-popup');
+            if (popup) {
+                popup.style.display = 'flex';
+            }
+        }
+
+        function closeClearTheNoisePopup() {
+            const popup = document.getElementById('clear-the-noise-popup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
+        }
+
+        // Close popup when clicking outside
+        window.addEventListener('click', function(event) {
+            const popup = document.getElementById('clear-the-noise-popup');
+            if (popup && event.target === popup) {
+                closeClearTheNoisePopup();
+            }
+        });
+
+        // Open popup on page load
+        window.addEventListener('load', function() {
+            const popupShown = sessionStorage.getItem('popup-shown');
+            if (!popupShown) {
+                openClearTheNoisePopup();
+                sessionStorage.setItem('popup-shown', 'true');
+            }
+        });
     </script>
+
 </body>
 </html>
