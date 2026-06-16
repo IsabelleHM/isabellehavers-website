@@ -186,7 +186,10 @@
             <strong>🍪 Wir nutzen Cookies</strong><br>
             Diese Website nutzt Cookies für Formulare und essenzielle Funktionen. Durch die Nutzung akzeptierst du unsere <a href="/datenschutz.html">Datenschutzerklärung</a>.
         </div>
-        <button class="cookie-btn" onclick="acceptCookies()">Akzeptiert</button>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Ablehnen</button>
+            <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Akzeptieren</button>
+        </div>
     </div>
 
     <!-- BERATUNG SECTION -->
@@ -246,19 +249,13 @@
     </footer>
 
     <script>
-        function openPopup() {
-            document.getElementById('deep-reset-popup').style.display = 'flex';
-        }
-        function closePopup() {
-            document.getElementById('deep-reset-popup').style.display = 'none';
-        }
     </script>    <script>
         // ============================================
         // BREVO FORMULAR - JAVASCRIPT
         // Dein API Key HIER eintragen (Zeile unten)!
         // ============================================
         
-        const BREVO_API_KEY = "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"; // ← ERSETZE MIT DEINEM KEY!
+        const BREVO_API_KEY = "YOUR_API_KEY_HIER"; // ← ERSETZE MIT DEINEM KEY!
         const BREVO_LIST_ID = 3;
 
         const form = document.getElementById('brevoCustomForm');
@@ -341,6 +338,10 @@
 
         function acceptCookies() {
             localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        function rejectCookies() {
             document.getElementById('cookie-banner').classList.add('hidden');
         }
 
