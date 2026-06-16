@@ -117,7 +117,7 @@
             <button class="close-btn" onclick="closeClearTheNoisePopup()" type="button" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 32px; cursor: pointer; color: #6A6B4A; padding: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; z-index: 100;">✕</button>
             <div class="brevo-wrapper">
                 <h3>Clear The Noise</h3>
-                <p>Dein deep reset, für mehr Ruhe.</p>
+                <p>Trag deine Email ein & wir senden dir deinen Moment der Ruhe.</p>
                 
                 <form id="brevoCustomForm" style="margin-top: 30px;">
                     <!-- EMAIL -->
@@ -128,7 +128,7 @@
 
                     <!-- NAME -->
                     <div style="margin-bottom: 20px;">
-                        <label for="name" style="display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #0A1F44; margin-bottom: 8px; font-weight: 600;">Dein Name (optional)</label>
+                        <label for="name" style="display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #0A1F44; margin-bottom: 8px; font-weight: 600;">Dein Name </label>
                         <input type="text" id="name" name="name" placeholder="Wie heißt du?" style="width: 100%; padding: 14px 16px; border: 2px solid #E8E8E8; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; color: #0A1F44; transition: all 0.3s ease; box-sizing: border-box;">
                     </div>
 
@@ -201,7 +201,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2025 Isabelle Havers. Alle Rechte vorbehalten.</p>
+            <p>&copy; 2026 Isabelle Havers. Alle Rechte vorbehalten.</p>
             <p>DSGVO-konform • Keine Tracking-Pixel • Datenschutz First</p>
         </div>
     </footer>
@@ -213,7 +213,7 @@
         function closePopup() {
             document.getElementById('deep-reset-popup').style.display = 'none';
         }
-        // Automatisches Popup nach 8 Sekunden (optional)
+        // Automatisches Popup nach 4 Sekunden (optional)
         window.onload = function() {
             setTimeout(function() {
                 // openPopup(); // Aktivieren, wenn es automatisch kommen soll
@@ -225,7 +225,7 @@
         // Dein API Key HIER eintragen (Zeile unten)!
         // ============================================
         
-        const BREVO_API_KEY = "YOUR_API_KEY_HIER"; // ← ERSETZE MIT DEINEM KEY!
+        const BREVO_API_KEY = "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"; // ← ERSETZE MIT DEINEM KEY!
         const BREVO_LIST_ID = 3;
 
         const form = document.getElementById('brevoCustomForm');
@@ -335,7 +335,7 @@
             }
         });
 
-        // Open popup on page load - MIT 5 SEKUNDEN VERZÖGERUNG
+        // Open popup on page load - MIT 3 SEKUNDEN VERZÖGERUNG
         window.addEventListener('load', function() {
             const popupShown = sessionStorage.getItem('popup-shown');
             if (!popupShown) {
