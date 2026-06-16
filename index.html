@@ -10,14 +10,14 @@
 <body>
 
     <header class="main-header">
-        <div class="logo">Isabelle Havers</div>
+        <a href="index.html" class="logo">Isabelle Havers</a>
         <nav class="nav-menu">
             <a href="#about">Über mich</a>
             <a href="#testimonials">Erfolge</a>
             <a href="#insight-timer">Insight Timer</a>
             <a href="shop.html" class="link-enabled">Shop</a>
             <a href="community.html" class="link-enabled">Community</a>
-            <a href="javascript:void(0);" onclick="openPopup()" class="btn-header">↓ Clear The Noise</a>
+            <a href="javascript:void(0);" onclick="openClearTheNoisePopup()" class="btn-header">↓ Clear The Noise</a>
         </nav>
     </header>
 
@@ -30,14 +30,14 @@
         <div class="hero-video-content">
             <h1>Du hast das Funktionieren perfektioniert.<br><span class="highlight-text">Es ist Zeit, dein Lachen zurückzuholen.</span></h1>
             <p class="hero-sub">Der Spaß ist weg. Keine Lebensfreude. Und ich weiß, dass du funktionieren musst, damit alles passt. Aber du gehst dabei drauf, oder?</p>
-            <a href="javascript:void(0);" onclick="openPopup()" class="btn-hero-video">Clear The Noise – €0,-</a>
+            <a href="javascript:void(0);" onclick="openClearTheNoisePopup()" class="btn-hero-video">Clear The Noise – €0,-</a>
         </div>
     </section>
 
     <section class="vibe-block">
         <div class="vibe-container">
             <h2 class="vibe-en">THE MOVEMENT FOR WOMEN WHO LAUGH TOO MUCH & LOVE IT. MAKE MORE MAGIC.</h2>
-            <p class="vibe-de">Die Wahrheit ist: Du bist nicht hier, um dein Leben nur zu abzuarbeiten. Du bist hier, um morgens aufzustehen und dieses unbändige Grinsen im Gesicht zu haben. Tiefenentspannung und echtes Mentoring für ehrgeizige Mütter.</p>
+            <p class="vibe-de">Die Wahrheit ist: Du bist nicht hier, um dein Leben nur zu verwalten. Du bist hier, um morgens aufzustehen und dieses unbändige Grinsen im Gesicht zu haben. Tiefenentspannung und echtes Mentoring für ehrgeizige Mütter.</p>
         </div>
     </section>
 
@@ -80,7 +80,7 @@
 
             <div class="iphone-text-content">
                 <h2>Mein Space auf Insight Timer</h2>
-                <p class="highlight-p">Über 31k+ Abspielungen & 200+ Meditationen.</p>
+                <p class="highlight-p">Über 27k+ Abspielungen & 100+ Meditationen.</p>
                 <p>Ich bringe die Tiefe der Nervensystem-Regulation direkt auf dein Smartphone. Schließe dich tausenden Frauen an, die meine 7 Premium-Kurse und Meditationen nutzen, um aus dem stressigen Autopiloten auszusteigen.</p>
                 
                 <table class="mini-table">
@@ -102,7 +102,7 @@
             <div class="about-content">
                 <h2>Hallo, ich bin Isabelle.</h2>
                 <p>Zehn Jahre lang habe ich Lebensfreude abgestellt. Nicht bewusst, aber konsequent. Es galt als unprofessionell. Zu viel Lachen? Zu enthusiastisch? Ich passte mich an. Ich wurde ernst.</p>
-                <p>Ein Kollege fragte mich mal morgens: „Wie bist du schon so früh schon so gut drauf?" Das hätte mich aufhorchen lassen sollen. Stattdessen schämte ich mich. Lebensfreude am Morgen war offensichtlich nicht normal.</p>
+                <p>Ein Kollege fragte mich mal morgens: „Wie bist du schon so früh schon so gut drauf?" Das hätte mich aufhorchen lassen sollen. Stattdessen schämte ich mich. Lebensfreude am Morgen war offensichtlich abnormal.</p>
                 <p>Also schaltete ich das ab. Immer mehr. Nachts lag ich wach. Tagsüber funktionierte ich. Am Wochenende brauchte ich Ersatz – Shopping, Trinken, Scrollen. Dopamin-Hits, um mich lebendig zu fühlen, weil ich das im Alltag nicht durfte.</p>
                 <p><strong>Das ist Burnout.</strong> Nicht weil du zu viel arbeitest. Sondern weil du dir selbst nicht erlaubst zu LEBEN.</p>
                 <p>Meditation war mein Rettungsring. Nicht weil ich spirituell sein wollte. Sondern weil mein Körper es brauchte. In dieser Stille bin ich angekommen – bei mir selbst. Und ich bin wieder die Frau, die morgens gut drauf ist, weil sie will und weil sie weiß, dass sie ihr Leben dadurch bereichert.</p>
@@ -118,7 +118,7 @@
             <button class="close-btn" onclick="closeClearTheNoisePopup()" type="button" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 32px; cursor: pointer; color: #6A6B4A; padding: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; z-index: 100;">✕</button>
             <div class="brevo-wrapper">
                 <h3>Clear The Noise</h3>
-                <p>Gib einfach deine Email an und wir senden dir deine Meditation für mehr Ruhe zu.</p>
+                <p>Dein deep reset, für mehr Ruhe.</p>
                 
                 <form id="brevoCustomForm" style="margin-top: 30px;">
                     <!-- EMAIL -->
@@ -226,7 +226,7 @@
         // Dein API Key HIER eintragen (Zeile unten)!
         // ============================================
         
-        const BREVO_API_KEY = "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"; // ← ERSETZE MIT DEINEM KEY!
+        const BREVO_API_KEY = "YOUR_API_KEY_HIER"; // ← ERSETZE MIT DEINEM KEY!
         const BREVO_LIST_ID = 3;
 
         const form = document.getElementById('brevoCustomForm');
@@ -343,7 +343,7 @@
                 setTimeout(() => {
                     openClearTheNoisePopup();
                     sessionStorage.setItem('popup-shown', 'true');
-                }, 3000); // 2 Sekunden Verzögerung
+                }, 3000); // 3 Sekunden Verzögerung
             }
         });
     </script>
