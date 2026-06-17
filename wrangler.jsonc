@@ -1,0 +1,5 @@
+{
+  // Cloudflare Pages – static asset deployment
+  "name": "isabellehavers-website",
+  "pages_build_output_dir": "."
+}
