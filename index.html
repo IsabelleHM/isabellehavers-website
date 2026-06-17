@@ -94,12 +94,12 @@
             </div>
             <div class="about-content">
                 <h2>Hey, ich bin Isabelle.</h2>
-                <p>Zehn Jahre lang habe ich mein Lachen unterdrückt. Erst bewusst und irgendwann dann einfach, weil ich mich so sehr angepasst hatte. Es galt als unprofessionell. Zu viel Lachen? Zu enthusiastisch? Nicht "seniorig" (O-Ton einer Chefin im Hinblick auf eine Beförderung) genug.</p>
-                <p>Ein Kollege fragte mich mal morgens: „Wieso bist du eigentlich montags morgens so gut drauf?" Das hätte mich aufhorchen lassen sollen. Stattdessen schämte ich mich. Lebensfreude am Morgen war offensichtlich nicht normal</p>
-                <p>Also schaltete ich das ab. Immer mehr. Ging immer mehr in eine Funktions-Modus. Am Wochenende brauchte ich dann Ersatz – Shopping, Trinken, Scrollen. Dopamin-Hits, um mich lebendig zu fühlen, weil ich das im Alltag gefühlt nicht durfte.</p>
-                <p><strong>Das ist Burnout.</strong> Nicht weil du zu viel arbeitest. Sondern weil du dir selbst nicht erlaubst zu LEBEN.</p>
-                <p>Meditation war einer meiner Rettungsrings. Weil mein Körper endlich in die Ruhe kam (und ja, das hat anfangs echt gedauert). In dieser Stille bin ich angekommen – bei mir selbst. Und ich bin wieder die Frau, die morgens gut drauf ist, weil sie will und weil sie weiß, dass sie ihr Leben dadurch bereichert.</p>
-                <p>Wir dürfen uns jeden Tag immer wieder dran erinnern: an das, was wir wollen. An das, wie wir es wollen. Nicht irgendwann. Jetzt.</p>
+                <p>Ich habe zehn Jahre lang versucht, mich unsichtbar zu machen. Mein Lachen, meinen Enthusiasmus, meine Energie, all das habe ich weggedrückt, um in eine Vorlage zu passen. „Zu viel Lachen ist unprofessionell", hieß es. Eine Chefin bremste meine Beförderung aus, weil ich (O-Ton) nicht „seniorig" genug wirkte. Und als mich ein Kollege fragte, warum ich montags morgens eigentlich so gute Laune habe, war ich immens verwirrt. Lachen unerwünscht?</p>
+                <p>Also schaltete ich meine Lebensfreude ab. Ich ging in den reinen Funktionsmodus. Unter der Woche zog ich die "professionelle" ernste Maske an, und am Wochenende versuchte ich die Leere mit Shopping, Trinken und Social Media zu füllen. Reine Betäubung.</p>
+                <p>Burnout entsteht nicht nur durch lange To-Do-Listen. Es entsteht, wenn du dir selbst nicht mehr erlaubst, echt zu sein.</p>
+                <p>Mein Weg zurück zu mir begann auf dem Meditationskissen. Am Anfang war die Stille fast unerträglich, weil in meinem Kopf einfach viel zu viel los war. Aber Schritt für Schritt bin ich angekommen – bei mir. Ohne Maske. Ohne den Druck, "perfekt" funktionieren zu müssen.</p>
+                <p>Ich bin wieder die Frau, die morgens (meist😉) mit einem Lächeln aufwacht. Nicht, weil mein Leben perfekt ist, sondern weil ich mir die Begeisterung für das Leben nicht mehr nehmen lasse.</p>
+                <p>Es ist Zeit, den Lärm der anderen leiser zu drehen, um deine eigene Stimme wieder zu hören. Nicht irgendwann. Sondern jetzt.</p>
                 <a href="community.html" class="btn-secondary">Hier zu Club Easy</a>
             </div>
         </div>
@@ -151,12 +151,15 @@
     </div>
 
     <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="cookie-banner">
+    <div id="cookie-banner" class="cookie-banner hidden">
         <div class="cookie-text">
             <strong>🍪 Wir nutzen Cookies</strong><br>
             Diese Website nutzt Cookies für Formulare und essenzielle Funktionen. Durch die Nutzung akzeptierst du unsere <a href="/datenschutz.html">Datenschutzerklärung</a>.
         </div>
-        <button class="cookie-btn" onclick="acceptCookies()">Akzeptieren</button>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Ablehnen</button>
+            <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Akzeptieren</button>
+        </div>
     </div>
 
     <footer class="main-footer">
@@ -276,16 +279,19 @@
         // COOKIE BANNER
         function showCookieBanner() {
             const banner = document.getElementById('cookie-banner');
-            const cookieAccepted = localStorage.getItem('cookies-accepted');
-            if (cookieAccepted) {
-                banner.classList.add('hidden');
-            } else {
+            const cookieChoice = localStorage.getItem('cookies-accepted');
+            if (!cookieChoice) {
                 banner.classList.remove('hidden');
             }
         }
 
         function acceptCookies() {
             localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        function rejectCookies() {
+            localStorage.setItem('cookies-accepted', 'rejected');
             document.getElementById('cookie-banner').classList.add('hidden');
         }
 

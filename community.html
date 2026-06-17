@@ -235,7 +235,38 @@
         </div>
     </footer>
 
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="cookie-banner hidden">
+        <div class="cookie-text">
+            <strong>🍪 Wir nutzen Cookies</strong><br>
+            Diese Website nutzt Cookies für Formulare und essenzielle Funktionen. Durch die Nutzung akzeptierst du unsere <a href="/datenschutz.html">Datenschutzerklärung</a>.
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Ablehnen</button>
+            <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Akzeptieren</button>
+        </div>
+    </div>
+
     <script>
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            const cookieChoice = localStorage.getItem('cookies-accepted');
+            if (!cookieChoice) {
+                banner.classList.remove('hidden');
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        function rejectCookies() {
+            localStorage.setItem('cookies-accepted', 'rejected');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        window.addEventListener('load', showCookieBanner);
     </script>
 </body>
 </html>
