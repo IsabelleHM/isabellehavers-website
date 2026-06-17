@@ -1,6 +1,7 @@
 {
   // Cloudflare Workers – static asset deployment via wrangler versions upload
   "name": "isabellehavers-website",
+  "compatibility_date": "2026-06-17",
   "assets": {
     "directory": "."
   }
