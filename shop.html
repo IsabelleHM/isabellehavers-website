@@ -329,10 +329,9 @@
             const banner = document.getElementById('cookie-banner');
             const cookieAccepted = localStorage.getItem('cookies-accepted');
             if (cookieAccepted) {
-                banner.classList.remove('hidden');
-            } else {
-            }
                 banner.classList.add('hidden');
+            } else {
+                banner.classList.remove('hidden');
             }
         }
 
