@@ -1,5 +1,7 @@
 {
-  // Cloudflare Pages – static asset deployment
+  // Cloudflare Workers – static asset deployment via wrangler versions upload
   "name": "isabellehavers-website",
-  "pages_build_output_dir": "."
+  "assets": {
+    "directory": "."
+  }
 }
