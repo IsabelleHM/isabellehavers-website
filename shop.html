@@ -5,6 +5,272 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop | Isabelle Havers</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+
+        /* ── MINI KURSE KARUSSELL ── */
+        .carousel-wrapper {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 10px 4px 24px;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; }
+
+        .mini-card {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+            background: #FFF;
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+        }
+        .mini-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #3D3D2E;
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+        .mini-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px;
+            flex: 1;
+        }
+        .mini-card ul li {
+            font-size: 14px;
+            color: #6A6B4A;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0e8;
+        }
+        .mini-card ul li:last-child { border-bottom: none; }
+        .mini-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #B10058;
+            margin-bottom: 16px;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #FFF;
+            border: 2px solid #E8E8D8;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            color: #6A6B4A;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 10;
+            transition: all 0.2s;
+        }
+        .carousel-arrow:hover { background: #6A6B4A; color: #FFF; border-color: #6A6B4A; }
+        .carousel-arrow.left { left: -22px; }
+        .carousel-arrow.right { right: -22px; }
+        @media (max-width: 768px) {
+            .carousel-arrow { display: none; }
+            .mini-card { flex: 0 0 82vw; }
+        }
+
+        /* ── BUNDLE KARUSSELL ── */
+        .bundle-card {
+            flex: 0 0 320px;
+            scroll-snap-align: start;
+            border-radius: 16px;
+            padding: 32px 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .bundle-card.white {
+            background: #FFF;
+        }
+        .bundle-card.white h3 { color: #B10058; }
+        .bundle-card.white .bundle-price { color: #B10058; }
+        .bundle-card.white .bundle-old-price { color: #aaa; }
+        .bundle-card.white ul li { color: #3D3D2E; }
+        .bundle-card.white p { color: #6A6B4A; }
+
+        .bundle-card.green {
+            background: #6A6B4A;
+        }
+        .bundle-card.green h3 { color: #B8D0F0; }
+        .bundle-card.green .bundle-price { color: #B8D0F0; }
+        .bundle-card.green .bundle-old-price { color: rgba(255,255,255,0.5); }
+        .bundle-card.green ul li { color: #FDFDF3; }
+        .bundle-card.green p { color: rgba(253,253,243,0.85); }
+        .bundle-card.green .btn-primary {
+            background: #B8D0F0;
+            color: #3D3D2E;
+        }
+
+        .bundle-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .bundle-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 20px;
+            flex: 1;
+        }
+        .bundle-card ul li {
+            padding: 6px 0;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        .bundle-card.white ul li { border-color: #f0f0e8; }
+        .bundle-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .bundle-old-price {
+            font-size: 13px;
+            text-decoration: line-through;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            .bundle-card { flex: 0 0 82vw; }
+        }
+
+        /* ── KOMPLETTSET ── */
+        .megabundle-section {
+            padding: 80px 5%;
+            background: #FDFDF3;
+        }
+        .megabundle-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #3D3D2E;
+            border-radius: 20px;
+            padding: 48px 48px;
+            position: relative;
+            overflow: hidden;
+            color: #FDFDF3;
+        }
+        .megabundle-card::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 300px; height: 300px;
+            background: rgba(177,0,88,0.12);
+            border-radius: 50%;
+        }
+        .megabundle-badge {
+            display: inline-block;
+            background: #B10058;
+            color: #FFF;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .megabundle-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            color: #FDFDF3;
+            margin-bottom: 8px;
+        }
+        .megabundle-card > p {
+            color: rgba(253,253,243,0.8);
+            font-size: 16px;
+            margin-bottom: 32px;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+        .megabundle-body {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+        }
+        .megabundle-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .megabundle-features ul li {
+            font-size: 16px;
+            color: #FDFDF3;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .megabundle-features ul li:last-child { border-bottom: none; }
+        .megabundle-pricing {
+            text-align: center;
+            min-width: 200px;
+        }
+        .megabundle-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: #B10058;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .megabundle-old-price {
+            font-size: 14px;
+            color: rgba(253,253,243,0.5);
+            text-decoration: line-through;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 768px) {
+            .megabundle-card { padding: 32px 24px; }
+            .megabundle-card h2 { font-size: 28px; }
+            .megabundle-body { grid-template-columns: 1fr; }
+            .megabundle-pricing { text-align: left; }
+            .megabundle-price { font-size: 44px; }
+        }
+
+        /* ── SECTION HEADERS ── */
+        .shop-section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+        .shop-section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            color: #3D3D2E;
+            margin-bottom: 12px;
+        }
+        .shop-section-header p {
+            font-size: 17px;
+            color: #6A6B4A;
+            line-height: 1.7;
+        }
+        .shop-section-pad {
+            padding: 80px 5%;
+        }
+        .shop-section-pad.alt {
+            background: #F5F5EC;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,126 +286,198 @@
         </nav>
     </header>
 
+    <!-- HERO -->
     <section class="shop-hero">
         <div class="shop-hero-background" style="background-image: url('shop-hero.jpg');"></div>
         <div class="shop-hero-overlay"></div>
         <div class="shop-hero-content">
-            <h1>Alles damit du den Lärm abstellen kannst</h1>
-            <p class="hero-sub">Kurse, Meditationen & Mentoring zum Runterfahren deines Nervensystems</p>
+            <h1>Meditationen & Kurse</h1>
+            <p class="hero-sub">Kurze, intensive Kurse für konkrete Veränderungen – kein Abo, kein App-Zwang.</p>
         </div>
     </section>
 
-    <section class="shop-section">
-        <div class="shop-intro">
-            <h2>Alles damit du den Lärm abstellen kannst</h2>
-            <p>Jedes Angebot ist dafür gemacht, dich aus dem Autopiloten herauszubringen und wieder zu dir selbst zurück.</p>
+    <!-- MINI KURSE KARUSSELL -->
+    <section class="shop-section-pad">
+        <div class="shop-section-header">
+            <h2>Mini Kurse – Dein Einstieg</h2>
+            <p>Jeder Kurs ist ein eigenständiger Deep Dive. Direkte Downloads als MP3, lebenslang verfügbar.</p>
         </div>
 
-        <!-- MINI KURSE -->
-        <div class="shop-category-header">
-            <h3>Mini Kurse – Dein Einstieg</h3>
-            <p>Kurze, intensive Kurse für konkrete Veränderungen</p>
-        </div>
+        <div class="carousel-wrapper" id="mini-carousel-wrapper">
+            <button class="carousel-arrow left" onclick="scrollCarousel('mini-track', -1)" aria-label="Zurück">&#8249;</button>
 
-        <div class="shop-grid-mini">
-            <!-- Kurs 1: Zeit zu Leben -->
-            <div class="product-card-mini">
-                <h4>Zeit zu Leben: Wie du wirklich anfängst</h4>
-                <p class="product-desc-mini">Du funktionierst. Dein Kalender ist voll, deine To-Do-Liste auch. Aber fühlst du dich lebendig? Die meisten von uns sitzen im Wartezimmer ihres eigenen Lebens. In sieben Lektionen zeige ich dir, wie du endlich Entscheidungen triffst, auch wenn du Angst hast. Wie du merkst, was du wirklich willst, und wie du den ersten Schritt gehst. Wir nutzen konkrete Körper-Techniken statt endlose Gedanken. Am Ende merkst du: Du wartest nicht auf den richtigen Moment. Du schaffst ihn dir selbst.</p>
-                <p class="product-price-mini">€ 37,00</p>
-                <a href="https://copecart.com/products/[ZEIT_ZU_LEBEN]/checkout" class="btn-primary">Kaufen</a>
-            </div>
+            <div class="carousel-track" id="mini-track">
 
-            <!-- Kurs 2: Raus aus dem Bürostress -->
-            <div class="product-card-mini">
-                <h4>Raus aus dem Bürostress</h4>
-                <p class="product-desc-mini">Fühlst du dich im Büroalltag oft gestresst, überwältigt oder energielos? In 7 praxisnahen Lektionen lernst du bewährte Achtsamkeits- und Meditationstechniken kennen, die du direkt am Schreibtisch oder in kurzen Pausen anwenden kannst. Ohne komplizierte Theorie, dafür mit konkreten Übungen, die wirken. Für alle, die im Job präsent, gelassen und kraftvoll bleiben wollen, egal wie voll der Terminkalender ist.</p>
-                <p class="product-price-mini">€ 29,00</p>
-                <a href="https://copecart.com/products/[BUEROSTRESS]/checkout" class="btn-primary">Kaufen</a>
-            </div>
-
-            <!-- Kurs 3: Im Gespräch mit dir -->
-            <div class="product-card-mini">
-                <h4>Im Gespräch mit dir</h4>
-                <p class="product-desc-mini">Eine Serie für Menschen, die bereit sind, ehrlich mit sich selbst zu sein. Hier gibt es keine Hochglanz-Versprechen, kein "höher, schneller, mehr". Es geht um die Wahrheit deines Alltags, deiner Emotionen und deiner inneren Welt und darum, wie du wieder in Kontakt mit dir selbst kommst. Jede Folge ist ein Gespräch, das dich berührt und herausfordert. Am Ende jeder Folge gibt es eine kurze Atemübung oder Meditation, die dich zurück in deinen Körper bringt.</p>
-                <p class="product-price-mini">€ 44,00</p>
-                <a href="https://copecart.com/products/[GESPRACH_MIT_DIR]/checkout" class="btn-primary">Kaufen</a>
-            </div>
-
-            <!-- Kurs 4: Besser schlafen in 3 Tagen -->
-            <div class="product-card-mini">
-                <div class="product-badge-mini">Bestseller</div>
-                <h4>Besser schlafen in 3 Tagen</h4>
-                <p class="product-desc-mini">Guter Schlaf ist kein Zufall – du kannst aktiv etwas dafür tun! In diesem 3-Tage-Kurs lernst du einfache, aber wirkungsvolle Methoden, um schneller einzuschlafen, besser durchzuschlafen und erholt aufzuwachen. Tag 1: Die häufigsten Schlafblockaden erkennen. Tag 2: Deinen Körper mit der richtigen Abendroutine auf Schlaf programmieren. Tag 3: Gedanken beruhigen und entspannt einschlafen. Am Ende hast du eine individuell passende Schlafstrategie, mit der du langfristig ruhiger schläfst.</p>
-                <p class="product-price-mini">€ 27,00</p>
-                <a href="https://copecart.com/products/[BESSER_SCHLAFEN]/checkout" class="btn-primary">Kaufen</a>
-            </div>
-
-            <!-- Kurs 5: Energie tanken statt ausbrennen -->
-            <div class="product-card-mini">
-                <h4>Energie tanken statt ausbrennen</h4>
-                <p class="product-desc-mini">Du gibst alles – im Job, für deine Familie, für deine Ziele. Und trotzdem fühlst du dich erschöpft. In 10 wissenschaftlich fundierten Lektionen erfährst du, was wirklich hinter chronischer Erschöpfung steckt. Es geht um die Verbindung zwischen deinen Lebensbereichen und deiner Biochemie. Du lernst, wie deine Mitochondrien Energie produzieren, warum Blutzucker-Achterbahnen dich auslaugen, wie dein Gehirn sich reinigt, was unterdrückte Emotionen mit deiner Leber machen. Aber vor allem: Du bekommst konkrete Action Steps, die sofort funktionieren.</p>
-                <p class="product-price-mini">€ 49,00</p>
-                <a href="https://copecart.com/products/[ENERGIE_TANKEN]/checkout" class="btn-primary">Kaufen</a>
-            </div>
-
-            <!-- Kurs 6: Wut erkennen -->
-            <div class="product-card-mini">
-                <h4>Wut erkennen</h4>
-                <p class="product-desc-mini">Dieser Kurs beleuchtet das oft missverstandene Zusammenspiel von unterdrückter Wut und chronischer Erschöpfung. Besonders im beruflichen Kontext wird Wut häufig als „unprofessionell" abgestempelt. Doch diese Energie verschwindet nicht, sie wandert in den Körper. In einem 10-tägigen Prozess der emotionalen Klärung erfährst du, warum die Leber oft zum Speicherort für ungefilterten Frust wird. Der Kurs verbindet psychologische Hintergründe mit pragmatischen Coaching-Ansätzen und Körperübungen. Das Ziel: Wut als lebensnotwendigen Wegweiser für Integrität und klare Grenzen begreifen.</p>
-                <p class="product-price-mini">€ 39,00</p>
-                <a href="https://copecart.com/products/9fef9256/checkout" class="btn-primary">Kaufen</a>
-            </div>
-        </div>
-
-        <!-- PAKET -->
-        <div class="shop-category-header" style="margin-top: 80px;">
-            <h3>Wenn du tiefer einsteigen magst</h3>
-            <p>Dann ist das Das Emotionale Regulation Paket das Richtige für dich.</p>
-        </div>
-
-        <div class="shop-grid-paket">
-            <div class="product-card accent-card-product">
-                <div class="product-badge bestseller">Die beste Wahl</div>
-                <h3>Das Emotionale Regulation Paket</h3>
-                <p class="product-desc">Wut, Frustration, Angst verstehen & loslassen. Alle Kurse rund um emotionale Intelligenz und Nervensystem-Regulation zusammen.</p>
-                <div class="product-features">
-                    <p>✓ 4 vollständige Kurse</p>
-                    <p>✓ 15+ Meditationen</p>
-                    <p>✓ Theorie & Praxis</p>
-                    <p>✓ Ressourcen zum Download</p>
-                    <p>✓ Lebenslanger Zugang</p>
+                <div class="mini-card">
+                    <h4>Zeit zu leben: Wie du wirklich anfängst</h4>
+                    <ul>
+                        <li>✓ 7 Lektionen</li>
+                        <li>✓ Körper-Techniken statt Grübeln</li>
+                        <li>✓ Entscheidungen treffen trotz Angst</li>
+                        <li>✓ Direkt-Download MP3</li>
+                    </ul>
+                    <div class="mini-price">€ 14,99</div>
+                    <a href="#" class="btn-primary">Einzeln kaufen</a>
                 </div>
-                <p class="product-price">€ 99,00</p>
-                <a href="https://copecart.com/products/[PAKET_EMOTIONAL]/checkout" class="btn-primary">Jetzt kaufen</a>
-            </div>
-        </div>
 
-        <!-- 1:1 MENTORING -->
-        <div class="shop-category-header" style="margin-top: 80px;">
-            <h3>Du wünschst dir persönliche Begleitung</h3>
-            <p>Dann ist das Mentoring Deep Dive genau das Richtige für dich.</p>
-        </div>
-
-        <div class="shop-grid-mentoring">
-            <div class="product-card">
-                <div class="product-badge">Persönliches Mentoring</div>
-                <h3>Mentoring Deep Dive (6 Wochen)</h3>
-                <p class="product-desc">Intensives persönliches Mentoring. Wir schauen auf dein System, deine Muster, deine Wirklichkeit. Wie kommst du wirklich wieder zu dir selbst – nicht irgendwann, sondern jetzt?</p>
-                <div class="product-features">
-                    <p>✓ 6 × 60-Min. 1:1 Calls</p>
-                    <p>✓ Personalisierte Strategien</p>
-                    <p>✓ Unbegrenzter Chat-Support</p>
-                    <p>✓ Bonus: Alle Kurse inklusive</p>
+                <div class="mini-card">
+                    <h4>Raus aus dem Bürostress</h4>
+                    <ul>
+                        <li>✓ 7 praxisnahe Lektionen</li>
+                        <li>✓ Übungen direkt am Schreibtisch</li>
+                        <li>✓ Gelassenheit im vollen Kalender</li>
+                        <li>✓ Direkt-Download MP3</li>
+                    </ul>
+                    <div class="mini-price">€ 14,99</div>
+                    <a href="#" class="btn-primary">Einzeln kaufen</a>
                 </div>
-                <p class="product-price">€ 897,00</p>
-                <a href="mailto:info@isabellehavers.com?subject=Mentoring-Anfrage" class="btn-primary">Anfrage stellen</a>
+
+                <div class="mini-card">
+                    <h4>Im Gespräch mit dir</h4>
+                    <ul>
+                        <li>✓ Ehrlich mit dir selbst sein</li>
+                        <li>✓ Kontakt zur eigenen inneren Welt</li>
+                        <li>✓ Atemübung nach jeder Folge</li>
+                        <li>✓ Direkt-Download MP3</li>
+                    </ul>
+                    <div class="mini-price">€ 14,99</div>
+                    <a href="#" class="btn-primary">Einzeln kaufen</a>
+                </div>
+
+                <div class="mini-card" style="position:relative;">
+                    <div class="product-badge-mini" style="position:absolute;top:-10px;left:20px;">Bestseller</div>
+                    <h4>Besser schlafen in 3 Tagen</h4>
+                    <ul>
+                        <li>✓ 3-Tage-Programm</li>
+                        <li>✓ Schlafblockaden erkennen</li>
+                        <li>✓ Abendroutine & Gedanken beruhigen</li>
+                        <li>✓ Direkt-Download MP3</li>
+                    </ul>
+                    <div class="mini-price">€ 9,99</div>
+                    <a href="#" class="btn-primary">Einzeln kaufen</a>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Energie tanken statt ausbrennen</h4>
+                    <ul>
+                        <li>✓ 10 wissenschaftl. fundierte Lektionen</li>
+                        <li>✓ Was hinter Erschöpfung steckt</li>
+                        <li>✓ Sofort umsetzbare Action Steps</li>
+                        <li>✓ Direkt-Download MP3</li>
+                    </ul>
+                    <div class="mini-price">€ 14,99</div>
+                    <a href="#" class="btn-primary">Einzeln kaufen</a>
+                </div>
+
+                <div class="mini-card">
+                    <h4>Wut erkennen, Erschöpfung lösen</h4>
+                    <ul>
+                        <li>✓ 10-tägiger Klärungsprozess</li>
+                        <li>✓ Unterdrückte Wut verstehen</li>
+                        <li>✓ Grenzen klar setzen</li>
+                        <li>✓ Direkt-Download MP3</li>
+                    </ul>
+                    <div class="mini-price">€ 14,99</div>
+                    <a href="#" class="btn-primary">Einzeln kaufen</a>
+                </div>
+
             </div>
+
+            <button class="carousel-arrow right" onclick="scrollCarousel('mini-track', 1)" aria-label="Weiter">&#8250;</button>
+        </div>
+    </section>
+
+    <!-- THEMEN-BUNDLES KARUSSELL -->
+    <section class="shop-section-pad alt">
+        <div class="shop-section-header">
+            <h2>Die Themen-Bundles – Clever sparen</h2>
+            <p>Hole dir die perfekten Kombinationen für dein Nervensystem. Kein Abo, kein App-Zwang, für immer dein.</p>
         </div>
 
-        <!-- FAQ SECTION -->
-        <div class="shop-faq">
-            <h2>Häufig gestellte Fragen</h2>
+        <div class="carousel-wrapper" id="bundle-carousel-wrapper">
+            <button class="carousel-arrow left" onclick="scrollCarousel('bundle-track', -1)" aria-label="Zurück">&#8249;</button>
+
+            <div class="carousel-track" id="bundle-track">
+
+                <div class="bundle-card white">
+                    <h3>Paket: Raus aus dem Hamsterrad</h3>
+                    <p>Raus aus dem Bürostress & ankommen im eigenen Leben.</p>
+                    <ul>
+                        <li>✓ Raus aus dem Bürostress</li>
+                        <li>✓ Zeit zu leben: Wie du wirklich anfängst</li>
+                        <li>✓ Direkte Downloads, lebenslang</li>
+                    </ul>
+                    <div class="bundle-price">€ 19,99</div>
+                    <div class="bundle-old-price">Statt € 29,98 im Einzelkauf</div>
+                    <a href="#" class="btn-primary">Bundle sichern</a>
+                </div>
+
+                <div class="bundle-card green">
+                    <h3>Paket: Deep Rest & Regeneration</h3>
+                    <p>Schlafen lernen und Energie nachhaltig aufbauen.</p>
+                    <ul>
+                        <li>✓ Energie tanken statt ausbrennen</li>
+                        <li>✓ Besser schlafen in 3 Tagen</li>
+                        <li>✓ Direkte Downloads, lebenslang</li>
+                    </ul>
+                    <div class="bundle-price">€ 17,99</div>
+                    <div class="bundle-old-price">Statt € 24,98 im Einzelkauf</div>
+                    <a href="#" class="btn-primary">Bundle sichern</a>
+                </div>
+
+                <div class="bundle-card white">
+                    <h3>Paket: Deep Dive Connection</h3>
+                    <p>Emotionen verstehen und echten Kontakt zu dir selbst finden.</p>
+                    <ul>
+                        <li>✓ Wut erkennen, Erschöpfung lösen</li>
+                        <li>✓ Im Gespräch mit dir</li>
+                        <li>✓ Direkte Downloads, lebenslang</li>
+                    </ul>
+                    <div class="bundle-price">€ 19,99</div>
+                    <div class="bundle-old-price">Statt € 29,98 im Einzelkauf</div>
+                    <a href="#" class="btn-primary">Bundle sichern</a>
+                </div>
+
+            </div>
+
+            <button class="carousel-arrow right" onclick="scrollCarousel('bundle-track', 1)" aria-label="Weiter">&#8250;</button>
+        </div>
+    </section>
+
+    <!-- KOMPLETTSET -->
+    <section class="megabundle-section">
+        <div class="shop-section-header">
+            <h2>Das unschlagbare Komplettset</h2>
+            <p>Alle 6 Intensiv-Kurse in einer einzigen, großen Bibliothek.</p>
+        </div>
+
+        <div class="megabundle-card">
+            <div class="megabundle-badge">⭐ Beste Wahl</div>
+            <h2>🌟 Das „Zurück zu mir"-Komplettset</h2>
+            <p>Das Rundum-Paket für deine mentale Gesundheit. Enthält alle drei Themen-Bundles. Hol dir das vollständige Fundament, um Schritt für Schritt aus dem reinen Funktionsmodus auszusteigen.</p>
+
+            <div class="megabundle-body">
+                <div class="megabundle-features">
+                    <ul>
+                        <li>✓ Alle 6 vollständigen Kurse</li>
+                        <li>✓ Über 20+ Lektionen & Meditationen</li>
+                        <li>✓ Kein App-Zwang, direkte Downloads (MP3)</li>
+                        <li>✓ Lebenslanger Zugriff ohne monatliche Kosten</li>
+                    </ul>
+                </div>
+                <div class="megabundle-pricing">
+                    <div class="megabundle-price">€ 49,99</div>
+                    <div class="megabundle-old-price">Gesamtwert der Bundles: € 57,97</div>
+                    <a href="#" class="btn-primary">Das komplette Set freischalten</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="shop-section-pad alt">
+        <div class="shop-faq" style="max-width:1100px; margin: 0 auto;">
+            <h2 style="text-align:center; font-size:42px; margin-bottom:48px;">Häufig gestellte Fragen</h2>
             <div class="faq-grid">
                 <div class="faq-item">
                     <h4>Kann ich auf einen Kurs mehrmals zugreifen?</h4>
@@ -150,22 +488,30 @@
                     <p>Das ist individuell. Viele spüren bereits nach der ersten Meditation eine Veränderung. Wirkliche Nervensystem-Arbeit braucht 2–3 Wochen regelmäßige Praxis.</p>
                 </div>
                 <div class="faq-item">
-                    <h4>Gibt es Rückgabe-Garantie?</h4>
-                    <p>Ja, 30 Tage Geld-zurück-Garantie. Wenn die Kurse nicht dein Leben bereichert haben, erstattest du die Gebühr problemlos zurück.</p>
+                    <h4>Gibt es eine Rückgabe-Garantie?</h4>
+                    <p>Ja, 30 Tage Geld-zurück-Garantie. Wenn die Kurse nicht dein Leben bereichert haben, erstatten wir die Gebühr problemlos zurück.</p>
                 </div>
                 <div class="faq-item">
-                    <h4>Kann ich das Mentoring auch online machen?</h4>
-                    <p>Ja, alle 1:1-Sessions finden online per Zoom statt. Du kannst von überall aus teilnehmen.</p>
+                    <h4>Welches Angebot passt zu mir?</h4>
+                    <p>Schreib mir – ich helfe dir gerne weiter: <a href="mailto:info@isabellehavers.com">info@isabellehavers.com</a></p>
                 </div>
             </div>
         </div>
-
     </section>
 
-    <section class="cta-section">
-        <h2>Unsicher, welches Angebot passt?</h2>
-        <p>Schreib mir eine kurze Nachricht – ich helfe dir gerne weiter.</p>
-        <a href="mailto:info@isabellehavers.com?subject=Shop-Anfrage" class="btn-secondary">Jetzt anfragen</a>
+    <!-- CTA -->
+    <section style="background-color: #6A6B4A; padding: 80px 5%; text-align: center;">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 44px; color: #FDFDF3; margin-bottom: 20px; font-weight: 700;">
+                Unsicher, welches Angebot passt?
+            </h2>
+            <p style="color: #FDFDF3; font-size: 16px; line-height: 1.8; margin-bottom: 40px; opacity: 0.95;">
+                Schreib mir eine kurze Nachricht – ich helfe dir gerne weiter.
+            </p>
+            <a href="mailto:info@isabellehavers.com" style="display: inline-block; padding: 16px 40px; background-color: #B10058; color: #FDFDF3; text-decoration: none; border-radius: 50px; font-size: 16px; font-weight: 700;">
+                Jetzt anfragen
+            </a>
+        </div>
     </section>
 
     <!-- CLEAR THE NOISE POPUP -->
@@ -192,37 +538,20 @@
         </div>
     </div>
 
-    <!-- BERATUNG SECTION -->
-    <section style="background-color: #6A6B4A; padding: 80px 5%; text-align: center;">
-        <div style="max-width: 600px; margin: 0 auto;">
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 44px; color: #FDFDF3; margin-bottom: 20px; font-weight: 700;">
-                Unsicher, welches Angebot passt?
-            </h2>
-            <p style="font-family: 'Plus Jakarta Sans', sans-serif; color: #FDFDF3; font-size: 16px; line-height: 1.8; margin-bottom: 40px; opacity: 0.95;">
-                Schreib mir eine kurze Nachricht – ich helfe dir gerne weiter und finde das perfekte Angebot für dich.
-            </p>
-            <a href="mailto:hello@isabellehavers.com" style="display: inline-block; padding: 16px 40px; background-color: #B10058; color: #FDFDF3; text-decoration: none; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">
-                Jetzt anfragen
-            </a>
-        </div>
-    </section>
-
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-column">
                 <h4>Isabelle Havers</h4>
                 <p>Club Easy – Dein Space für Lebensfreude</p>
             </div>
-            
             <div class="footer-column">
                 <h4>Navigation</h4>
                 <ul role="list">
-                    <li><a href="index.html#why">Warum?</a></li>
                     <li><a href="index.html#about">Über Mich</a></li>
                     <li><a href="community.html">Club Easy</a></li>
+                    <li><a href="shop.html">Meditationen & Kurse</a></li>
                 </ul>
             </div>
-
             <div class="footer-column">
                 <h4>Legal</h4>
                 <ul role="list">
@@ -231,7 +560,6 @@
                     <li><a href="/agb.html">AGB</a></li>
                 </ul>
             </div>
-
             <div class="footer-column">
                 <h4>Kontakt</h4>
                 <ul role="list">
@@ -241,141 +569,53 @@
                 </ul>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <p>&copy; 2025 Isabelle Havers. Alle Rechte vorbehalten.</p>
+            <p>&copy; 2026 Isabelle Havers. Alle Rechte vorbehalten.</p>
             <p>DSGVO-konform • Keine Tracking-Pixel • Datenschutz First</p>
         </div>
     </footer>
 
     <script>
-    </script>    <script>
-        // ============================================
-        // BREVO FORMULAR - JAVASCRIPT
-        // Dein API Key HIER eintragen (Zeile unten)!
-        // ============================================
-        
-        const BREVO_API_KEY = "YOUR_API_KEY_HIER"; // ← ERSETZE MIT DEINEM KEY!
-        const BREVO_LIST_ID = 3;
-
-        const form = document.getElementById('brevoCustomForm');
-        
-        if (form) {
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const email = document.getElementById('email').value;
-                const name = document.getElementById('name').value || "Kontakt";
-                const messageEl = document.getElementById('formMessage');
-                const submitBtn = form.querySelector('button[type="submit"]');
-
-                // Button deaktivieren
-                submitBtn.disabled = true;
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = "Wird verarbeitet...";
-
-                try {
-                    const response = await fetch('https://api.brevo.com/v3/contacts', {
-                        method: 'POST',
-                        headers: {
-                            'accept': 'application/json',
-                            'content-type': 'application/json',
-                            'api-key': BREVO_API_KEY
-                        },
-                        body: JSON.stringify({
-                            email: email,
-                            attributes: {
-                                FIRSTNAME: name
-                            },
-                            listIds: [BREVO_LIST_ID],
-                            updateEnabled: true
-                        })
-                    });
-
-                    if (response.ok || response.status === 409) {
-                        messageEl.textContent = "✓ Danke! Schau in dein E-Mail-Postfach. 📬";
-                        messageEl.style.display = 'block';
-                        messageEl.style.backgroundColor = '#e8f5e9';
-                        messageEl.style.color = '#2e7d32';
-                        messageEl.style.border = '1px solid #4caf50';
-                        form.reset();
-                        
-                        setTimeout(() => {
-                            messageEl.style.display = 'none';
-                            submitBtn.disabled = false;
-                            submitBtn.textContent = originalText;
-                        }, 3000);
-                    } else {
-            }
-                        throw new Error('API Error');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    messageEl.textContent = "❌ Etwas ist schiefgegangen. Versuche es später nochmal.";
-                    messageEl.style.display = 'block';
-                    messageEl.style.backgroundColor = '#ffebee';
-                    messageEl.style.color = '#c62828';
-                    messageEl.style.border = '1px solid #f44336';
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
-                }
-            });
+        function scrollCarousel(trackId, direction) {
+            const track = document.getElementById(trackId);
+            const cardWidth = track.querySelector('div').offsetWidth + 24;
+            track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
         }
-    </script>
 
-    <script>
-        // COOKIE BANNER
         function showCookieBanner() {
             const banner = document.getElementById('cookie-banner');
-            const cookieChoice = localStorage.getItem('cookies-accepted');
-            if (!cookieChoice) {
+            if (!localStorage.getItem('cookies-accepted')) {
                 banner.classList.remove('hidden');
             }
         }
-
         function acceptCookies() {
             localStorage.setItem('cookies-accepted', 'true');
             document.getElementById('cookie-banner').classList.add('hidden');
         }
-
         function rejectCookies() {
+            localStorage.setItem('cookies-accepted', 'rejected');
             document.getElementById('cookie-banner').classList.add('hidden');
         }
 
-        // Show cookie banner on page load
-        window.addEventListener('load', showCookieBanner);
-
-        // CLEAR THE NOISE POPUP
         function openClearTheNoisePopup() {
-            const popup = document.getElementById('clear-the-noise-popup');
-            if (popup) {
-                popup.style.display = 'flex';
-            }
+            document.getElementById('clear-the-noise-popup').style.display = 'flex';
         }
-
         function closeClearTheNoisePopup() {
-            const popup = document.getElementById('clear-the-noise-popup');
-            if (popup) {
-                popup.style.display = 'none';
-            }
+            document.getElementById('clear-the-noise-popup').style.display = 'none';
         }
-
-        // Close popup when clicking outside
-        window.addEventListener('click', function(event) {
+        window.addEventListener('click', function(e) {
             const popup = document.getElementById('clear-the-noise-popup');
-            if (popup && event.target === popup) {
-                closeClearTheNoisePopup();
-            }
+            if (popup && e.target === popup) closeClearTheNoisePopup();
         });
 
-        // Open popup on page load - MIT 5 SEKUNDEN VERZÖGERUNG
         window.addEventListener('load', function() {
+            showCookieBanner();
             const popupShown = sessionStorage.getItem('popup-shown');
             if (!popupShown) {
                 setTimeout(() => {
                     openClearTheNoisePopup();
                     sessionStorage.setItem('popup-shown', 'true');
-                }, 3000); // 3 Sekunden Verzögerung
+                }, 3000);
             }
         });
     </script>
