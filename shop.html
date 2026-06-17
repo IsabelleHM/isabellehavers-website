@@ -181,7 +181,7 @@
     </div>
 
     <!-- COOKIE BANNER -->
-    <div id="cookie-banner" class="cookie-banner">
+    <div id="cookie-banner" class="cookie-banner hidden">
         <div class="cookie-text">
             <strong>🍪 Wir nutzen Cookies</strong><br>
             Diese Website nutzt Cookies für Formulare und essenzielle Funktionen. Durch die Nutzung akzeptierst du unsere <a href="/datenschutz.html">Datenschutzerklärung</a>.
@@ -327,10 +327,8 @@
         // COOKIE BANNER
         function showCookieBanner() {
             const banner = document.getElementById('cookie-banner');
-            const cookieAccepted = localStorage.getItem('cookies-accepted');
-            if (cookieAccepted) {
-                banner.classList.add('hidden');
-            } else {
+            const cookieChoice = localStorage.getItem('cookies-accepted');
+            if (!cookieChoice) {
                 banner.classList.remove('hidden');
             }
         }
