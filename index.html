@@ -108,45 +108,8 @@
     <!-- CLEAR THE NOISE POPUP -->
     <div id="clear-the-noise-popup" class="popup-overlay" style="display: none;">
         <div class="popup-content popup-brevo">
-            <button class="close-btn" onclick="closeClearTheNoisePopup()" type="button" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 32px; cursor: pointer; color: #6A6B4A; padding: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; z-index: 100;">✕</button>
-            <div class="brevo-wrapper">
-                <h3>Clear The Noise</h3>
-                <p>Trag deine Email ein & wir senden dir deinen Moment der Ruhe.</p>
-
-                <form id="brevoCustomForm" style="margin-top: 30px;">
-                    <!-- EMAIL -->
-                    <div style="margin-bottom: 20px;">
-                        <label for="email" style="display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #0A1F44; margin-bottom: 8px; font-weight: 600;">E-Mail Adresse *</label>
-                        <input type="email" id="email" name="email" placeholder="deine@email.com" required style="width: 100%; padding: 14px 16px; border: 2px solid #E8E8E8; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; color: #0A1F44; transition: all 0.3s ease; box-sizing: border-box;">
-                    </div>
-
-                    <!-- NAME -->
-                    <div style="margin-bottom: 20px;">
-                        <label for="name" style="display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #0A1F44; margin-bottom: 8px; font-weight: 600;">Dein Name </label>
-                        <input type="text" id="name" name="name" placeholder="Wie heißt du?" style="width: 100%; padding: 14px 16px; border: 2px solid #E8E8E8; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; color: #0A1F44; transition: all 0.3s ease; box-sizing: border-box;">
-                    </div>
-
-                    <!-- CHECKBOX -->
-                    <div style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px;">
-                        <input type="checkbox" id="datenschutz" name="datenschutz" required style="width: 20px; height: 20px; margin-top: 2px; cursor: pointer; accent-color: #B10058; flex-shrink: 0;">
-                        <label for="datenschutz" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: #0A1F44; margin-bottom: 0; margin-top: 0; font-weight: 400; line-height: 1.5;">
-                            Ich akzeptiere die <a href="/datenschutz.html" style="color: #B10058; text-decoration: underline;">Datenschutzerklärung</a>
-                        </label>
-                    </div>
-
-                    <!-- MESSAGE -->
-                    <div id="formMessage" style="text-align: center; padding: 12px; border-radius: 6px; font-size: 14px; display: none; margin-bottom: 15px;"></div>
-
-                    <!-- BUTTON -->
-                    <button type="submit" style="width: 100%; padding: 16px 24px; background-color: #B10058; color: #FDFDF3; border: none; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;">
-                        Zugang erhalten
-                    </button>
-                </form>
-
-                <p style="text-align: center; margin-top: 20px; font-size: 12px; color: #A5A58D; font-family: 'Plus Jakarta Sans', sans-serif;">
-                    ✓ DSGVO-konform • Keine Spam • Deine Daten sind sicher
-                </p>
-            </div>
+            <span class="close-btn" onclick="closeClearTheNoisePopup()">&times;</span>
+            <iframe width="540" height="305" src="https://6d5a492e.sibforms.com/v2/serve/MUIFAFZ9nk1moyQs8z-9h7nkcdObV_CHcICx9cAd5t2ACGEC6dS-qgKvY0scoLEBLs5PUt5bP37L3j5KDKMDdt4heiYIkrBQ0ezjjqchc4QfG4W6yueauI6SAEL7I3CabDW_GD-uCurCdMLEJZQ6Kr8p0aBZvKtWfFa0aJnJMyJ-s5azVT1E7ip0UFAa8LtTvFHywxGFkvQtalD9_g==" frameborder="0" scrolling="auto" allowfullscreen style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; width: 100% !important; height: 100% !important;"></iframe>
         </div>
     </div>
 
@@ -202,78 +165,6 @@
             <p>DSGVO-konform • Keine Tracking-Pixel • Datenschutz First</p>
         </div>
     </footer>
-
-    <script>
-        // ============================================
-        // BREVO FORMULAR - JAVASCRIPT
-        // Trag deinen API Key ein (Zeile unten)!
-        // ============================================
-        
-        const BREVO_API_KEY = "YOUR_API_KEY_HIER";
-        const BREVO_LIST_ID = 3;
-
-        const form = document.getElementById('brevoCustomForm');
-        
-        if (form) {
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const email = document.getElementById('email').value;
-                const name = document.getElementById('name').value || "Kontakt";
-                const messageEl = document.getElementById('formMessage');
-                const submitBtn = form.querySelector('button[type="submit"]');
-
-                submitBtn.disabled = true;
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = "Wird verarbeitet...";
-
-                try {
-                    const response = await fetch('https://api.brevo.com/v3/contacts', {
-                        method: 'POST',
-                        headers: {
-                            'accept': 'application/json',
-                            'content-type': 'application/json',
-                            'api-key': BREVO_API_KEY
-                        },
-                        body: JSON.stringify({
-                            email: email,
-                            attributes: {
-                                FIRSTNAME: name
-                            },
-                            listIds: [BREVO_LIST_ID],
-                            updateEnabled: true
-                        })
-                    });
-
-                    if (response.ok || response.status === 409) {
-                        messageEl.textContent = "✓ Danke! Schau in dein E-Mail-Postfach. 📬";
-                        messageEl.style.display = 'block';
-                        messageEl.style.backgroundColor = '#e8f5e9';
-                        messageEl.style.color = '#2e7d32';
-                        messageEl.style.border = '1px solid #4caf50';
-                        form.reset();
-                        
-                        setTimeout(() => {
-                            messageEl.style.display = 'none';
-                            submitBtn.disabled = false;
-                            submitBtn.textContent = originalText;
-                        }, 3000);
-                    } else {
-                        throw new Error('API Error');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    messageEl.textContent = "❌ Etwas ist schiefgegangen. Versuche es später nochmal.";
-                    messageEl.style.display = 'block';
-                    messageEl.style.backgroundColor = '#ffebee';
-                    messageEl.style.color = '#c62828';
-                    messageEl.style.border = '1px solid #f44336';
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
-                }
-            });
-        }
-    </script>
 
     <script>
         // COOKIE BANNER
