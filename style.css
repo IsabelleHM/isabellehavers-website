@@ -270,8 +270,8 @@ h1, h2, h3, h4, .logo, .vibe-en {
 .close-btn { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #6A6B4A; z-index: 10; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; line-height: 1; }
 .popup-content.popup-brevo .close-btn {
     background: #FDFDF3;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -280,10 +280,11 @@ h1, h2, h3, h4, .logo, .vibe-en {
     position: absolute;
     top: 12px;
     right: 14px;
-    font-size: 22px;
+    font-size: 20px;
+    line-height: 1;
     color: #6A6B4A;
     border: none;
-    padding: 0;
+    padding: 0 0 2px 0;
     cursor: pointer;
     z-index: 100;
 }
