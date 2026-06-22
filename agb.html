@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGB | Isabelle Havers</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .legal-hero {
+            background: #FDFDF3;
+            text-align: center;
+            padding: 80px 24px 48px;
+        }
+        .legal-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #0A1F44;
+            margin-bottom: 0;
+        }
+        .legal-content {
+            background: #fff;
+            padding: 60px 24px 80px;
+        }
+        .legal-inner {
+            max-width: 740px;
+            margin: 0 auto;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            color: #3D3D2E;
+            line-height: 1.8;
+        }
+        .legal-inner h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: #0A1F44;
+            margin: 40px 0 10px;
+        }
+        .legal-inner h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: #0A1F44;
+            margin: 28px 0 8px;
+        }
+        .legal-inner p {
+            margin: 0 0 16px;
+        }
+        .legal-inner a {
+            color: #B10058;
+            text-decoration: underline;
+        }
+        .placeholder-note {
+            background: #FDFDF3;
+            border-left: 4px solid #B10058;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #6A6B4A;
+            margin: 32px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">Isabelle Havers</a>
+        <nav class="nav-menu">
+            <a href="index.html#about">Über mich</a>
+            <a href="index.html#testimonials">Erfolge</a>
+            <a href="index.html#insight-timer">Insight Timer</a>
+            <a href="shop.html" class="link-enabled">Shop</a>
+            <a href="community.html" class="link-enabled">Club Easy</a>
+        </nav>
+    </header>
+
+    <section class="legal-hero">
+        <h1>Allgemeine Geschäftsbedingungen</h1>
+    </section>
+
+    <section class="legal-content">
+        <div class="legal-inner">
+            <div class="placeholder-note">
+                Der vollständige Inhalt dieser Seite folgt in Kürze.
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Isabelle Havers</h4>
+                <p>Club Easy – Dein Space für Lebensfreude</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul role="list">
+                    <li><a href="index.html#about">Über Mich</a></li>
+                    <li><a href="community.html">Club Easy</a></li>
+                    <li><a href="shop.html">Meditationen &amp; Kurse</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul role="list">
+                    <li><a href="/impressum.html">Impressum</a></li>
+                    <li><a href="/datenschutz.html">Datenschutz</a></li>
+                    <li><a href="/agb.html">AGB</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Kontakt</h4>
+                <ul role="list">
+                    <li><a href="mailto:info@isabellehavers.com">E-Mail</a></li>
+                    <li><a href="https://www.instagram.com/isabellehavers/" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://insig.ht/MwS7VVzTl3b" target="_blank" rel="noopener">Insight Timer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Isabelle Havers. Alle Rechte vorbehalten.</p>
+            <p>DSGVO-konform • Keine Tracking-Pixel • Datenschutz First</p>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" class="cookie-banner hidden">
+        <div class="cookie-text">
+            <strong>🍪 Wir nutzen Cookies</strong><br>
+            Diese Website nutzt Cookies für Formulare und essenzielle Funktionen. Durch die Nutzung akzeptierst du unsere <a href="/datenschutz.html">Datenschutzerklärung</a>.
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Ablehnen</button>
+            <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Akzeptieren</button>
+        </div>
+    </div>
+    <script>
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            if (!localStorage.getItem('cookies-accepted')) banner.classList.remove('hidden');
+        }
+        function acceptCookies() {
+            localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+        function rejectCookies() {
+            localStorage.setItem('cookies-accepted', 'rejected');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+        window.addEventListener('load', showCookieBanner);
+    </script>
+
+</body>
+</html>
