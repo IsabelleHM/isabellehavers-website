@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herzensprojekte & Empfehlungen | Isabelle Havers</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ─── Hero ─────────────────────────────────────────────── */
+        .partner-hero {
+            background: #FDFDF3;
+            text-align: center;
+            padding: 80px 24px 60px;
+        }
+        .partner-hero .eyebrow {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #B10058;
+            margin-bottom: 16px;
+        }
+        .partner-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            color: #0A1F44;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .partner-hero .intro {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            color: #3D3D2E;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+
+        /* ─── Partner Grid ──────────────────────────────────────── */
+        .partner-grid-section {
+            background: #fff;
+            padding: 72px 24px 80px;
+        }
+        .partner-grid {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        /* ─── Partner Card ──────────────────────────────────────── */
+        .partner-card {
+            background: #FDFDF3;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(10,31,68,0.08);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .partner-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 32px rgba(10,31,68,0.13);
+        }
+
+        /* ── Card image ── */
+        .partner-card__image-wrap {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #E8E9D8;
+            overflow: hidden;
+            position: relative;
+        }
+        .partner-card__image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .partner-card__image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            color: #6A6B4A;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Card body ── */
+        .partner-card__body {
+            padding: 32px 32px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .partner-card__tag {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #B10058;
+            margin-bottom: 10px;
+        }
+        .partner-card__name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            color: #0A1F44;
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .partner-card__text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #3D3D2E;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        /* ── Freebie box ── */
+        .partner-card__freebie {
+            background: #fff;
+            border: 1.5px dashed #B10058;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin-bottom: 24px;
+        }
+        .partner-card__freebie-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: #B10058;
+            margin-bottom: 6px;
+        }
+        .partner-card__freebie-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            color: #3D3D2E;
+            line-height: 1.5;
+        }
+        .partner-card__freebie-code {
+            display: inline-block;
+            margin-top: 8px;
+            background: #FDFDF3;
+            border: 1px solid #C0CCD9;
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0A1F44;
+            letter-spacing: 0.06em;
+        }
+
+        /* ── CTA Button ── */
+        .partner-card__btn {
+            display: block;
+            text-align: center;
+            background: #0A1F44;
+            color: #FDFDF3;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 14px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+        .partner-card__btn:hover {
+            background: #B10058;
+        }
+
+        /* ─── Note section ─────────────────────────────────────── */
+        .partner-note {
+            background: #6A6B4A;
+            padding: 56px 24px;
+            text-align: center;
+        }
+        .partner-note p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #FDFDF3;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.75;
+            opacity: 0.9;
+        }
+        .partner-note strong {
+            opacity: 1;
+            color: #FDFDF3;
+        }
+
+        /* ─── Responsive ────────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .partner-card__body { padding: 24px 20px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">Isabelle Havers</a>
+        <nav class="nav-menu">
+            <a href="index.html#about">Über mich</a>
+            <a href="index.html#testimonials">Erfolge</a>
+            <a href="index.html#insight-timer">Insight Timer</a>
+            <a href="shop.html" class="link-enabled">Shop</a>
+            <a href="community.html" class="link-enabled">Club Easy</a>
+        </nav>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="partner-hero">
+        <p class="eyebrow">Mein Netzwerk</p>
+        <h1>Herzensprojekte &amp; Empfehlungen</h1>
+        <p class="intro">Hier stelle ich dir Menschen vor, denen ich vertraue – und deren Arbeit ich von Herzen weiterempfehlen kann. Alles, was du hier findest, habe ich selbst erlebt oder kenne ich persönlich.</p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PARTNER GRID
+         Um eine weitere Partnerin hinzuzufügen:
+         Kopiere einen kompletten <!-- PARTNER CARD -->…<!-- /PARTNER CARD -->
+         Block und passe die markierten Stellen an.
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="partner-grid-section">
+        <div class="partner-grid">
+
+            <!-- ╔══════════════════════════════════════════════════╗
+                 ║  PARTNER CARD 1 – Kakaozeremonien               ║
+                 ╚══════════════════════════════════════════════════╝ -->
+            <article class="partner-card">
+
+                <!-- BILD: Ersetze den Platzhalter durch ein <img>-Tag,
+                     sobald du ein Bild hast.
+                     Beispiel:
+                     <img src="HIER_BILD-URL_EINSETZEN" alt="Name der Partnerin" />
+                -->
+                <div class="partner-card__image-wrap">
+                    <div class="partner-card__image-placeholder">Bild folgt</div>
+                    <!-- <img src="HIER_BILD-URL_EINSETZEN" alt="Kakaozeremonien – [Name]"> -->
+                </div>
+
+                <div class="partner-card__body">
+                    <!-- KATEGORIE-TAG: z.B. "Kakaozeremonien", "Coaching" usw. -->
+                    <p class="partner-card__tag">Kakaozeremonien</p>
+
+                    <!-- NAME DER PARTNERIN -->
+                    <h2 class="partner-card__name">HIER NAME DER PARTNERIN EINSETZEN</h2>
+
+                    <!-- VORSTELLUNGSTEXT -->
+                    <p class="partner-card__text">
+                        HIER KURZEN VORSTELLUNGSTEXT EINSETZEN – wer ist sie, was macht sie besonders, warum empfiehlst du sie?
+                    </p>
+
+                    <!-- FREEBIE-BOX: Gutscheincode oder Link zu ihrem Freebie -->
+                    <div class="partner-card__freebie">
+                        <p class="partner-card__freebie-label">Exklusiv für dich</p>
+                        <p class="partner-card__freebie-text">
+                            HIER FREEBIE-BESCHREIBUNG EINSETZEN (z.B. „10 % Rabatt auf deine erste Zeremonie")
+                        </p>
+                        <!-- Gutscheincode – entfernen, falls kein Code, sondern ein Link -->
+                        <span class="partner-card__freebie-code">HIER-CODE</span>
+                    </div>
+
+                    <!-- CTA-BUTTON: href auf Affiliate-/Partnerlink ändern -->
+                    <a href="HIER_AFFILIATE_LINK_EINSETZEN"
+                       class="partner-card__btn"
+                       target="_blank"
+                       rel="noopener">
+                        Zur Website von [Name] →
+                    </a>
+                </div>
+
+            </article>
+            <!-- /PARTNER CARD 1 -->
+
+
+            <!-- ╔══════════════════════════════════════════════════╗
+                 ║  PARTNER CARD 2 – BaZi Readings                 ║
+                 ╚══════════════════════════════════════════════════╝ -->
+            <article class="partner-card">
+
+                <!-- BILD -->
+                <div class="partner-card__image-wrap">
+                    <div class="partner-card__image-placeholder">Bild folgt</div>
+                    <!-- <img src="HIER_BILD-URL_EINSETZEN" alt="BaZi Readings – [Name]"> -->
+                </div>
+
+                <div class="partner-card__body">
+                    <!-- KATEGORIE-TAG -->
+                    <p class="partner-card__tag">BaZi Readings</p>
+
+                    <!-- NAME DER PARTNERIN -->
+                    <h2 class="partner-card__name">HIER NAME DER PARTNERIN EINSETZEN</h2>
+
+                    <!-- VORSTELLUNGSTEXT -->
+                    <p class="partner-card__text">
+                        HIER KURZEN VORSTELLUNGSTEXT EINSETZEN – wer ist sie, was macht sie besonders, warum empfiehlst du sie?
+                    </p>
+
+                    <!-- FREEBIE-BOX -->
+                    <div class="partner-card__freebie">
+                        <p class="partner-card__freebie-label">Exklusiv für dich</p>
+                        <p class="partner-card__freebie-text">
+                            HIER FREEBIE-BESCHREIBUNG EINSETZEN (z.B. „Kostenloses 15-min BaZi-Schnuppergespräch")
+                        </p>
+                        <!-- Gutscheincode – entfernen, falls kein Code benötigt -->
+                        <span class="partner-card__freebie-code">HIER-CODE</span>
+                    </div>
+
+                    <!-- CTA-BUTTON -->
+                    <a href="HIER_BAZI_PARTNERLINK_EINSETZEN"
+                       class="partner-card__btn"
+                       target="_blank"
+                       rel="noopener">
+                        Zur Buchungsseite von [Name] →
+                    </a>
+                </div>
+
+            </article>
+            <!-- /PARTNER CARD 2 -->
+
+
+            <!-- ╔══════════════════════════════════════════════════╗
+                 ║  PARTNER CARD 3, 4, … – Einfach hier einfügen  ║
+                 ║  Kopiere einen der Blöcke oben und passe an.    ║
+                 ╚══════════════════════════════════════════════════╝ -->
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TRANSPARENZ-HINWEIS
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="partner-note">
+        <p><strong>Transparenz-Hinweis:</strong> Einige der Links auf dieser Seite sind Partnerlinks. Wenn du über sie einkaufst oder buchst, erhalte ich eine kleine Provision – für dich entstehen dabei keine Mehrkosten. Ich empfehle ausschließlich, was ich selbst kenne und wirklich schätze.</p>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Isabelle Havers</h4>
+                <p>Club Easy – Dein Space für Lebensfreude</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul role="list">
+                    <li><a href="index.html#about">Über Mich</a></li>
+                    <li><a href="community.html">Club Easy</a></li>
+                    <li><a href="shop.html">Meditationen &amp; Kurse</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul role="list">
+                    <li><a href="/impressum.html">Impressum</a></li>
+                    <li><a href="/datenschutz.html">Datenschutz</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Kontakt</h4>
+                <ul role="list">
+                    <li><a href="mailto:info@isabellehavers.com">E-Mail</a></li>
+                    <li><a href="https://www.instagram.com/isabellehavers/" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://insig.ht/MwS7VVzTl3b" target="_blank" rel="noopener">Insight Timer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Isabelle Havers. Alle Rechte vorbehalten.</p>
+            <p>DSGVO-konform • Keine Tracking-Pixel • Datenschutz First</p>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" class="cookie-banner hidden">
+        <div class="cookie-text">
+            <strong>🍪 Wir nutzen Cookies</strong><br>
+            Diese Website nutzt Cookies für Formulare und essenzielle Funktionen. Durch die Nutzung akzeptierst du unsere <a href="/datenschutz.html">Datenschutzerklärung</a>.
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Ablehnen</button>
+            <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Akzeptieren</button>
+        </div>
+    </div>
+    <script>
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            if (!localStorage.getItem('cookies-accepted')) banner.classList.remove('hidden');
+        }
+        function acceptCookies() {
+            localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+        function rejectCookies() {
+            localStorage.setItem('cookies-accepted', 'rejected');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+        window.addEventListener('load', showCookieBanner);
+    </script>
+
+</body>
+</html>
