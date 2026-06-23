@@ -62,25 +62,141 @@
     </section>
 
     <section id="testimonials" class="testimonials-section">
+        <style>
+            .testimonials-marquee-outer {
+                overflow: hidden;
+                width: 100%;
+                padding: 10px 0 30px;
+                mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+            }
+            .testimonials-marquee-track {
+                display: flex;
+                gap: 24px;
+                width: max-content;
+                animation: marquee-scroll 60s linear infinite;
+            }
+            .testimonials-marquee-track:hover {
+                animation-play-state: paused;
+            }
+            @keyframes marquee-scroll {
+                0%   { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+            .testimonial-card-m {
+                flex: 0 0 320px;
+                background: #FFF;
+                border-radius: 16px;
+                padding: 28px 28px 24px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            }
+            .testimonial-card-m.accent {
+                background: #0A1F44;
+                color: #FDFDF3;
+            }
+            .testimonial-card-m .stars { color: #B10058; font-size: 18px; margin: 0 0 12px; }
+            .testimonial-card-m .t-text { font-size: 15px; line-height: 1.7; margin: 0 0 16px; color: inherit; }
+            .testimonial-card-m .t-author { font-size: 13px; font-weight: 700; color: #6A6B4A; margin: 0; }
+            .testimonial-card-m.accent .t-author { color: #A5C8E1; }
+        </style>
         <div class="section-intro">
             <h2>Was meine Kundinnen sagen</h2>
             <p>Stimmen von Frauen, die ihr Nervensystem reguliert und ihr Lachen zurückgewonnen haben.</p>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p class="stars">★★★★★</p>
-                <p class="t-text">Erst dachte ich, dass ist eine Meditation? Aber dann flossen lösende Tränen. Vielen Dank für die sehr einfühlsamen Worte!!!! Könnte länger sein :-)</p>
-                <p class="t-author">- Heidi M.</p>
-            </div>
-            <div class="testimonial-card accent-card">
-                <p class="stars">★★★★★</p>
-                <p class="t-text">Diese Meditation ist mein neuer Schatz! Die Affirmationen treffen die Punkte des Seins und passen an allen Tagen. Ruhig und klar in einer besonders angenehmen Tonlage liebevoll und ernsthaft gesprochen. Professionell und nicht "kitschig esoterisch" - ich hoffe, ihr versteht, was ich meine... Wenn ich aufwache und verschlafen überlege: "Äh - was is'n heut' zu erledigen..." -> Freude! -> ich hab da ja was - zack - zurücklegen, *15 Minuten* ->>> Tag kann kommen. Ernsthaft gut! Danke!</p>
-                <p class="t-author">- Da-ni</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="stars">★★★★★</p>
-                <p class="t-text">This is beautiful and helped me because I often replay my day and think of the negative things only. Those thought fill my mind with overthinking and guilt. This helped me to let the day end in peach. Thank you ❤️🌷</p>
-                <p class="t-author">- Christine C.</p>
+        <div class="testimonials-marquee-outer">
+            <div class="testimonials-marquee-track">
+                <!-- Set 1 -->
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Dankeschön. Genau das was ich gebraucht habe. Mein Nervensystem und ich danken dir von Herzen.</p>
+                    <p class="t-author">— Miriam</p>
+                </div>
+                <div class="testimonial-card-m accent">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Die Arbeit mit dem inneren Kind kann sehr konfliktbeladen sein und einen mit starken Gefühlen überwältigen. Wie schön deshalb, dass auch diese Meditation ganz behutsam einen Weg, eine echte Verbindung zum inneren Kind ermöglicht. Wunderschön! Vielen Dank! 🌻</p>
+                    <p class="t-author">— Dulima Vila-Stefenelli</p>
+                </div>
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Herzerwärmend macht leicht und bringt zu sich.</p>
+                    <p class="t-author">— Sarah Suchira Neumann</p>
+                </div>
+                <div class="testimonial-card-m accent">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Couldn't have been more well-suited to current events in my unsettled life, couldn't have been more beautifully read. I look forward to wrapping up more days with you.</p>
+                    <p class="t-author">— Sally Danto</p>
+                </div>
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Das war so wohltuend, danke dafür. 🙏🙏</p>
+                    <p class="t-author">— Renate</p>
+                </div>
+                <div class="testimonial-card-m accent">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Thank you. This was for someone else but I also received the healing frequencies. 🦋</p>
+                    <p class="t-author">— Marie</p>
+                </div>
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Erst dachte ich, dass ist eine Meditation? Aber dann flossen lösende Tränen. Vielen Dank für die sehr einfühlsamen Worte!!!! Könnte länger sein :-)</p>
+                    <p class="t-author">— Heidi M.</p>
+                </div>
+                <div class="testimonial-card-m accent">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Diese Meditation ist mein neuer Schatz! Ruhig und klar in einer besonders angenehmen Tonlage liebevoll und ernsthaft gesprochen. Professionell und nicht "kitschig esoterisch". Wenn ich aufwache und überlege: "Äh – was is'n heut' zu erledigen..." → Freude! → ich hab da ja was. Tag kann kommen. Danke!</p>
+                    <p class="t-author">— Da-ni</p>
+                </div>
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">This is beautiful and helped me because I often replay my day and think of the negative things only. This helped me to let the day end in peace. Thank you ❤️🌷</p>
+                    <p class="t-author">— Christine C.</p>
+                </div>
+                <!-- Set 2 (duplicate for seamless loop) -->
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Dankeschön. Genau das was ich gebraucht habe. Mein Nervensystem und ich danken dir von Herzen.</p>
+                    <p class="t-author">— Miriam</p>
+                </div>
+                <div class="testimonial-card-m accent">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Die Arbeit mit dem inneren Kind kann sehr konfliktbeladen sein und einen mit starken Gefühlen überwältigen. Wie schön deshalb, dass auch diese Meditation ganz behutsam einen Weg, eine echte Verbindung zum inneren Kind ermöglicht. Wunderschön! Vielen Dank! 🌻</p>
+                    <p class="t-author">— Dulima Vila-Stefenelli</p>
+                </div>
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Herzerwärmend macht leicht und bringt zu sich.</p>
+                    <p class="t-author">— Sarah Suchira Neumann</p>
+                </div>
+                <div class="testimonial-card-m accent">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Couldn't have been more well-suited to current events in my unsettled life, couldn't have been more beautifully read. I look forward to wrapping up more days with you.</p>
+                    <p class="t-author">— Sally Danto</p>
+                </div>
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Das war so wohltuend, danke dafür. 🙏🙏</p>
+                    <p class="t-author">— Renate</p>
+                </div>
+                <div class="testimonial-card-m accent">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Thank you. This was for someone else but I also received the healing frequencies. 🦋</p>
+                    <p class="t-author">— Marie</p>
+                </div>
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Erst dachte ich, dass ist eine Meditation? Aber dann flossen lösende Tränen. Vielen Dank für die sehr einfühlsamen Worte!!!! Könnte länger sein :-)</p>
+                    <p class="t-author">— Heidi M.</p>
+                </div>
+                <div class="testimonial-card-m accent">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">Diese Meditation ist mein neuer Schatz! Ruhig und klar in einer besonders angenehmen Tonlage liebevoll und ernsthaft gesprochen. Professionell und nicht "kitschig esoterisch". Wenn ich aufwache und überlege: "Äh – was is'n heut' zu erledigen..." → Freude! → ich hab da ja was. Tag kann kommen. Danke!</p>
+                    <p class="t-author">— Da-ni</p>
+                </div>
+                <div class="testimonial-card-m">
+                    <p class="stars">★★★★★</p>
+                    <p class="t-text">This is beautiful and helped me because I often replay my day and think of the negative things only. This helped me to let the day end in peace. Thank you ❤️🌷</p>
+                    <p class="t-author">— Christine C.</p>
+                </div>
             </div>
         </div>
     </section>
