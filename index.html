@@ -9,6 +9,39 @@
     <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"></noscript>
     <style>
+        /* STATS COUNTER */
+        .stats-row {
+            display: flex;
+            gap: 32px;
+            margin: 24px 0 28px;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: #B10058;
+            line-height: 1;
+        }
+        .stat-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6A6B4A;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 6px;
+        }
+        @media (max-width: 600px) {
+            .stats-row { flex-direction: column; gap: 20px; }
+            .stat-number { font-size: 42px; }
+        }
+    </style>
+    <style>
         /* Popup Brevo inline form overrides */
         #clear-the-noise-popup .sib-form { background-color: transparent !important; padding: 0 !important; }
         #clear-the-noise-popup #sib-container { border: none !important; box-shadow: none !important; max-width: 100% !important; background-color: transparent !important; }
@@ -209,7 +242,22 @@
 
             <div class="iphone-text-content">
                 <h2>Mein Space auf Insight Timer</h2>
-                <p class="highlight-p">Über 31k Abspielungen & 200+ Meditationen.</p>
+
+                <div class="stats-row" id="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="31000" data-suffix="k">0</span>
+                        <span class="stat-label">Abspielungen</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="200" data-suffix="+">0</span>
+                        <span class="stat-label">Meditationen</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="7" data-suffix="">0</span>
+                        <span class="stat-label">Kurse</span>
+                    </div>
+                </div>
+
                 <p>Ich bringe die Tiefe meiner Meditationen direkt auf dein Smartphone. Nutze meine Kurse und Begleitungen, um mitten im Alltag unkompliziert durchzuatmen, wieder bei dir anzukommen und neue Energie zu tanken.</p>
 
                 <a href="https://insig.ht/MwS7VVzTl3b" target="_blank" class="btn-primary" style="margin-top: 25px;">Auf Insight Timer folgen</a>
@@ -402,6 +450,50 @@
         }
 
         window.addEventListener('load', showCookieBanner);
+
+        // STATS COUNTER
+        (function () {
+            const row = document.getElementById('stats-row');
+            if (!row) return;
+
+            let fired = false;
+
+            function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+            function animateCounter(el) {
+                const target = parseInt(el.dataset.target, 10);
+                const suffix = el.dataset.suffix || '';
+                const duration = 2000;
+                const start = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const value = Math.round(easeOut(progress) * target);
+
+                    if (target === 31000) {
+                        el.textContent = (value >= 1000)
+                            ? Math.floor(value / 1000) + '.' + String(value % 1000).padStart(3, '0')
+                            : value;
+                    } else {
+                        el.textContent = value + suffix;
+                    }
+
+                    if (progress < 1) requestAnimationFrame(tick);
+                    else el.textContent = target === 31000 ? '31.000' : target + suffix;
+                }
+                requestAnimationFrame(tick);
+            }
+
+            const observer = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting && !fired) {
+                    fired = true;
+                    row.querySelectorAll('.stat-number').forEach(animateCounter);
+                }
+            }, { threshold: 0.4 });
+
+            observer.observe(row);
+        })();
 
         // CLEAR THE NOISE POPUP
         function openClearTheNoisePopup() {
