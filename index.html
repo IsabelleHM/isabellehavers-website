@@ -69,7 +69,7 @@
             <a href="#testimonials">Erfolge</a>
             <a href="#insight-timer">Insight Timer</a>
             <a href="shop.html" class="link-enabled">Shop</a>
-            <a href="community.html" class="link-enabled">Club Easy</a>            <a href="javascript:void(0);" onclick="openClearTheNoisePopup()" class="btn-header">↓ Clear The Noise</a>
+            <a href="community.html" class="link-enabled">Club Easy</a>
         </nav>
     </header>
 
@@ -106,7 +106,6 @@
                 gap: 24px;
                 width: max-content;
                 animation: marquee-scroll 200s linear infinite;
-                will-change: transform;
                 transform: translateZ(0);
             }
             .testimonials-marquee-track:hover {
@@ -490,7 +489,7 @@
             function animateCounter(el) {
                 const target = parseInt(el.dataset.target, 10);
                 const suffix = el.dataset.suffix || '';
-                const duration = 2000;
+                const duration = 5000;
                 const start = performance.now();
 
                 function tick(now) {
@@ -507,7 +506,7 @@
                     }
 
                     if (progress < 1) requestAnimationFrame(tick);
-                    else el.textContent = target === 31000 ? '31.000' : target + suffix;
+                    else el.textContent = target === 31000 ? 'Über 31.000' : target + suffix;
                 }
                 requestAnimationFrame(tick);
             }
