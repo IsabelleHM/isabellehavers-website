@@ -377,6 +377,14 @@
         </div>
     </div>
 
+    <!-- STICKY BAR -->
+    <div id="sticky-bar" class="sticky-bar" style="display:none;" role="complementary" aria-label="Gratis Meditation">
+        <button class="sticky-bar__cta" onclick="openClearTheNoisePopup()" aria-label="Meditation downloaden">
+            🎧&nbsp;&nbsp;Meditation: Clear The Noise →
+        </button>
+        <button class="sticky-bar__close" onclick="document.getElementById('sticky-bar').style.display='none'; sessionStorage.setItem('stickyBarClosed','1');" aria-label="Schließen">✕</button>
+    </div>
+
     <!-- COOKIE BANNER -->
     <div id="cookie-banner" class="cookie-banner hidden">
         <div class="cookie-text">
@@ -448,6 +456,19 @@
             localStorage.setItem('cookies-accepted', 'rejected');
             document.getElementById('cookie-banner').classList.add('hidden');
         }
+
+        // STICKY BAR
+        (function () {
+            if (sessionStorage.getItem('stickyBarClosed')) return;
+            var bar = document.getElementById('sticky-bar');
+            var shown = false;
+            window.addEventListener('scroll', function () {
+                if (!shown && window.scrollY > 400) {
+                    bar.style.display = 'flex';
+                    shown = true;
+                }
+            }, { passive: true });
+        })();
 
         window.addEventListener('load', showCookieBanner);
 

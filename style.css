@@ -444,6 +444,50 @@ h1, h2, h3, h4, .logo, .vibe-en {
     display: none;
 }
 
+/* STICKY BAR */
+.sticky-bar {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    background-color: #B10058;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    box-shadow: 0 -4px 20px rgba(177,0,88,0.3);
+    max-width: 400px;
+}
+.sticky-bar__cta {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #FDFDF3;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 20px;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+}
+.sticky-bar__cta:hover { background: rgba(255,255,255,0.1); }
+.sticky-bar__close {
+    background: none;
+    border: none;
+    border-left: 1px solid rgba(255,255,255,0.25);
+    color: #FDFDF3;
+    font-size: 16px;
+    padding: 16px 18px;
+    cursor: pointer;
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+.sticky-bar__close:hover { opacity: 1; background: rgba(255,255,255,0.1); }
+@media (max-width: 600px) {
+    .sticky-bar { max-width: 100%; left: 0; border-radius: 10px 10px 0 0; }
+}
+
 /* BREVO FORMULAR WRAPPER */
 .brevo-wrapper {
     background: white;
