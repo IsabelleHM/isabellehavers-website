@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isabelle Havers | Meditation & Humor</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+    <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"></noscript>
     <style>
         /* Popup Brevo inline form overrides */
         #clear-the-noise-popup .sib-form { background-color: transparent !important; padding: 0 !important; }
@@ -36,7 +37,7 @@
 
     <section class="hero-video-section">
         <div class="video-overlay"></div>
-        <video autoplay muted loop playsinline class="bg-video">
+        <video autoplay muted loop playsinline preload="none" class="bg-video">
             <source src="https://assets.mixkit.co/videos/23440/23440-720.mp4" type="video/mp4">
         </video>
         
@@ -60,8 +61,6 @@
                 overflow: hidden;
                 width: 100%;
                 padding: 10px 0 30px;
-                mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
             }
             .testimonials-marquee-track {
                 display: flex;
