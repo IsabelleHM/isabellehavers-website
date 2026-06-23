@@ -238,11 +238,20 @@ h1, h2, h3, h4, .logo, .vibe-en {
 
 /* ABOUT SECTION */
 .about-section { padding: 100px 5%; background: #FFF; }
-.about-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; max-width: 1100px; margin: 0 auto; align-items: start; }
-@media (max-width: 800px) { .about-container { grid-template-columns: 1fr; } }
-.about-image img { width: 100%; height: auto; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
-.about-content h2 { font-size: 45px; margin-bottom: 20px; }
-.about-content p { margin-bottom: 20px; }
+.about-container { max-width: 1100px; margin: 0 auto; overflow: hidden; }
+.about-float-img {
+    float: left;
+    width: 38%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    margin: 0 40px 20px 0;
+}
+.about-heading { font-size: 45px; margin-bottom: 20px; }
+.about-container p { margin-bottom: 20px; font-variant-ligatures: no-common-ligatures; }
+@media (max-width: 800px) {
+    .about-float-img { float: none; width: 100%; margin: 0 0 30px 0; }
+}
 .btn-secondary { background-color: #6A6B4A; color: #FFF; padding: 15px 35px; border-radius: 50px; text-decoration: none; display: inline-block; font-weight: 600; }
 
 /* POPUP SYSTEM */

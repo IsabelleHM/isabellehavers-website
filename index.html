@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isabelle Havers | Meditation & Humor</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+    <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"></noscript>
     <style>
         /* Popup Brevo inline form overrides */
         #clear-the-noise-popup .sib-form { background-color: transparent !important; padding: 0 !important; }
@@ -28,15 +29,13 @@
             <a href="#testimonials">Erfolge</a>
             <a href="#insight-timer">Insight Timer</a>
             <a href="shop.html" class="link-enabled">Shop</a>
-            <a href="community.html" class="link-enabled">Club Easy</a>
-            <a href="partnerinnen.html" class="link-enabled">Selected</a>
-            <a href="javascript:void(0);" onclick="openClearTheNoisePopup()" class="btn-header">↓ Clear The Noise</a>
+            <a href="community.html" class="link-enabled">Club Easy</a>            <a href="javascript:void(0);" onclick="openClearTheNoisePopup()" class="btn-header">↓ Clear The Noise</a>
         </nav>
     </header>
 
     <section class="hero-video-section">
         <div class="video-overlay"></div>
-        <video autoplay muted loop playsinline class="bg-video">
+        <video autoplay muted loop playsinline preload="none" class="bg-video">
             <source src="https://assets.mixkit.co/videos/23440/23440-720.mp4" type="video/mp4">
         </video>
         
@@ -60,14 +59,12 @@
                 overflow: hidden;
                 width: 100%;
                 padding: 10px 0 30px;
-                mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
             }
             .testimonials-marquee-track {
                 display: flex;
                 gap: 24px;
                 width: max-content;
-                animation: marquee-scroll 120s linear infinite;
+                animation: marquee-scroll 200s linear infinite;
             }
             .testimonials-marquee-track:hover {
                 animation-play-state: paused;
@@ -209,7 +206,7 @@
             <div class="iphone-text-content">
                 <h2>Mein Space auf Insight Timer</h2>
                 <p class="highlight-p">Über 31k Abspielungen & 200+ Meditationen.</p>
-                <p>Ich bringe die Tiefe der Nervensystem-Regulation direkt auf dein Smartphone. Schließe dich anderen Frauen an, die meine 7 Kurse und Meditationen nutzen, um aus dem stressigen Autopiloten auszusteigen.</p>
+                <p>Ich bringe die Tiefe meiner Meditationen direkt auf dein Smartphone. Nutze meine Kurse und Begleitungen, um mitten im Alltag unkompliziert durchzuatmen, wieder bei dir anzukommen und neue Energie zu tanken.</p>
 
                 <a href="https://insig.ht/MwS7VVzTl3b" target="_blank" class="btn-primary" style="margin-top: 25px;">Auf Insight Timer folgen</a>
             </div>
@@ -219,21 +216,17 @@
 
     <section id="about" class="about-section">
         <div class="about-container">
-            <div class="about-image">
-                <img src="Ich bin Isabelle.png" alt="Isabelle Havers">
-            </div>
-            <div class="about-content">
-                <h2>Hey, ich bin Isabelle.</h2>
-                <p>Ich habe zehn Jahre lang versucht, mich unsichtbar zu machen. Mein Lachen, meinen Enthusiasmus, meine Energie, all das habe ich weggedrückt, um in eine Vorlage zu passen. „Zu viel Lachen ist unprofessionell", hieß es. Eine Chefin bremste meine Beförderung aus, weil ich (O-Ton) nicht „seniorig" genug wirkte. Und als mich ein Kollege fragte, warum ich montags morgens eigentlich so gute Laune habe, war ich immens verwirrt. Lachen unerwünscht?</p>
-                <p>Also schaltete ich meine Lebensfreude ab. Ich ging in den reinen Funktionsmodus. Unter der Woche zog ich die "professionelle" ernste Maske an, und am Wochenende versuchte ich die Leere mit Shopping, Trinken und Social Media zu füllen. Reine Betäubung.</p>
-                <p>Burnout entsteht nicht nur durch lange To-Do-Listen. Es entsteht, wenn du dir selbst nicht mehr erlaubst, echt zu sein.</p>
-                <p>Mein Weg zurück zu mir begann auf dem Meditationskissen. Am Anfang war die Stille fast unerträglich, weil in meinem Kopf einfach viel zu viel los war. Aber Schritt für Schritt bin ich angekommen – bei mir. Ohne Maske. Ohne den Druck, "perfekt" funktionieren zu müssen.</p>
-                <p>Ich bin wieder die Frau, die morgens (meist😉) mit einem Lächeln aufwacht. Nicht, weil mein Leben perfekt ist, sondern weil ich mir die Begeisterung für das Leben nicht mehr nehmen lasse.</p>
-                <p>Es ist Zeit, den Lärm der anderen leiser zu drehen, um deine eigene Stimme wieder zu hören. Nicht irgendwann. Sondern jetzt.</p>
-                <h3>Stell dir vor, du musst nicht erst perfekt sein, um glücklich zu sein.</h3>
-                <p>Weil ich genau das selbst erlebt habe, kreiere ich eine Community für Menschen, die bereit sind, den Leistungsdruck loszulassen und die Begeisterung für das Leben wieder ganz nach oben zu schrauben. Mit Tiefe, mit Vertrauen und mit verdammt viel Spaß.</p>
-                <a href="community.html" class="btn-secondary">Hier zu Club Easy</a>
-            </div>
+            <img src="Ich bin Isabelle.png" alt="Isabelle Havers" class="about-float-img">
+            <h2 class="about-heading">Hey, ich bin Isabelle.</h2>
+            <p>Ich habe zehn Jahre lang versucht, mich unsichtbar zu machen. Mein Lachen, meinen Enthusiasmus, meine Energie, all das habe ich weggedrückt, um in eine Vorlage zu passen. „Zu viel Lachen ist unprofessionell", hieß es. Eine Chefin bremste meine Beförderung aus, weil ich (O-Ton) nicht „seniorig" genug wirkte. Und als mich ein Kollege fragte, warum ich montags morgens eigentlich so gute Laune habe, war ich immens verwirrt. Lachen unerwünscht?</p>
+            <p>Also schaltete ich meine Lebensfreude ab. Ich ging in den reinen Funktionsmodus. Unter der Woche zog ich die "professionelle" ernste Maske an, und am Wochenende versuchte ich die Leere mit Shopping, Trinken und Social Media zu füllen. Reine Betäubung.</p>
+            <p>Burnout entsteht nicht nur durch lange To-Do-Listen. Es entsteht, wenn du dir selbst nicht mehr erlaubst, echt zu sein.</p>
+            <p>Mein Weg zurück zu mir begann auf dem Meditationskissen. Am Anfang war die Stille fast unerträglich, weil in meinem Kopf einfach viel zu viel los war. Aber Schritt für Schritt bin ich angekommen – bei mir. Ohne Maske. Ohne den Druck, "perfekt" funktionieren zu müssen.</p>
+            <p>Ich bin wieder die Frau, die morgens (meist😉) mit einem Lächeln aufwacht. Nicht, weil mein Leben perfekt ist, sondern weil ich mir die Begeisterung für das Leben nicht mehr nehmen lasse.</p>
+            <p>Es ist Zeit, den Lärm der anderen leiser zu drehen, um deine eigene Stimme wieder zu hören. Nicht irgendwann. Sondern jetzt.</p>
+            <h3>Stell dir vor, du musst nicht erst perfekt sein, um glücklich zu sein.</h3>
+            <p>Weil ich genau das selbst erlebt habe, kreiere ich eine Community für Menschen, die bereit sind, den Leistungsdruck loszulassen und die Begeisterung für das Leben wieder ganz nach oben zu schrauben. Mit Tiefe, mit Vertrauen und mit verdammt viel Spaß.</p>
+            <a href="community.html" class="btn-secondary">Hier zu Club Easy</a>
         </div>
     </section>
 
