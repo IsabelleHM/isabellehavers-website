@@ -3,10 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isabelle Havers | Meditation & Humor</title>
+    <title>Isabelle Havers | Meditation für erschöpfte Frauen | Deutsch</title>
+    <meta name="description" content="Meditation, Humor und echte Lebensfreude – für Frauen, die das Funktionieren satthaben. Kostenlose Meditation downloaden. Über 200 Meditationen auf Insight Timer.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://isabellehavers.com/">
+    <meta property="og:title" content="Isabelle Havers | Meditation für erschöpfte Frauen">
+    <meta property="og:description" content="Meditation, Humor und echte Lebensfreude für Frauen, die das Funktionieren satthaben. Kostenlose Meditation downloaden.">
+    <meta property="og:image" content="https://isabellehavers.com/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css"></noscript>
+    <style>
+        /* STATS COUNTER */
+        .stats-row {
+            display: flex;
+            gap: 32px;
+            margin: 24px 0 28px;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: #B10058;
+            line-height: 1;
+        }
+        .stat-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6A6B4A;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 6px;
+        }
+        @media (max-width: 600px) {
+            .stats-row { flex-direction: column; gap: 20px; }
+            .stat-number { font-size: 42px; }
+        }
+    </style>
     <style>
         /* Popup Brevo inline form overrides */
         #clear-the-noise-popup .sib-form { background-color: transparent !important; padding: 0 !important; }
@@ -59,12 +99,15 @@
                 overflow: hidden;
                 width: 100%;
                 padding: 10px 0 30px;
+                transform: translateZ(0);
             }
             .testimonials-marquee-track {
                 display: flex;
                 gap: 24px;
                 width: max-content;
                 animation: marquee-scroll 200s linear infinite;
+                will-change: transform;
+                transform: translateZ(0);
             }
             .testimonials-marquee-track:hover {
                 animation-play-state: paused;
@@ -205,7 +248,22 @@
 
             <div class="iphone-text-content">
                 <h2>Mein Space auf Insight Timer</h2>
-                <p class="highlight-p">Über 31k Abspielungen & 200+ Meditationen.</p>
+
+                <div class="stats-row" id="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="31000" data-suffix="k">0</span>
+                        <span class="stat-label">Abspielungen</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="200" data-suffix="+">0</span>
+                        <span class="stat-label">Meditationen</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="7" data-suffix="">0</span>
+                        <span class="stat-label">Kurse</span>
+                    </div>
+                </div>
+
                 <p>Ich bringe die Tiefe meiner Meditationen direkt auf dein Smartphone. Nutze meine Kurse und Begleitungen, um mitten im Alltag unkompliziert durchzuatmen, wieder bei dir anzukommen und neue Energie zu tanken.</p>
 
                 <a href="https://insig.ht/MwS7VVzTl3b" target="_blank" class="btn-primary" style="margin-top: 25px;">Auf Insight Timer folgen</a>
@@ -325,6 +383,14 @@
         </div>
     </div>
 
+    <!-- STICKY BAR -->
+    <div id="sticky-bar" class="sticky-bar" style="display:none;" role="complementary" aria-label="Gratis Meditation">
+        <button class="sticky-bar__cta" onclick="openClearTheNoisePopup()" aria-label="Meditation downloaden">
+            🎧&nbsp;&nbsp;Meditation: Clear The Noise →
+        </button>
+        <button class="sticky-bar__close" onclick="document.getElementById('sticky-bar').style.display='none'; sessionStorage.setItem('stickyBarClosed','1');" aria-label="Schließen">✕</button>
+    </div>
+
     <!-- COOKIE BANNER -->
     <div id="cookie-banner" class="cookie-banner hidden">
         <div class="cookie-text">
@@ -397,7 +463,64 @@
             document.getElementById('cookie-banner').classList.add('hidden');
         }
 
+        // STICKY BAR
+        (function () {
+            if (sessionStorage.getItem('stickyBarClosed')) return;
+            var bar = document.getElementById('sticky-bar');
+            var shown = false;
+            window.addEventListener('scroll', function () {
+                if (!shown && window.scrollY > 400) {
+                    bar.style.display = 'flex';
+                    shown = true;
+                }
+            }, { passive: true });
+        })();
+
         window.addEventListener('load', showCookieBanner);
+
+        // STATS COUNTER
+        (function () {
+            const row = document.getElementById('stats-row');
+            if (!row) return;
+
+            let fired = false;
+
+            function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+            function animateCounter(el) {
+                const target = parseInt(el.dataset.target, 10);
+                const suffix = el.dataset.suffix || '';
+                const duration = 2000;
+                const start = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const value = Math.round(easeOut(progress) * target);
+
+                    if (target === 31000) {
+                        el.textContent = (value >= 1000)
+                            ? Math.floor(value / 1000) + '.' + String(value % 1000).padStart(3, '0')
+                            : value;
+                    } else {
+                        el.textContent = value + suffix;
+                    }
+
+                    if (progress < 1) requestAnimationFrame(tick);
+                    else el.textContent = target === 31000 ? '31.000' : target + suffix;
+                }
+                requestAnimationFrame(tick);
+            }
+
+            const observer = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting && !fired) {
+                    fired = true;
+                    row.querySelectorAll('.stat-number').forEach(animateCounter);
+                }
+            }, { threshold: 0.4 });
+
+            observer.observe(row);
+        })();
 
         // CLEAR THE NOISE POPUP
         function openClearTheNoisePopup() {

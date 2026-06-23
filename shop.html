@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop | Isabelle Havers</title>
+    <title>Meditationskurse kaufen | Isabelle Havers | MP3 Download</title>
+    <meta name="description" content="Kurze, intensive Meditationskurse als MP3 – kein Abo, kein App-Zwang, lebenslanger Zugriff. Themen: Schlaf, Wut, Erschöpfung, Stress.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://isabellehavers.com/shop">
+    <meta property="og:title" content="Meditationskurse | Isabelle Havers">
+    <meta property="og:description" content="Kurze, intensive Meditationskurse als MP3 – kein Abo, lebenslanger Zugriff.">
+    <meta property="og:image" content="https://isabellehavers.com/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
     <style>
@@ -617,6 +624,14 @@
         </div>
     </div>
 
+    <!-- STICKY BAR -->
+    <div id="sticky-bar" class="sticky-bar" style="display:none;" role="complementary" aria-label="Gratis Meditation">
+        <button class="sticky-bar__cta" onclick="openClearTheNoisePopup()" aria-label="Meditation downloaden">
+            🎧&nbsp;&nbsp;Meditation: Clear The Noise →
+        </button>
+        <button class="sticky-bar__close" onclick="document.getElementById('sticky-bar').style.display='none'; sessionStorage.setItem('stickyBarClosed','1');" aria-label="Schließen">✕</button>
+    </div>
+
     <!-- COOKIE BANNER -->
     <div id="cookie-banner" class="cookie-banner hidden">
         <div class="cookie-text">
@@ -697,6 +712,19 @@
             const popup = document.getElementById('clear-the-noise-popup');
             if (popup && e.target === popup) closeClearTheNoisePopup();
         });
+
+        // STICKY BAR
+        (function () {
+            if (sessionStorage.getItem('stickyBarClosed')) return;
+            var bar = document.getElementById('sticky-bar');
+            var shown = false;
+            window.addEventListener('scroll', function () {
+                if (!shown && window.scrollY > 400) {
+                    bar.style.display = 'flex';
+                    shown = true;
+                }
+            }, { passive: true });
+        })();
 
         window.addEventListener('load', function() {
             showCookieBanner();
