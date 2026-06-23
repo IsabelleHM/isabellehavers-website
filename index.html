@@ -59,12 +59,15 @@
                 overflow: hidden;
                 width: 100%;
                 padding: 10px 0 30px;
+                transform: translateZ(0);
             }
             .testimonials-marquee-track {
                 display: flex;
                 gap: 24px;
                 width: max-content;
                 animation: marquee-scroll 200s linear infinite;
+                will-change: transform;
+                transform: translateZ(0);
             }
             .testimonials-marquee-track:hover {
                 animation-play-state: paused;
