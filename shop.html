@@ -216,6 +216,49 @@
             .bundle-card { flex: 0 0 82vw; }
         }
 
+        /* FAQ ACCORDION */
+        .faq-accordion { border-top: 1px solid #e8e8e0; }
+        .faq-acc-item { border-bottom: 1px solid #e8e8e0; }
+        .faq-acc-btn {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            padding: 20px 0;
+            cursor: pointer;
+            text-align: left;
+            gap: 16px;
+        }
+        .faq-acc-btn span {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #0A1F44;
+            line-height: 1.4;
+        }
+        .faq-acc-arrow {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            color: #B10058;
+            transition: transform 0.25s;
+        }
+        .faq-acc-btn[aria-expanded="true"] .faq-acc-arrow { transform: rotate(180deg); }
+        .faq-acc-body {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+        .faq-acc-body p {
+            padding-bottom: 20px;
+            color: #6A6B4A;
+            font-size: 15px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
         /* SCROLL HINT */
         .scroll-hint {
             display: none;
@@ -631,24 +674,44 @@
 
     <!-- FAQ -->
     <section class="shop-section-pad alt">
-        <div class="shop-faq" style="max-width:1100px; margin: 0 auto;">
+        <div style="max-width:720px; margin: 0 auto;">
             <h2 style="text-align:center; font-size:42px; margin-bottom:48px;">Häufig gestellte Fragen</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h4>Wie erhalte ich Zugriff auf die Kurse?</h4>
-                    <p>Direkt nach dem Kauf über Copecart erhältst du eine E-Mail mit deinem persönlichen Download-Link. Du kannst dir alle Audio-Lektionen direkt als MP3 auf dein Smartphone, Tablet oder deinen Computer herunterladen – ganz flexibel, ohne App-Zwang und ohne zusätzliche Anmeldung.</p>
+            <div class="faq-accordion">
+                <div class="faq-acc-item">
+                    <button class="faq-acc-btn" aria-expanded="false">
+                        <span>Wie erhalte ich Zugriff auf die Kurse?</span>
+                        <svg class="faq-acc-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2,4 6,8 10,4"/></svg>
+                    </button>
+                    <div class="faq-acc-body">
+                        <p>Direkt nach dem Kauf über Copecart erhältst du eine E-Mail mit deinem persönlichen Download-Link. Du kannst dir alle Audio-Lektionen direkt als MP3 auf dein Smartphone, Tablet oder deinen Computer herunterladen – ganz flexibel, ohne App-Zwang und ohne zusätzliche Anmeldung.</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h4>Ich kenne dich von Insight Timer. Was ist der Unterschied?</h4>
-                    <p>Auf Insight Timer laufen meine Kurse innerhalb des dortigen App-Abonnements. Hier im Shop kaufst du die Kurse einmalig und unabhängig. Sie gehören für immer dir, du brauchst keine zusätzliche App und bist komplett frei von monatlichen Abo-Kosten.</p>
+                <div class="faq-acc-item">
+                    <button class="faq-acc-btn" aria-expanded="false">
+                        <span>Ich kenne dich von Insight Timer. Was ist der Unterschied?</span>
+                        <svg class="faq-acc-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2,4 6,8 10,4"/></svg>
+                    </button>
+                    <div class="faq-acc-body">
+                        <p>Auf Insight Timer laufen meine Kurse innerhalb des dortigen App-Abonnements. Hier im Shop kaufst du die Kurse einmalig und unabhängig. Sie gehören für immer dir, du brauchst keine zusätzliche App und bist komplett frei von monatlichen Abo-Kosten.</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h4>Wie lange habe ich Zugriff auf die Inhalte?</h4>
-                    <p>Lebenslang. Einmal heruntergeladen, gehören die Audio-Dateien dauerhaft dir. Du bestimmst dein ganz eigenes Tempo und kannst so oft in deine Auszeit eintauchen, wie du es brauchst.</p>
+                <div class="faq-acc-item">
+                    <button class="faq-acc-btn" aria-expanded="false">
+                        <span>Wie lange habe ich Zugriff auf die Inhalte?</span>
+                        <svg class="faq-acc-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2,4 6,8 10,4"/></svg>
+                    </button>
+                    <div class="faq-acc-body">
+                        <p>Lebenslang. Einmal heruntergeladen, gehören die Audio-Dateien dauerhaft dir. Du bestimmst dein ganz eigenes Tempo und kannst so oft in deine Auszeit eintauchen, wie du es brauchst.</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h4>Welches Angebot passt gerade am besten zu mir?</h4>
-                    <p>Lass es uns zusammen herausfinden! Schreib mir ganz unkompliziert eine Nachricht an <a href="mailto:info@isabellehavers.com">info@isabellehavers.com</a> – ich helfe dir gerne weiter.</p>
+                <div class="faq-acc-item">
+                    <button class="faq-acc-btn" aria-expanded="false">
+                        <span>Welches Angebot passt gerade am besten zu mir?</span>
+                        <svg class="faq-acc-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2,4 6,8 10,4"/></svg>
+                    </button>
+                    <div class="faq-acc-body">
+                        <p>Lass es uns zusammen herausfinden! Schreib mir ganz unkompliziert eine Nachricht an <a href="mailto:info@isabellehavers.com">info@isabellehavers.com</a> – ich helfe dir gerne weiter.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -939,6 +1002,16 @@
             });
 
             player._stop = stop;
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-acc-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var body = btn.nextElementSibling;
+                var open = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', !open);
+                body.style.maxHeight = open ? '0' : body.scrollHeight + 'px';
+            });
         });
 
         // Hide scroll hints on first scroll
