@@ -216,6 +216,27 @@
             .bundle-card { flex: 0 0 82vw; }
         }
 
+        /* SCROLL HINT */
+        .scroll-hint {
+            display: none;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .scroll-hint span {
+            font-size: 22px;
+            color: #B10058;
+            opacity: 0.6;
+            animation: bounce-right 1.2s ease-in-out infinite;
+        }
+        @keyframes bounce-right {
+            0%, 100% { transform: translateX(0); }
+            50%       { transform: translateX(6px); }
+        }
+        @media (max-width: 768px) {
+            .scroll-hint { display: flex; }
+            .scroll-hint.hidden { display: none; }
+        }
+
         /* ── KOMPLETTSET ── */
         .megabundle-section {
             padding: 80px 5%;
@@ -512,6 +533,9 @@
 
             <button class="carousel-arrow right" onclick="scrollCarousel('mini-track', 1)" aria-label="Weiter">&#8250;</button>
         </div>
+        <div class="scroll-hint" id="scroll-hint-mini">
+            <span>&#8250;</span>
+        </div>
     </section>
 
     <!-- THEMEN-BUNDLES KARUSSELL -->
@@ -568,6 +592,9 @@
             </div>
 
             <button class="carousel-arrow right" onclick="scrollCarousel('bundle-track', 1)" aria-label="Weiter">&#8250;</button>
+        </div>
+        <div class="scroll-hint" id="scroll-hint-bundle">
+            <span>&#8250;</span>
         </div>
     </section>
 
@@ -912,6 +939,14 @@
             });
 
             player._stop = stop;
+        });
+
+        // Hide scroll hints on first scroll
+        [['mini-track', 'scroll-hint-mini'], ['bundle-track', 'scroll-hint-bundle']].forEach(function(pair) {
+            var track = document.getElementById(pair[0]);
+            var hint  = document.getElementById(pair[1]);
+            if (!track || !hint) return;
+            track.addEventListener('scroll', function() { hint.classList.add('hidden'); }, { once: true });
         });
     });
 </script>
