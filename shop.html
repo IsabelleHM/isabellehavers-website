@@ -73,19 +73,53 @@
         .mini-card .btn-primary {
             display: block;
         }
-        .mini-audio {
-            width: 100%;
-            border-radius: 8px;
-            accent-color: #B10058;
+        .mini-player {
+            margin-top: 20px;
         }
-        .mini-audio-label {
+        .mini-player-label {
             display: block;
             text-align: center;
-            font-size: 12px;
-            color: #aaa;
-            margin-top: 16px;
-            margin-bottom: 6px;
-            letter-spacing: 0.03em;
+            font-size: 11px;
+            color: #bbb;
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+        .mini-player-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mini-play-btn {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1.5px solid #B10058;
+            background: none;
+            color: #B10058;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background 0.2s, color 0.2s;
+        }
+        .mini-play-btn:hover { background: #B10058; color: #fff; }
+        .mini-play-btn svg { width: 10px; height: 10px; }
+        .mini-progress-wrap {
+            flex: 1;
+            height: 3px;
+            background: #e8e8e0;
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+        .mini-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #B10058;
+            border-radius: 2px;
+            pointer-events: none;
         }
         .carousel-arrow {
             position: absolute;
@@ -355,10 +389,15 @@
                     </ul>
                     <div class="mini-price">€ 14,99</div>
                     <a href="https://copecart.com/products/cb0f6e61/checkout" target="_blank" class="btn-primary" style="text-align:center;">Ersten Schritt gehen</a>
-                    <span class="mini-audio-label">Kurz reinhören 🎧</span>
-                    <audio class="mini-audio" controls controlsList="nodownload" preload="none">
-                        <source src="Intro Denken ins Tun.mp3" type="audio/mpeg">
-                    </audio>
+                    <div class="mini-player" data-src="Intro Denken ins Tun.mp3">
+                        <span class="mini-player-label">Kurz reinhören 🎧</span>
+                        <div class="mini-player-controls">
+                            <button class="mini-play-btn" aria-label="Play">
+                                <svg viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+                            </button>
+                            <div class="mini-progress-wrap"><div class="mini-progress-bar"></div></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mini-card">
@@ -371,10 +410,15 @@
                     </ul>
                     <div class="mini-price">€ 14,99</div>
                     <a href="https://copecart.com/products/7d5955b6/checkout" target="_blank" class="btn-primary" style="text-align:center;">Gelassenheit starten</a>
-                    <span class="mini-audio-label">Kurz reinhören 🎧</span>
-                    <audio class="mini-audio" controls controlsList="nodownload" preload="none">
-                        <source src="Intro Bürostress.mp3" type="audio/mpeg">
-                    </audio>
+                    <div class="mini-player" data-src="Intro Bürostress.mp3">
+                        <span class="mini-player-label">Kurz reinhören 🎧</span>
+                        <div class="mini-player-controls">
+                            <button class="mini-play-btn" aria-label="Play">
+                                <svg viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+                            </button>
+                            <div class="mini-progress-wrap"><div class="mini-progress-bar"></div></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mini-card">
@@ -387,10 +431,15 @@
                     </ul>
                     <div class="mini-price">€ 14,99</div>
                     <a href="https://copecart.com/products/2725adb9/checkout" target="_blank" class="btn-primary" style="text-align:center;">Ehrlich reinhören</a>
-                    <span class="mini-audio-label">Kurz reinhören 🎧</span>
-                    <audio class="mini-audio" controls controlsList="nodownload" preload="none">
-                        <source src="STJ Intro short.mp3" type="audio/mpeg">
-                    </audio>
+                    <div class="mini-player" data-src="STJ Intro short.mp3">
+                        <span class="mini-player-label">Kurz reinhören 🎧</span>
+                        <div class="mini-player-controls">
+                            <button class="mini-play-btn" aria-label="Play">
+                                <svg viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+                            </button>
+                            <div class="mini-progress-wrap"><div class="mini-progress-bar"></div></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mini-card" style="position:relative;">
@@ -404,10 +453,15 @@
                     </ul>
                     <div class="mini-price">€ 9,99</div>
                     <a href="https://copecart.com/products/b4df4b58/checkout" target="_blank" class="btn-primary" style="text-align:center;">Ruhig einschlafen</a>
-                    <span class="mini-audio-label">Kurz reinhören 🎧</span>
-                    <audio class="mini-audio" controls controlsList="nodownload" preload="none">
-                        <source src="Schlaf Intro.mp3" type="audio/mpeg">
-                    </audio>
+                    <div class="mini-player" data-src="Schlaf Intro.mp3">
+                        <span class="mini-player-label">Kurz reinhören 🎧</span>
+                        <div class="mini-player-controls">
+                            <button class="mini-play-btn" aria-label="Play">
+                                <svg viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+                            </button>
+                            <div class="mini-progress-wrap"><div class="mini-progress-bar"></div></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mini-card">
@@ -420,10 +474,15 @@
                     </ul>
                     <div class="mini-price">€ 14,99</div>
                     <a href="https://copecart.com/products/063ccdf5/checkout" target="_blank" class="btn-primary" style="text-align:center;">Kraft tanken</a>
-                    <span class="mini-audio-label">Kurz reinhören 🎧</span>
-                    <audio class="mini-audio" controls controlsList="nodownload" preload="none">
-                        <source src="Intro Energie.mp3" type="audio/mpeg">
-                    </audio>
+                    <div class="mini-player" data-src="Intro Energie.mp3">
+                        <span class="mini-player-label">Kurz reinhören 🎧</span>
+                        <div class="mini-player-controls">
+                            <button class="mini-play-btn" aria-label="Play">
+                                <svg viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+                            </button>
+                            <div class="mini-progress-wrap"><div class="mini-progress-bar"></div></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mini-card">
@@ -436,10 +495,15 @@
                     </ul>
                     <div class="mini-price">€ 14,99</div>
                     <a href="https://copecart.com/products/9fef9256/checkout" target="_blank" rel="noopener" class="btn-primary" style="text-align:center;">Klarheit spüren</a>
-                    <span class="mini-audio-label">Kurz reinhören 🎧</span>
-                    <audio class="mini-audio" controls controlsList="nodownload" preload="none">
-                        <source src="Intro Wutkurs.mp3" type="audio/mpeg">
-                    </audio>
+                    <div class="mini-player" data-src="Intro Wutkurs.mp3">
+                        <span class="mini-player-label">Kurz reinhören 🎧</span>
+                        <div class="mini-player-controls">
+                            <button class="mini-play-btn" aria-label="Play">
+                                <svg viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+                            </button>
+                            <div class="mini-progress-wrap"><div class="mini-progress-bar"></div></div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -796,13 +860,56 @@
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.mini-audio').forEach(function (audio) {
-            audio.addEventListener('timeupdate', function () {
-                if (audio.currentTime >= 30) {
-                    audio.pause();
-                    audio.currentTime = 0;
+        var current = null;
+
+        document.querySelectorAll('.mini-player').forEach(function (player) {
+            var audio = new Audio(player.dataset.src);
+            var btn = player.querySelector('.mini-play-btn');
+            var bar = player.querySelector('.mini-progress-bar');
+            var playing = false;
+
+            var playIcon = '<svg viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>';
+            var pauseIcon = '<svg viewBox="0 0 10 10" fill="currentColor"><rect x="1.5" y="1" width="2.5" height="8"/><rect x="6" y="1" width="2.5" height="8"/></svg>';
+
+            function stop() {
+                audio.pause();
+                audio.currentTime = 0;
+                bar.style.width = '0%';
+                btn.innerHTML = playIcon;
+                playing = false;
+            }
+
+            btn.addEventListener('click', function () {
+                if (playing) {
+                    stop();
+                } else {
+                    if (current && current !== player) {
+                        current._stop();
+                    }
+                    audio.play();
+                    btn.innerHTML = pauseIcon;
+                    playing = true;
+                    current = player;
                 }
             });
+
+            audio.addEventListener('timeupdate', function () {
+                if (audio.duration) {
+                    bar.style.width = (audio.currentTime / Math.min(audio.duration, 30) * 100) + '%';
+                }
+                if (audio.currentTime >= 30) stop();
+            });
+
+            audio.addEventListener('ended', stop);
+
+            player.querySelector('.mini-progress-wrap').addEventListener('click', function (e) {
+                var rect = this.getBoundingClientRect();
+                var ratio = (e.clientX - rect.left) / rect.width;
+                audio.currentTime = ratio * Math.min(audio.duration || 30, 30);
+                if (!playing) btn.click();
+            });
+
+            player._stop = stop;
         });
     });
 </script>
