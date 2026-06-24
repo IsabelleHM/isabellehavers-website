@@ -18,11 +18,10 @@
 
         /* ── MINI KURSE KARUSSELL ── */
         .carousel-wrapper {
-            max-width: 1160px;
+            max-width: 1100px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            position: relative;
+            padding: 0 56px;
         }
         .carousel-track {
             flex: 1;
@@ -126,7 +125,9 @@
             pointer-events: none;
         }
         .carousel-arrow {
-            flex-shrink: 0;
+            position: absolute;
+            top: 42%;
+            transform: translateY(-50%);
             background: #FFF;
             border: 2px solid #E8E8D8;
             border-radius: 50%;
@@ -140,10 +141,11 @@
             color: #6A6B4A;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: all 0.2s;
-            align-self: center;
-            margin-bottom: 14px;
+            z-index: 10;
         }
         .carousel-arrow:hover { background: #6A6B4A; color: #FFF; border-color: #6A6B4A; }
+        .carousel-arrow.left  { left: 4px; }
+        .carousel-arrow.right { right: 4px; }
         @media (max-width: 768px) {
             .carousel-arrow { display: none; }
             .mini-card { flex: 0 0 82vw; }
