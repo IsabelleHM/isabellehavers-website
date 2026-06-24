@@ -780,5 +780,17 @@
   var AUTOHIDE = Boolean(0);
 </script>
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.mini-audio').forEach(function (audio) {
+            audio.addEventListener('timeupdate', function () {
+                if (audio.currentTime >= 30) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
