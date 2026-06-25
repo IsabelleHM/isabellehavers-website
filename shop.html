@@ -148,15 +148,16 @@
         .carousel-arrow.right { right: 4px; }
         @media (max-width: 768px) {
             .carousel-arrow { display: none; }
-            .mini-card { flex: 0 0 82vw; }
+            .carousel-wrapper { padding: 0; }
+            .mini-card { flex: 0 0 78vw; }
         }
 
         /* ── BUNDLE KARUSSELL ── */
         .bundle-card {
-            flex: 0 0 320px;
+            flex: 0 0 300px;
             scroll-snap-align: start;
             border-radius: 16px;
-            padding: 32px 28px;
+            padding: 28px 24px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
@@ -267,17 +268,24 @@
         .scroll-hint {
             display: none;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 12px;
         }
-        .scroll-hint span {
-            font-size: 22px;
+        .scroll-hint-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1.5px solid #B10058;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #B10058;
-            opacity: 0.6;
+            font-size: 16px;
+            opacity: 0.7;
             animation: bounce-right 1.2s ease-in-out infinite;
         }
         @keyframes bounce-right {
             0%, 100% { transform: translateX(0); }
-            50%       { transform: translateX(6px); }
+            50%       { transform: translateX(7px); }
         }
         @media (max-width: 768px) {
             .scroll-hint { display: flex; }
@@ -581,7 +589,7 @@
             <button class="carousel-arrow right" onclick="scrollCarousel('mini-track', 1)" aria-label="Weiter">&#8250;</button>
         </div>
         <div class="scroll-hint" id="scroll-hint-mini">
-            <span>&#8250;</span>
+            <div class="scroll-hint-circle">&#8250;</div>
         </div>
     </section>
 
@@ -641,7 +649,7 @@
             <button class="carousel-arrow right" onclick="scrollCarousel('bundle-track', 1)" aria-label="Weiter">&#8250;</button>
         </div>
         <div class="scroll-hint" id="scroll-hint-bundle">
-            <span>&#8250;</span>
+            <div class="scroll-hint-circle">&#8250;</div>
         </div>
     </section>
 
@@ -675,6 +683,248 @@
         </div>
     </section>
     -->
+
+    <!-- STIMMUNGS-BAROMETER -->
+    <section class="shop-section-pad">
+        <style>
+            :root {
+                --mb-rose:       #D4847A;
+                --mb-rose-light: #F5E8E6;
+                --mb-sage:       #7A9E8E;
+                --mb-sage-light: #EAF2EE;
+                --mb-terra:      #C4926A;
+                --mb-brown:      #A07860;
+                --mb-beige:      #F7F4EF;
+                --mb-beige-dark: #E8E2D9;
+                --mb-text:       #3A3530;
+                --mb-muted:      #9A938A;
+            }
+            .mb-card {
+                background: #fff;
+                border-radius: 24px;
+                padding: 48px 44px 40px;
+                max-width: 640px;
+                margin: 0 auto;
+                box-shadow: 0 8px 40px rgba(58,53,48,0.08);
+            }
+            .mb-heading {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: clamp(26px, 4vw, 38px);
+                font-weight: 600;
+                color: var(--mb-text);
+                text-align: center;
+                line-height: 1.3;
+                margin-bottom: 36px;
+            }
+            .mb-stations {
+                display: flex;
+                gap: 8px;
+                margin-bottom: 20px;
+            }
+            .mb-station {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+                padding: 14px 6px;
+                border-radius: 14px;
+                border: 1.5px solid transparent;
+                background: none;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                transition: background 0.3s, border-color 0.3s, transform 0.2s;
+                text-align: center;
+            }
+            .mb-station:hover { background: var(--mb-beige); }
+            .mb-station:active { transform: scale(0.97); }
+            .mb-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: var(--mb-beige-dark);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                transition: background 0.3s, transform 0.3s;
+                flex-shrink: 0;
+            }
+            .mb-label {
+                font-size: 12px;
+                font-weight: 600;
+                color: var(--mb-muted);
+                line-height: 1.35;
+                transition: color 0.3s;
+            }
+            .mb-station[data-index="0"].mb-active { background: var(--mb-rose-light); border-color: var(--mb-rose); }
+            .mb-station[data-index="0"].mb-active .mb-icon  { background: var(--mb-rose); transform: scale(1.1); }
+            .mb-station[data-index="0"].mb-active .mb-label { color: var(--mb-rose); }
+            .mb-station[data-index="1"].mb-active { background: var(--mb-sage-light); border-color: var(--mb-sage); }
+            .mb-station[data-index="1"].mb-active .mb-icon  { background: var(--mb-sage); transform: scale(1.1); }
+            .mb-station[data-index="1"].mb-active .mb-label { color: var(--mb-sage); }
+            .mb-station[data-index="2"].mb-active { background: #FDF4EC; border-color: var(--mb-terra); }
+            .mb-station[data-index="2"].mb-active .mb-icon  { background: var(--mb-terra); transform: scale(1.1); }
+            .mb-station[data-index="2"].mb-active .mb-label { color: var(--mb-terra); }
+            .mb-station[data-index="3"].mb-active { background: #F2EDE8; border-color: var(--mb-brown); }
+            .mb-station[data-index="3"].mb-active .mb-icon  { background: var(--mb-brown); transform: scale(1.1); }
+            .mb-station[data-index="3"].mb-active .mb-label { color: var(--mb-brown); }
+            .mb-track-wrap {
+                position: relative;
+                height: 4px;
+                background: var(--mb-beige-dark);
+                border-radius: 2px;
+                margin: 0 20px 32px;
+                cursor: pointer;
+            }
+            .mb-fill {
+                position: absolute;
+                left: 0; top: 0; height: 100%;
+                border-radius: 2px;
+                background: linear-gradient(90deg, var(--mb-rose), var(--mb-terra));
+                transition: width 0.35s ease;
+            }
+            .mb-thumb {
+                position: absolute;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                background: #fff;
+                border: 3px solid var(--mb-rose);
+                box-shadow: 0 2px 10px rgba(212,132,122,0.4);
+                cursor: grab;
+                transition: left 0.35s ease, border-color 0.35s;
+            }
+            .mb-thumb:active { cursor: grabbing; }
+            .mb-thumb[data-active="1"] { border-color: var(--mb-sage); }
+            .mb-thumb[data-active="2"] { border-color: var(--mb-terra); }
+            .mb-thumb[data-active="3"] { border-color: var(--mb-brown); }
+            .mb-texts { position: relative; min-height: 76px; margin-bottom: 28px; }
+            .mb-text {
+                position: absolute; inset: 0;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-size: 15px;
+                line-height: 1.85;
+                color: var(--mb-muted);
+                text-align: center;
+                padding: 0 4px;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                pointer-events: none;
+            }
+            .mb-text.mb-visible { opacity: 1; pointer-events: auto; }
+            .mb-divider { height: 1px; background: var(--mb-beige-dark); margin-bottom: 28px; }
+            .mb-btn {
+                display: block;
+                width: 100%;
+                padding: 17px 24px;
+                background: var(--mb-rose);
+                color: #fff;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-size: 15px;
+                font-weight: 700;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 50px;
+                transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+                box-shadow: 0 4px 20px rgba(212,132,122,0.3);
+            }
+            .mb-btn:hover { background: #C07068; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,132,122,0.4); }
+            .mb-btn:active { transform: scale(0.98); }
+            @media (max-width: 480px) {
+                .mb-card { padding: 32px 18px 28px; }
+                .mb-stations { gap: 5px; }
+                .mb-station { padding: 11px 4px; border-radius: 12px; }
+                .mb-icon { width: 34px; height: 34px; font-size: 15px; }
+                .mb-label { font-size: 11px; }
+                .mb-track-wrap { margin: 0 10px 28px; }
+            }
+        </style>
+
+        <div class="mb-card">
+            <h2 class="mb-heading">Wie fühlst du dich<br>jetzt gerade?</h2>
+
+            <div class="mb-stations" id="mbStations">
+                <button class="mb-station" data-index="0">
+                    <span class="mb-icon">🔥</span>
+                    <span class="mb-label">Ich bin<br>wütend</span>
+                </button>
+                <button class="mb-station" data-index="1">
+                    <span class="mb-icon">🌀</span>
+                    <span class="mb-label">Ich bin<br>unruhig</span>
+                </button>
+                <button class="mb-station" data-index="2">
+                    <span class="mb-icon">🌙</span>
+                    <span class="mb-label">Ich bin<br>müde</span>
+                </button>
+                <button class="mb-station" data-index="3">
+                    <span class="mb-icon">🍃</span>
+                    <span class="mb-label">Ich bin<br>erschöpft</span>
+                </button>
+            </div>
+
+            <div class="mb-track-wrap" id="mbTrack">
+                <div class="mb-fill" id="mbFill"></div>
+                <div class="mb-thumb" id="mbThumb" data-active="0"></div>
+            </div>
+
+            <div class="mb-texts">
+                <p class="mb-text" data-index="0">Angestaute Emotionen sicher entladen. Im Store warten kraftvolle SOS-Meditationen auf dich, die dein System sofort beruhigen und regulieren.</p>
+                <p class="mb-text" data-index="1">Gedankenkarussell stoppen und durchatmen. Finde im Store sanfte Erdungsübungen, Nervensystem-Regulation und Boxatmung für deine Balance.</p>
+                <p class="mb-text" data-index="2">Sanft in den Schlaf gleiten. Entdecke im Store über 15 wunderschöne Einschlafmeditationen, Traumreisen und sanfte Abend-Affirmationen.</p>
+                <p class="mb-text" data-index="3">Tiefe Regeneration für deine Seele. Im Store findest du gezielte Sessions gegen Burnout-Symptome, chronischen Stress und mütterliche Überforderung.</p>
+            </div>
+
+            <div class="mb-divider"></div>
+
+            <a href="#" class="mb-btn">➔ Finde deine passende Meditation im Store</a>
+        </div>
+
+        <script>
+        (function () {
+            var TOTAL = 4, current = 0, dragging = false;
+            var stations = document.querySelectorAll('.mb-station');
+            var track    = document.getElementById('mbTrack');
+            var fill     = document.getElementById('mbFill');
+            var thumb    = document.getElementById('mbThumb');
+            var texts    = document.querySelectorAll('.mb-text');
+
+            function pct(i) { return i / (TOTAL - 1) * 100; }
+
+            function go(i, animated) {
+                current = i;
+                if (!animated) {
+                    thumb.style.transition = 'none';
+                    fill.style.transition  = 'none';
+                    requestAnimationFrame(function () { thumb.style.transition = ''; fill.style.transition = ''; });
+                }
+                thumb.style.left = pct(i) + '%';
+                fill.style.width = pct(i) + '%';
+                thumb.setAttribute('data-active', i);
+                stations.forEach(function (s, idx) { s.classList.toggle('mb-active', idx === i); });
+                texts.forEach(function (t, idx) { t.classList.toggle('mb-visible', idx === i); });
+            }
+
+            function nearest(clientX) {
+                var r = track.getBoundingClientRect();
+                return Math.round(Math.max(0, Math.min(1, (clientX - r.left) / r.width)) * (TOTAL - 1));
+            }
+
+            stations.forEach(function (s) { s.addEventListener('click', function () { go(+s.dataset.index, true); }); });
+            track.addEventListener('click', function (e) { if (e.target !== thumb) go(nearest(e.clientX), true); });
+            thumb.addEventListener('mousedown', function (e) { e.preventDefault(); dragging = true; });
+            document.addEventListener('mousemove', function (e) { if (dragging) go(nearest(e.clientX), false); });
+            document.addEventListener('mouseup', function () { dragging = false; });
+            thumb.addEventListener('touchstart', function (e) { e.preventDefault(); dragging = true; }, { passive: false });
+            document.addEventListener('touchmove', function (e) { if (dragging) go(nearest(e.touches[0].clientX), false); }, { passive: true });
+            document.addEventListener('touchend', function () { dragging = false; });
+
+            go(0, false);
+        })();
+        </script>
+    </section>
 
     <!-- FAQ -->
     <section class="shop-section-pad alt">

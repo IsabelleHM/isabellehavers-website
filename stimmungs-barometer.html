@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stimmungs-Barometer</title>
+<style>
+  :root {
+    --rose:      #D4847A;
+    --rose-light:#F5E8E6;
+    --sage:      #7A9E8E;
+    --sage-light:#EAF2EE;
+    --terra:     #C4926A;
+    --beige:     #F7F4EF;
+    --beige-dark:#E8E2D9;
+    --text:      #3A3530;
+    --muted:     #9A938A;
+    --white:     #FFFFFF;
+    --radius:    20px;
+    --ease:      0.35s ease;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: var(--beige);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+
+  /* ── CARD ── */
+  .mood-card {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 48px 44px 40px;
+    max-width: 620px;
+    width: 100%;
+    box-shadow: 0 12px 48px rgba(58,53,48,0.08);
+  }
+
+  /* ── HEADING ── */
+  .mood-heading {
+    font-size: clamp(22px, 4.5vw, 32px);
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+
+  /* ── STATIONS ── */
+  .stations {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .station {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 14px 8px;
+    border-radius: 14px;
+    border: 1.5px solid transparent;
+    background: none;
+    transition: background var(--ease), border-color var(--ease), transform 0.2s ease;
+    text-align: center;
+  }
+  .station:hover { background: var(--beige); }
+  .station:active { transform: scale(0.97); }
+
+  .station-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--beige-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background var(--ease), transform var(--ease);
+    flex-shrink: 0;
+  }
+
+  .station-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    line-height: 1.35;
+    transition: color var(--ease);
+  }
+
+  /* Active states per station */
+  .station[data-index="0"].active { background: var(--rose-light); border-color: var(--rose); }
+  .station[data-index="0"].active .station-icon { background: var(--rose); transform: scale(1.1); }
+  .station[data-index="0"].active .station-label { color: var(--rose); }
+
+  .station[data-index="1"].active { background: var(--sage-light); border-color: var(--sage); }
+  .station[data-index="1"].active .station-icon { background: var(--sage); transform: scale(1.1); }
+  .station[data-index="1"].active .station-label { color: var(--sage); }
+
+  .station[data-index="2"].active { background: #FDF4EC; border-color: var(--terra); }
+  .station[data-index="2"].active .station-icon { background: var(--terra); transform: scale(1.1); }
+  .station[data-index="2"].active .station-label { color: var(--terra); }
+
+  .station[data-index="3"].active { background: #F2EDE8; border-color: #A07860; }
+  .station[data-index="3"].active .station-icon { background: #A07860; transform: scale(1.1); }
+  .station[data-index="3"].active .station-label { color: #A07860; }
+
+  /* ── TRACK ── */
+  .track-wrap {
+    position: relative;
+    height: 4px;
+    background: var(--beige-dark);
+    border-radius: 2px;
+    margin: 0 20px 36px;
+  }
+  .track-fill {
+    position: absolute;
+    left: 0; top: 0;
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--rose), var(--terra));
+    transition: width var(--ease);
+  }
+  .thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 3px solid var(--rose);
+    box-shadow: 0 2px 10px rgba(212,132,122,0.35);
+    cursor: grab;
+    transition: left var(--ease), border-color var(--ease), box-shadow var(--ease);
+  }
+  .thumb:active { cursor: grabbing; }
+
+  /* Thumb color per active station */
+  .thumb[data-active="1"] { border-color: var(--sage); box-shadow: 0 2px 10px rgba(122,158,142,0.35); }
+  .thumb[data-active="2"] { border-color: var(--terra); box-shadow: 0 2px 10px rgba(196,146,106,0.35); }
+  .thumb[data-active="3"] { border-color: #A07860; box-shadow: 0 2px 10px rgba(160,120,96,0.35); }
+
+  /* ── DYNAMIC TEXT ── */
+  .mood-texts {
+    position: relative;
+    min-height: 72px;
+    margin-bottom: 32px;
+  }
+  .mood-text {
+    position: absolute;
+    inset: 0;
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: var(--muted);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    padding: 0 4px;
+  }
+  .mood-text.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--beige-dark);
+    margin-bottom: 28px;
+  }
+
+  /* ── BUTTON ── */
+  .mood-btn {
+    display: block;
+    width: 100%;
+    padding: 17px 24px;
+    background: var(--rose);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background var(--ease), transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 20px rgba(212,132,122,0.3);
+  }
+  .mood-btn:hover {
+    background: #C07068;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(212,132,122,0.4);
+  }
+  .mood-btn:active { transform: scale(0.98); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 480px) {
+    .mood-card { padding: 32px 20px 28px; }
+    .stations { gap: 6px; }
+    .station { padding: 12px 4px; border-radius: 12px; }
+    .station-icon { width: 36px; height: 36px; font-size: 16px; }
+    .station-label { font-size: 11px; }
+    .track-wrap { margin: 0 12px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mood-card">
+
+  <h2 class="mood-heading">Wie fühlst du dich<br>jetzt gerade?</h2>
+
+  <!-- Stations -->
+  <div class="stations" id="stations">
+    <button class="station" data-index="0">
+      <span class="station-icon">🔥</span>
+      <span class="station-label">Ich bin<br>wütend</span>
+    </button>
+    <button class="station" data-index="1">
+      <span class="station-icon">🌀</span>
+      <span class="station-label">Ich bin<br>unruhig</span>
+    </button>
+    <button class="station" data-index="2">
+      <span class="station-icon">🌙</span>
+      <span class="station-label">Ich bin<br>müde</span>
+    </button>
+    <button class="station" data-index="3">
+      <span class="station-icon">🍃</span>
+      <span class="station-label">Ich bin<br>erschöpft</span>
+    </button>
+  </div>
+
+  <!-- Track -->
+  <div class="track-wrap" id="track">
+    <div class="track-fill" id="trackFill"></div>
+    <div class="thumb" id="thumb" data-active="0"></div>
+  </div>
+
+  <!-- Dynamic texts -->
+  <div class="mood-texts">
+    <p class="mood-text" data-index="0">
+      Angestaute Emotionen sicher entladen. Im Store warten kraftvolle SOS-Meditationen auf dich, die dein System sofort beruhigen und regulieren.
+    </p>
+    <p class="mood-text" data-index="1">
+      Gedankenkarussell stoppen und durchatmen. Finde im Store sanfte Erdungsübungen, Nervensystem-Regulation und Boxatmung für deine Balance.
+    </p>
+    <p class="mood-text" data-index="2">
+      Sanft in den Schlaf gleiten. Entdecke im Store über 15 wunderschöne Einschlafmeditationen, Traumreisen und sanfte Abend-Affirmationen.
+    </p>
+    <p class="mood-text" data-index="3">
+      Tiefe Regeneration für deine Seele. Im Store findest du gezielte Sessions gegen Burnout-Symptome, chronischen Stress und mütterliche Überforderung.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <a href="#" class="mood-btn">
+    ➔ Finde deine passende Meditation im Store
+  </a>
+
+</div>
+
+<script>
+(function () {
+  var TOTAL = 4;
+  var current = 0;
+  var dragging = false;
+
+  var stations  = document.querySelectorAll('.station');
+  var track     = document.getElementById('track');
+  var fill      = document.getElementById('trackFill');
+  var thumb     = document.getElementById('thumb');
+  var texts     = document.querySelectorAll('.mood-text');
+
+  function pct(i) { return i / (TOTAL - 1) * 100; }
+
+  function go(i, animated) {
+    current = i;
+
+    if (!animated) {
+      thumb.style.transition = 'none';
+      fill.style.transition  = 'none';
+      requestAnimationFrame(function () {
+        thumb.style.transition = '';
+        fill.style.transition  = '';
+      });
+    }
+
+    thumb.style.left = pct(i) + '%';
+    fill.style.width = pct(i) + '%';
+    thumb.setAttribute('data-active', i);
+
+    stations.forEach(function (s, idx) {
+      s.classList.toggle('active', idx === i);
+    });
+    texts.forEach(function (t, idx) {
+      t.classList.toggle('visible', idx === i);
+    });
+  }
+
+  function nearest(clientX) {
+    var r = track.getBoundingClientRect();
+    var ratio = Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+    return Math.round(ratio * (TOTAL - 1));
+  }
+
+  /* Station clicks */
+  stations.forEach(function (s) {
+    s.addEventListener('click', function () { go(+s.dataset.index, true); });
+  });
+
+  /* Track click */
+  track.addEventListener('click', function (e) {
+    if (e.target === thumb) return;
+    go(nearest(e.clientX), true);
+  });
+
+  /* Mouse drag */
+  thumb.addEventListener('mousedown', function (e) {
+    e.preventDefault(); dragging = true;
+  });
+  document.addEventListener('mousemove', function (e) {
+    if (dragging) go(nearest(e.clientX), false);
+  });
+  document.addEventListener('mouseup', function () { dragging = false; });
+
+  /* Touch drag */
+  thumb.addEventListener('touchstart', function (e) {
+    e.preventDefault(); dragging = true;
+  }, { passive: false });
+  document.addEventListener('touchmove', function (e) {
+    if (dragging) go(nearest(e.touches[0].clientX), false);
+  }, { passive: true });
+  document.addEventListener('touchend', function () { dragging = false; });
+
+  go(0, false);
+})();
+</script>
+
+</body>
+</html>
