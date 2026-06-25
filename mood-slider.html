@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stimmungs-Barometer – Isabelle Havers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── BRAND VARIABLES ── */
+        :root {
+            --color-bg:       #FDFDF3;
+            --color-navy:     #0A1F44;
+            --color-pink:     #B10058;
+            --color-olive:    #6A6B4A;
+            --color-cream:    #F5F0E8;
+            --color-muted:    #9A9A8A;
+            --color-track:    #E2DDD4;
+            --font-serif:     'Cormorant Garamond', Georgia, serif;
+            --font-sans:      'Plus Jakarta Sans', sans-serif;
+            --radius:         16px;
+            --transition:     0.35s ease;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* ── CARD ── */
+        .mood-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 52px 48px 44px;
+            max-width: 640px;
+            width: 100%;
+            box-shadow: 0 8px 48px rgba(10, 31, 68, 0.07);
+        }
+
+        /* ── HEADING ── */
+        .mood-heading {
+            font-family: var(--font-serif);
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 600;
+            color: var(--color-navy);
+            text-align: center;
+            line-height: 1.25;
+            margin-bottom: 44px;
+        }
+
+        /* ── SLIDER TRACK AREA ── */
+        .slider-area {
+            position: relative;
+            user-select: none;
+            touch-action: none;
+            padding-bottom: 8px;
+        }
+
+        /* Labels row */
+        .labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+        .label-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0 4px;
+            text-align: center;
+        }
+        .label-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--color-track);
+            transition: background var(--transition), transform var(--transition);
+            flex-shrink: 0;
+        }
+        .label-text {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--color-muted);
+            line-height: 1.3;
+            transition: color var(--transition), font-weight var(--transition);
+        }
+        .label-btn.active .label-dot {
+            background: var(--color-pink);
+            transform: scale(1.3);
+            box-shadow: 0 0 0 4px rgba(177, 0, 88, 0.12);
+        }
+        .label-btn.active .label-text {
+            color: var(--color-pink);
+            font-weight: 700;
+        }
+
+        /* Track + thumb */
+        .track-wrap {
+            position: relative;
+            height: 4px;
+            background: var(--color-track);
+            border-radius: 2px;
+            margin: 0 16px;
+        }
+        .track-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(177,0,88,0.3), var(--color-pink));
+            border-radius: 2px;
+            transition: width var(--transition);
+        }
+        .thumb {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 28px;
+            background: #fff;
+            border: 2.5px solid var(--color-pink);
+            border-radius: 50%;
+            box-shadow: 0 2px 12px rgba(177, 0, 88, 0.25);
+            cursor: grab;
+            transition: left var(--transition), box-shadow var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .thumb::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-pink);
+            transition: transform var(--transition);
+        }
+        .thumb:active { cursor: grabbing; box-shadow: 0 4px 20px rgba(177, 0, 88, 0.35); }
+        .thumb.dragging { transition: box-shadow var(--transition); }
+
+        /* ── TEXT AREA ── */
+        .mood-text-wrap {
+            position: relative;
+            min-height: 80px;
+            margin-top: 36px;
+            margin-bottom: 36px;
+        }
+        .mood-text {
+            position: absolute;
+            inset: 0;
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--color-olive);
+            text-align: center;
+            padding: 0 8px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .mood-text.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mood-text a {
+            color: var(--color-pink);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-track), transparent);
+            margin-bottom: 36px;
+        }
+
+        /* ── CTA BUTTON ── */
+        .mood-cta {
+            display: block;
+            width: 100%;
+            padding: 18px 32px;
+            background: var(--color-pink);
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 50px;
+            letter-spacing: 0.02em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            box-shadow: 0 4px 20px rgba(177, 0, 88, 0.25);
+        }
+        .mood-cta:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 8px 28px rgba(177, 0, 88, 0.35);
+            background: #970050;
+        }
+        .mood-cta:active { transform: scale(0.99); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 520px) {
+            .mood-card { padding: 36px 24px 32px; }
+            .label-text { font-size: 11px; }
+            .thumb { width: 26px; height: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="mood-card">
+    <h2 class="mood-heading">Wie fühlst du dich<br>jetzt gerade?</h2>
+
+    <div class="slider-area" id="sliderArea">
+
+        <!-- Station labels -->
+        <div class="labels" id="labels">
+            <button class="label-btn" data-index="0">
+                <span class="label-dot"></span>
+                <span class="label-text">Ich bin<br>wütend</span>
+            </button>
+            <button class="label-btn" data-index="1">
+                <span class="label-dot"></span>
+                <span class="label-text">Ich bin<br>unruhig</span>
+            </button>
+            <button class="label-btn" data-index="2">
+                <span class="label-dot"></span>
+                <span class="label-text">Ich bin<br>müde</span>
+            </button>
+            <button class="label-btn" data-index="3">
+                <span class="label-dot"></span>
+                <span class="label-text">Ich bin<br>erschöpft</span>
+            </button>
+        </div>
+
+        <!-- Track -->
+        <div class="track-wrap" id="track">
+            <div class="track-fill" id="trackFill"></div>
+            <div class="thumb" id="thumb"></div>
+        </div>
+
+    </div>
+
+    <!-- Dynamic text -->
+    <div class="mood-text-wrap">
+        <p class="mood-text" data-index="0">
+            Angestaute Emotionen sicher entladen. Im <a href="shop.html">Store</a> warten kraftvolle SOS-Meditationen auf dich, die dein System sofort beruhigen.
+        </p>
+        <p class="mood-text" data-index="1">
+            Gedankenkarussell stoppen und durchatmen. Finde im <a href="shop.html">Store</a> sanfte Erdungsübungen und Boxatmung für deine Balance.
+        </p>
+        <p class="mood-text" data-index="2">
+            Sanft in den Schlaf gleiten. Entdecke im <a href="shop.html">Store</a> über 15 wunderschöne Einschlafmeditationen und Fantasiereisen.
+        </p>
+        <p class="mood-text" data-index="3">
+            Tiefe Regeneration für dein Nervensystem. Im <a href="shop.html">Store</a> findest du gezielte Sessions gegen Burnout und mütterliche Überforderung.
+        </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <a href="shop.html" class="mood-cta">
+        ➔ Finde deine passende Meditation im Store
+    </a>
+</div>
+
+<script>
+(function () {
+    const STATIONS = 4;
+    let current = 0;
+    let dragging = false;
+
+    const track     = document.getElementById('track');
+    const thumb     = document.getElementById('thumb');
+    const fill      = document.getElementById('trackFill');
+    const labelBtns = document.querySelectorAll('.label-btn');
+    const texts     = document.querySelectorAll('.mood-text');
+
+    function pctForIndex(i) {
+        return i / (STATIONS - 1) * 100;
+    }
+
+    function updateUI(index, animate) {
+        current = index;
+        const pct = pctForIndex(index);
+
+        if (!animate) {
+            thumb.style.transition = 'none';
+            fill.style.transition  = 'none';
+            requestAnimationFrame(() => {
+                thumb.style.transition = '';
+                fill.style.transition  = '';
+            });
+        }
+
+        thumb.style.left   = pct + '%';
+        fill.style.width   = pct + '%';
+
+        labelBtns.forEach((btn, i) => btn.classList.toggle('active', i === index));
+
+        texts.forEach((t, i) => {
+            t.classList.toggle('visible', i === index);
+        });
+    }
+
+    function indexFromX(clientX) {
+        const rect  = track.getBoundingClientRect();
+        const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+        return Math.round(ratio * (STATIONS - 1));
+    }
+
+    /* Label clicks */
+    labelBtns.forEach(btn => {
+        btn.addEventListener('click', () => updateUI(+btn.dataset.index, true));
+    });
+
+    /* Mouse drag */
+    thumb.addEventListener('mousedown', e => {
+        e.preventDefault();
+        dragging = true;
+        thumb.classList.add('dragging');
+    });
+    document.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        updateUI(indexFromX(e.clientX), false);
+    });
+    document.addEventListener('mouseup', () => {
+        if (!dragging) return;
+        dragging = false;
+        thumb.classList.remove('dragging');
+    });
+
+    /* Touch drag */
+    thumb.addEventListener('touchstart', e => {
+        e.preventDefault();
+        dragging = true;
+        thumb.classList.add('dragging');
+    }, { passive: false });
+    document.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        updateUI(indexFromX(e.touches[0].clientX), false);
+    }, { passive: true });
+    document.addEventListener('touchend', () => {
+        dragging = false;
+        thumb.classList.remove('dragging');
+    });
+
+    /* Track click (not on thumb) */
+    track.addEventListener('click', e => {
+        if (e.target === thumb) return;
+        updateUI(indexFromX(e.clientX), true);
+    });
+
+    /* Init */
+    updateUI(0, false);
+})();
+</script>
+
+</body>
+</html>
