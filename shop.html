@@ -137,7 +137,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 20px;
             color: #6A6B4A;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: all 0.2s;
@@ -453,7 +452,7 @@
         </div>
 
         <div class="carousel-wrapper" id="mini-carousel-wrapper">
-            <button class="carousel-arrow left" onclick="scrollCarousel('mini-track', -1)" aria-label="Zurück">&#8249;</button>
+            <button class="carousel-arrow left" onclick="scrollCarousel('mini-track', -1)" aria-label="Zurück"><svg width="10" height="16" viewBox="0 0 10 16" fill="none"><polyline points="8,2 2,8 8,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
             <div class="carousel-track" id="mini-track">
 
@@ -586,7 +585,7 @@
 
             </div>
 
-            <button class="carousel-arrow right" onclick="scrollCarousel('mini-track', 1)" aria-label="Weiter">&#8250;</button>
+            <button class="carousel-arrow right" onclick="scrollCarousel('mini-track', 1)" aria-label="Weiter"><svg width="10" height="16" viewBox="0 0 10 16" fill="none"><polyline points="2,2 8,8 2,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <div class="scroll-hint" id="scroll-hint-mini">
             <div class="scroll-hint-circle">&#8250;</div>
@@ -601,7 +600,7 @@
         </div>
 
         <div class="carousel-wrapper" id="bundle-carousel-wrapper">
-            <button class="carousel-arrow left" onclick="scrollCarousel('bundle-track', -1)" aria-label="Zurück">&#8249;</button>
+            <button class="carousel-arrow left" onclick="scrollCarousel('bundle-track', -1)" aria-label="Zurück"><svg width="10" height="16" viewBox="0 0 10 16" fill="none"><polyline points="8,2 2,8 8,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
             <div class="carousel-track" id="bundle-track">
 
@@ -646,7 +645,7 @@
 
             </div>
 
-            <button class="carousel-arrow right" onclick="scrollCarousel('bundle-track', 1)" aria-label="Weiter">&#8250;</button>
+            <button class="carousel-arrow right" onclick="scrollCarousel('bundle-track', 1)" aria-label="Weiter"><svg width="10" height="16" viewBox="0 0 10 16" fill="none"><polyline points="2,2 8,8 2,14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <div class="scroll-hint" id="scroll-hint-bundle">
             <div class="scroll-hint-circle">&#8250;</div>
@@ -688,16 +687,16 @@
     <section class="shop-section-pad">
         <style>
             :root {
-                --mb-rose:       #D4847A;
-                --mb-rose-light: #F5E8E6;
-                --mb-sage:       #7A9E8E;
-                --mb-sage-light: #EAF2EE;
-                --mb-terra:      #C4926A;
-                --mb-brown:      #A07860;
-                --mb-beige:      #F7F4EF;
+                --mb-rose:       #B10058;
+                --mb-rose-light: #F5E0EC;
+                --mb-sage:       #B10058;
+                --mb-sage-light: #F5E0EC;
+                --mb-terra:      #B10058;
+                --mb-brown:      #B10058;
+                --mb-beige:      #FDFDF3;
                 --mb-beige-dark: #E8E2D9;
-                --mb-text:       #3A3530;
-                --mb-muted:      #9A938A;
+                --mb-text:       #0A1F44;
+                --mb-muted:      #6A6B4A;
             }
             .mb-card {
                 background: #fff;
@@ -781,7 +780,7 @@
                 position: absolute;
                 left: 0; top: 0; height: 100%;
                 border-radius: 2px;
-                background: linear-gradient(90deg, var(--mb-rose), var(--mb-terra));
+                background: #B10058;
                 transition: width 0.35s ease;
             }
             .mb-thumb {
@@ -831,7 +830,7 @@
                 transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
                 box-shadow: 0 4px 20px rgba(212,132,122,0.3);
             }
-            .mb-btn:hover { background: #C07068; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,132,122,0.4); }
+            .mb-btn:hover { background: #970050; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(177,0,88,0.4); }
             .mb-btn:active { transform: scale(0.98); }
             @media (max-width: 480px) {
                 .mb-card { padding: 32px 18px 28px; }
@@ -989,7 +988,7 @@
     <!-- CLEAR THE NOISE POPUP -->
     <div id="clear-the-noise-popup" class="popup-overlay" style="display: none;">
         <div class="popup-content popup-brevo">
-            <span class="close-btn" onclick="closeClearTheNoisePopup()">&times;</span>
+            <span class="close-btn" onclick="closeClearTheNoisePopup()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             <div class="sib-form" style="text-align: center; background-color: transparent;">
   <div id="sib-form-container" class="sib-form-container">
     <div id="error-message" class="sib-form-message-panel" style="font-family:'Plus Jakarta Sans', sans-serif; font-size:15px; text-align:left; color:#661d1d; background-color:#ffeded; border-color:#ff4949; border-radius:8px; max-width:100%;">

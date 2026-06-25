@@ -334,7 +334,7 @@ h1, h2, h3, h4, .logo, .vibe-en {
     max-height: 90vh;
     overflow-y: auto;
 }
-.close-btn { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; color: #6A6B4A; z-index: 10; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; line-height: 1; }
+.close-btn { position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; color: #6A6B4A; z-index: 10; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; line-height: 1; padding: 0; }
 .popup-content.popup-brevo .close-btn {
     background: #FDFDF3;
     width: 34px;
