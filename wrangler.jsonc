@@ -1,8 +1,17 @@
 {
-  // Cloudflare Workers – static asset deployment via wrangler versions upload
+  // Cloudflare Workers – static assets + a small Worker for server-side API calls
   "name": "isabellehavers-website",
   "compatibility_date": "2026-06-17",
+  "main": "src/worker.js",
   "assets": {
-    "directory": "."
-  }
+    "directory": ".",
+    "binding": "ASSETS"
+  },
+  // Requests matching these patterns are always sent to the Worker first,
+  // instead of being served directly from static assets. This is what
+  // lets /api/* reach our fetch handler (and the BREVO_API_KEY secret)
+  // without that key ever being shipped to the browser.
+  "run_worker_first": [
+    "/api/*"
+  ]
 }
