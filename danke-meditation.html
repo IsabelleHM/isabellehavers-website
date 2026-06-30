@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danke für deinen Kauf | Isabelle Havers</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .thankyou-hero {
+            background: #FDFDF3;
+            text-align: center;
+            padding: 80px 24px 60px;
+        }
+        .thankyou-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            color: #0A1F44;
+            margin-bottom: 16px;
+        }
+        .thankyou-hero .course-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.15rem;
+            color: #B10058;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .thankyou-hero .personal-line {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            color: #3D3D2E;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .steps-section {
+            background: #fff;
+            padding: 60px 24px;
+        }
+        .steps-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: #0A1F44;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .form-section {
+            background: #FDFDF3;
+            padding: 60px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-card {
+            background: #fff;
+            box-shadow: 0 4px 24px rgba(10,31,68,0.10);
+            border-radius: 16px;
+            padding: 48px 40px;
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+        }
+        .form-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #0A1F44;
+            margin-bottom: 12px;
+        }
+        .form-card p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #3D3D2E;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        .gift-note {
+            background: #fff;
+            border: 1px dashed #B10058;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+        .gift-note p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        .gift-note .gift-label {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+            color: #B10058;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .next-step-note {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid #FDFDF3;
+        }
+        .next-step-note p {
+            margin-bottom: 8px;
+        }
+        .next-step-note a {
+            color: #B10058;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        .encouragement-section {
+            background: #6A6B4A;
+            padding: 60px 24px;
+            text-align: center;
+        }
+        .encouragement-section blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: #FDFDF3;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .step-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        .testimonial-card .step-number { color: #6A6B4A; }
+        .accent-card .step-number { color: #FDFDF3; }
+        .testimonial-card h3, .accent-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .testimonial-card p, .accent-card p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+    </style>
+<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+<style>
+    /* Brevo form overrides */
+    .sib-form { background-color: transparent !important; padding: 0 !important; text-align: left !important; }
+    #sib-container { border: none !important; box-shadow: none !important; max-width: 100% !important; background-color: transparent !important; }
+    .sib-form-block__button { width: 100% !important; justify-content: center !important; padding: 14px 28px !important; font-size: 1rem !important; border-radius: 8px !important; }
+    .sib-container--large { padding: 0 !important; }
+    #sib-form { text-align: left; }
+    .entry__label { color: #3D3D2E !important; font-family: 'Plus Jakarta Sans', sans-serif !important; font-size: 0.95rem !important; font-weight: 600 !important; }
+    .input { border: 1px solid #C0CCD9 !important; border-radius: 6px !important; padding: 10px 14px !important; font-family: 'Plus Jakarta Sans', sans-serif !important; font-size: 0.95rem !important; width: 100% !important; box-sizing: border-box !important; }
+    .sib-form__declaration { background: #FDFDF3 !important; border-radius: 8px !important; padding: 12px !important; }
+    .sib-form-message-panel { max-width: 100% !important; }
+</style>
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">Isabelle Havers</a>
+        <nav class="nav-menu">
+            <a href="index.html#about">Über mich</a>
+            <a href="index.html#testimonials">Erfolge</a>
+            <a href="index.html#insight-timer">Insight Timer</a>
+            <a href="shop.html" class="link-enabled">Shop</a>
+            <a href="community.html" class="link-enabled">Club Easy</a>
+        </nav>
+        <button class="burger" aria-label="Menü" onclick="this.classList.toggle('open');document.querySelector('.nav-menu').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <section class="thankyou-hero">
+        <h1>Dein Kauf war erfolgreich! 🎉</h1>
+        <p class="course-name">Danke, dass du dir diese Meditation gönnst</p>
+        <p class="personal-line">Schön, dass du dir diesen Moment für dich nimmst. Genau das ist es, worum es geht. – Isabelle</p>
+    </section>
+
+    <section class="steps-section">
+        <h2>So bekommst du deine Meditation</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card accent-card">
+                <p class="step-number">Schritt 1</p>
+                <h3>✓ Kauf abgeschlossen</h3>
+                <p>Alles erledigt. Du musst nichts weiter tun.</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="step-number">Schritt 2</p>
+                <h3>→ Postfach checken</h3>
+                <p>Deine Audiodatei bzw. dein Zugang kommt direkt per E-Mail von CopeCart – meist innerhalb weniger Minuten.</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="step-number">Schritt 3</p>
+                <h3>→ Spam-Ordner prüfen</h3>
+                <p>Falls die Mail nicht ankommt, schau bitte auch im Spam-Ordner nach.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="form-card">
+            <div class="gift-note">
+                <span class="gift-label">Mein kleines Dankeschön an dich</span>
+                <p>Als Dankeschön für deinen Kauf schenke ich dir meine kostenlose Meditation <strong>„Clear The Noise"</strong>. Trag unten einfach deine E-Mail-Adresse ein, dann schicke ich sie dir zu.</p>
+            </div>
+          <div class="sib-form" style="text-align: center; background-color: transparent;">
+  <div id="sib-form-container" class="sib-form-container">
+    <div id="error-message" class="sib-form-message-panel" style="font-family:'Plus Jakarta Sans', sans-serif; font-size:15px; text-align:left; color:#661d1d; background-color:#ffeded; border-color:#ff4949; border-radius:8px; max-width:100%;">
+      <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+        <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon"><path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z"/></svg>
+        <span class="sib-form-message-panel__inner-text">Deine Anmeldung konnte nicht gespeichert werden. Bitte versuche es erneut.</span>
+      </div>
+    </div>
+    <div></div>
+    <div id="success-message" class="sib-form-message-panel" style="font-family:'Plus Jakarta Sans', sans-serif; font-size:15px; text-align:left; color:#085229; background-color:#e7faf0; border-color:#13ce66; border-radius:8px; max-width:100%;">
+      <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+        <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon"><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z"/></svg>
+        <span class="sib-form-message-panel__inner-text">Deine Anmeldung war erfolgreich.</span>
+      </div>
+    </div>
+    <div></div>
+    <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:center; background-color:transparent; direction:ltr">
+      <form id="sib-form" method="POST" action="https://6d5a492e.sibforms.com/serve/MUIFAKMajy6E1ghjy0IzG6Gik9Vp1VS3-LqdEVYhCOb3VvX3tojoEVFUaKsJdfAFs5hBilasl2CyY5UxK6SRfEe6vRAnQp5WK5a8tDSWaFtu_0fbzPl8jj5wqWpOnArcsFKudciBB6xct80DKSTcghrRdw6QNTCrWpzGGXzekGTadETG8Trt0FBJcYNG2d-EKRk7mRM62EDzvIrszA==" data-type="subscription">
+        <div style="padding: 8px 0;">
+          <div class="sib-form-block" style="font-family:'Cormorant Garamond', serif; font-size:28px; font-weight:700; text-align:left; color:#0A1F44; background-color:transparent;">
+            <p>Clear the noise</p>
+          </div>
+        </div>
+        <div style="padding: 4px 0 8px;">
+          <div class="sib-form-block" style="font-family:'Plus Jakarta Sans', sans-serif; font-size:15px; text-align:left; color:#3D3D2E; background-color:transparent;">
+            <div class="sib-text-form-block">
+              <p>Lade hier deine Meditation runter für mehr Ruhe</p>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 4px 0 8px;">
+          <div class="sib-form-block" style="font-family:'Plus Jakarta Sans', sans-serif; font-size:14px; text-align:left; color:#6A6B4A; background-color:transparent;">
+            <div class="sib-text-form-block">
+              <p>Gib deine E-Mail-Adresse ein, um dich anzumelden</p>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 6px 0;">
+          <div class="sib-input sib-form-block">
+            <div class="form__entry entry_block">
+              <div class="form__label-row">
+                <div class="entry__field">
+                  <input class="input" maxlength="200" type="text" id="VORNAME" name="VORNAME" autocomplete="off" placeholder="Vorname" />
+                </div>
+              </div>
+              <label class="entry__error entry__error--primary" style="font-family:'Plus Jakarta Sans', sans-serif; font-size:13px; text-align:left; color:#661d1d; background-color:#ffeded; border-color:#ff4949; border-radius:6px;"></label>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 6px 0;">
+          <div class="sib-input sib-form-block">
+            <div class="form__entry entry_block">
+              <div class="form__label-row">
+                <div class="entry__field">
+                  <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="deine@email.de" data-required="true" required />
+                </div>
+              </div>
+              <label class="entry__error entry__error--primary" style="font-family:'Plus Jakarta Sans', sans-serif; font-size:13px; text-align:left; color:#661d1d; background-color:#ffeded; border-color:#ff4949; border-radius:6px;"></label>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 6px 0; text-align: left;">
+          <label style="font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; color:#3D3D2E; display:flex; align-items:flex-start; gap:8px; cursor:pointer;">
+            <input type="checkbox" required style="margin-top:3px; flex-shrink:0; accent-color:#B10058;">
+            <span>Ich habe die <a href="/datenschutz.html" target="_blank" style="color:#B10058;">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner E-Mail-Adresse zu. *</span>
+          </label>
+        </div>
+        <div style="padding: 8px 0;">
+          <div class="sib-form-block" style="text-align:center">
+            <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-family:'Plus Jakarta Sans', sans-serif; font-size:1rem; font-weight:700; color:#FFFFFF; background-color:#B10058; border-width:0px; border-radius:8px; padding:14px 32px; width:100%; cursor:pointer;" form="sib-form" type="submit">
+              <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512"><path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"/></svg>
+              Hier downloaden
+            </button>
+          </div>
+        </div>
+        <div style="padding: 6px 0 0;">
+          <p style="font-family:'Plus Jakarta Sans', sans-serif; font-size:11px; color:#A5A58D; text-align:center; margin:0;">Deine E-Mail wird nicht weitergegeben. DSGVO-konform.</p>
+        </div>
+        <input type="text" name="email_address_check" value="" class="input--hidden">
+        <input type="hidden" name="locale" value="de">
+      </form>
+    </div>
+  </div>
+</div>
+            <div class="next-step-note">
+                <p>Wenn dir das gefällt: In <a href="community.html">Club Easy</a> findest du noch mehr davon – meine Community für mehr Leichtigkeit im Alltag.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="encouragement-section">
+        <blockquote>"Du brauchst keinen perfekten Moment, um zur Ruhe zu kommen. Dieser hier reicht völlig."</blockquote>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Isabelle Havers</h4>
+                <p>Club Easy – Dein Space für Lebensfreude</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul role="list">
+                    <li><a href="index.html#about">Über Mich</a></li>
+                    <li><a href="community.html">Club Easy</a></li>
+                    <li><a href="shop.html">Meditationen & Kurse</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul role="list">
+                    <li><a href="/impressum.html">Impressum</a></li>
+                    <li><a href="/datenschutz.html">Datenschutz</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Kontakt</h4>
+                <ul role="list">
+                    <li><a href="mailto:info@isabellehavers.com">E-Mail</a></li>
+                    <li><a href="https://www.instagram.com/isabellehavers/" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://insig.ht/MwS7VVzTl3b" target="_blank" rel="noopener">Insight Timer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Isabelle Havers. Alle Rechte vorbehalten.</p>
+            <p>DSGVO-konform • Keine Tracking-Pixel • Datenschutz First</p>
+            <p>Auf dieser Website werden teilweise KI-generierte Symbolbilder verwendet. Sie dienen ausschließlich der Illustration und zeigen keine realen Personen, Situationen oder medizinischen Sachverhalte.</p>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" class="cookie-banner hidden">
+        <div class="cookie-text">
+            <strong>🍪 Wir nutzen Cookies</strong><br>
+            Diese Website nutzt Cookies für Formulare und essenzielle Funktionen. Durch die Nutzung akzeptierst du unsere <a href="/datenschutz.html">Datenschutzerklärung</a>.
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Ablehnen</button>
+            <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Akzeptieren</button>
+        </div>
+    </div>
+    <script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Wähle bitte einen Ländervorwahl aus.';
+  window.LOCALE = 'de';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "Die eingegebenen Informationen sind nicht gültig. Bitte überprüfe das Feldformat und versuche es erneut.";
+  window.REQUIRED_ERROR_MESSAGE = "Dieses Feld darf nicht leer sein. ";
+  window.GENERIC_INVALID_MESSAGE = "Die eingegebenen Informationen sind nicht gültig. Bitte überprüfe das Feldformat und versuche es erneut.";
+  window.INVALID_NUMBER = "Die eingegebenen Informationen sind nicht gültig. Bitte überprüfe das Feldformat und versuche es erneut.";
+  window.INVALID_DATE = "Bitte gib ein gültiges Datum ein";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Wähle bitte mindestens eine Option aus';
+  window.translation = {
+    common: {
+      selectedList: '{quantity} Liste ausgewählt',
+      selectedLists: '{quantity} Listen ausgewählt',
+      selectedOption: '{quantity} ausgewählt',
+      selectedOptions: '{quantity} ausgewählt',
+    }
+  };
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+    <script>
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            if (!localStorage.getItem('cookies-accepted')) banner.classList.remove('hidden');
+        }
+        function acceptCookies() {
+            localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+        function rejectCookies() {
+            localStorage.setItem('cookies-accepted', 'rejected');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+        window.addEventListener('load', showCookieBanner);
+    </script>
+
+</body>
+</html>
