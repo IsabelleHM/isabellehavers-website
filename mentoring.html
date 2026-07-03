@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1:1 Mentoring – Club Easy Backstage | Isabelle Havers</title>
+    <meta name="description" content="Club Easy Backstage – 1:1 Mentoring mit Isabelle Havers. 4 Sessions, persönliche Meditation, WhatsApp-Support. Für alle, die bereit sind.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── HERO ── */
+        .mentoring-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+        .mentoring-hero-img {
+            position: absolute;
+            inset: 0;
+            background-image: url('Mentoring.png');
+            background-size: cover;
+            background-position: center top;
+        }
+        .mentoring-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,31,68,0.72) 0%, rgba(10,31,68,0.15) 60%, transparent 100%);
+        }
+        .mentoring-hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 60px 5% 72px;
+            max-width: 800px;
+        }
+        .mentoring-hero-content h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.6rem, 6vw, 5rem);
+            color: #FDFDF3;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        .mentoring-hero-content p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(1rem, 2.2vw, 1.25rem);
+            color: rgba(253,253,243,0.9);
+            line-height: 1.6;
+            max-width: 580px;
+        }
+
+        /* ── MAIN TEXT ── */
+        .mentoring-text {
+            background: #FDFDF3;
+            padding: 80px 5%;
+        }
+        .mentoring-text-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .mentoring-text p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            color: #3D3D2E;
+            line-height: 1.9;
+            margin-bottom: 28px;
+        }
+        .mentoring-text p:last-child { margin-bottom: 0; }
+
+        /* ── FACTS BOX ── */
+        .mentoring-facts {
+            background: #fff;
+            padding: 80px 5%;
+        }
+        .mentoring-facts-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .mentoring-facts h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            color: #0A1F44;
+            margin-bottom: 36px;
+            text-align: center;
+        }
+        .facts-box {
+            background: #FDFDF3;
+            border: 1px solid #E8E8D8;
+            border-radius: 16px;
+            padding: 40px 44px;
+        }
+        .facts-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .facts-box ul li {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            color: #3D3D2E;
+            line-height: 1.7;
+            padding: 12px 0;
+            border-bottom: 1px solid #E8E8D8;
+            display: flex;
+            gap: 12px;
+        }
+        .facts-box ul li:last-child { border-bottom: none; }
+        .facts-check {
+            color: #B10058;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        @media (max-width: 600px) {
+            .facts-box { padding: 28px 24px; }
+        }
+
+        /* ── CTA ── */
+        .mentoring-cta {
+            background: #6A6B4A;
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .mentoring-cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: #FDFDF3;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .mentoring-cta p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            color: rgba(253,253,243,0.85);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+        .mentoring-cta .btn-cta {
+            display: inline-block;
+            padding: 16px 40px;
+            background: #B10058;
+            color: #FDFDF3;
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .mentoring-cta .btn-cta:hover {
+            background: #970050;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">Isabelle Havers</a>
+        <nav class="nav-menu">
+            <a href="index.html#about">Über mich</a>
+            <a href="index.html#testimonials">Erfolge</a>
+            <a href="index.html#insight-timer">Insight Timer</a>
+            <a href="shop.html">Shop</a>
+            <a href="mentoring.html">Mentoring</a>
+            <a href="community.html">Club Easy</a>
+        </nav>
+        <button class="burger" aria-label="Menü" onclick="this.classList.toggle('open');document.querySelector('.nav-menu').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- HERO -->
+    <section class="mentoring-hero">
+        <div class="mentoring-hero-img"></div>
+        <div class="mentoring-hero-overlay"></div>
+        <div class="mentoring-hero-content">
+            <h1>Club Easy Backstage</h1>
+            <p>1:1 Mentoring – für alle, die bereit sind. Ohne Blabla, ohne Überredungskunst.</p>
+        </div>
+    </section>
+
+    <!-- HAUPTTEXT -->
+    <section class="mentoring-text">
+        <div class="mentoring-text-inner">
+            <p>Ich köder dich hier nicht mit einem „kostenlosen Erstgespräch", in dem ich versuche, dich von mir zu überzeugen. Entweder du spürst, dass wir zusammenpassen, oder nicht. Du bist erwachsen und weißt selbst am besten, was du gerade brauchst.</p>
+            <p>Mein Leben ist nicht perfekt, denn darum geht's auch nicht. Auch ich bin manchmal gestresst, auch mein Alltag wirbelt mich durcheinander. Ich sitz nicht auf einer Wolke und schwebe durchs Leben. Und genau deshalb weiß ich, wie man sich mitten im ganz normalen Chaos wieder erdet, wieder lacht, wieder Leichtigkeit findet.</p>
+            <p>6 Wochen, 4 Sessions, volle Aufmerksamkeit auf dich und das, was bei dir gerade dran ist.</p>
+            <p>Wenn du bereit bist, direkt mit mir dranzugehen, buchst du hier. Wenn nicht, ist das auch völlig okay.</p>
+        </div>
+    </section>
+
+    <!-- FACTS -->
+    <section class="mentoring-facts">
+        <div class="mentoring-facts-inner">
+            <h2>Was dich erwartet</h2>
+            <div class="facts-box">
+                <ul>
+                    <li><span class="facts-check">✓</span> 6 Wochen Begleitung mit 4 intensiven 1:1 Sessions à 60 Minuten via Zoom</li>
+                    <li><span class="facts-check">✓</span> Eine für dich persönlich aufgenommene Meditation – zugeschnitten auf genau das Thema, an dem wir arbeiten</li>
+                    <li><span class="facts-check">✓</span> WhatsApp-Support zwischen den Sessions für deine Akut-Momente im Alltag</li>
+                    <li><span class="facts-check">✓</span> Dein Investment: 777 € – Ratenzahlung via CopeCart möglich</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mentoring-cta">
+        <h2>Bereit?</h2>
+        <p>Dann freue ich mich auf dich.</p>
+        <a href="#copecart-mentoring" class="btn-cta">Ja, ich bin soweit – direkt buchen</a>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Isabelle Havers</h4>
+                <p>Club Easy – Dein Space für Lebensfreude</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul role="list">
+                    <li><a href="index.html#about">Über Mich</a></li>
+                    <li><a href="mentoring.html">Mentoring</a></li>
+                    <li><a href="community.html">Club Easy</a></li>
+                    <li><a href="shop.html">Meditationen & Kurse</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul role="list">
+                    <li><a href="/impressum.html">Impressum</a></li>
+                    <li><a href="/datenschutz.html">Datenschutz</a></li>
+                    <li><a href="/widerruf.html">Widerruf</a></li>
+                    <li><a href="/agb.html">AGB</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Kontakt</h4>
+                <ul role="list">
+                    <li><a href="mailto:info@isabellehavers.com">E-Mail</a></li>
+                    <li><a href="https://www.instagram.com/isabellehavers/" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://insig.ht/MwS7VVzTl3b" target="_blank" rel="noopener">Insight Timer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Isabelle Havers. Alle Rechte vorbehalten.</p>
+            <p>DSGVO-konform • Keine Tracking-Pixel • Datenschutz First</p>
+            <p>Auf dieser Website werden teilweise KI-generierte Symbolbilder verwendet. Sie dienen ausschließlich der Illustration und zeigen keine realen Personen, Situationen oder medizinischen Sachverhalte.</p>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" class="cookie-banner hidden">
+        <div class="cookie-text">
+            <strong>🍪 Wir nutzen Cookies</strong><br>
+            Diese Website nutzt Cookies für Formulare und essenzielle Funktionen. Durch die Nutzung akzeptierst du unsere <a href="/datenschutz.html">Datenschutzerklärung</a>.
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-reject" onclick="rejectCookies()">Ablehnen</button>
+            <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Akzeptieren</button>
+        </div>
+    </div>
+
+    <script>
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            if (!localStorage.getItem('cookies-accepted')) banner.classList.remove('hidden');
+        }
+        function acceptCookies() {
+            localStorage.setItem('cookies-accepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+        function rejectCookies() {
+            localStorage.setItem('cookies-accepted', 'rejected');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+        window.addEventListener('load', showCookieBanner);
+    </script>
+
+</body>
+</html>
