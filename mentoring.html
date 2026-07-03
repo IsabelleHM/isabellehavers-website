@@ -7,11 +7,17 @@
     <meta name="description" content="Club Easy Backstage – 1:1 Mentoring mit Isabelle Havers. 4 Sessions, persönliche Meditation, WhatsApp-Support. Für alle, die bereit sind.">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ── HERO (plain cream, no image) ── */
+        /* ── HERO (bunte Blobs) ── */
         .mentoring-hero {
+            position: relative;
             background: #FDFDF3;
-            padding: 100px 5% 80px;
+            padding: 110px 5% 90px;
             text-align: center;
+            overflow: hidden;
+        }
+        .mentoring-hero-content {
+            position: relative;
+            z-index: 2;
         }
         .mentoring-hero h1 {
             font-family: 'Cormorant Garamond', serif;
@@ -24,10 +30,40 @@
         .mentoring-hero p {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: clamp(1rem, 2.2vw, 1.25rem);
-            color: #6A6B4A;
+            color: #3D3D2E;
             line-height: 1.6;
             max-width: 580px;
             margin: 0 auto;
+        }
+        /* Blob shapes */
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.35;
+            pointer-events: none;
+        }
+        .hero-blob-1 {
+            width: 480px; height: 480px;
+            background: #B10058;
+            top: -140px; left: -120px;
+        }
+        .hero-blob-2 {
+            width: 380px; height: 380px;
+            background: #6A6B4A;
+            bottom: -100px; right: -80px;
+        }
+        .hero-blob-3 {
+            width: 300px; height: 300px;
+            background: #0A1F44;
+            top: 20px; right: 15%;
+            opacity: 0.18;
+        }
+        .hero-blob-4 {
+            width: 220px; height: 220px;
+            background: #B10058;
+            bottom: -40px; left: 30%;
+            opacity: 0.22;
         }
 
         /* ── TEXT + IMAGE SPLIT ── */
@@ -45,6 +81,9 @@
         .mentoring-split-img {
             flex: 0 0 40%;
             max-width: 40%;
+            position: sticky;
+            top: 40px;
+            align-self: flex-start;
         }
         .mentoring-split-img img {
             width: 100%;
@@ -73,6 +112,7 @@
                 flex: unset;
                 max-width: 100%;
                 width: 100%;
+                position: static;
             }
         }
 
@@ -123,27 +163,8 @@
             .facts-box { padding: 28px 24px; }
         }
 
-        /* ── CTA ── */
-        .mentoring-cta {
-            background: #0A1F44;
-            padding: 100px 5%;
-            text-align: center;
-        }
-        .mentoring-cta h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            color: #FDFDF3;
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
-        .mentoring-cta p {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1.05rem;
-            color: rgba(253,253,243,0.85);
-            margin-bottom: 48px;
-            line-height: 1.7;
-        }
-        .mentoring-cta .btn-cta {
+        /* ── BUCHEN-BUTTON ── */
+        .btn-cta {
             display: inline-block;
             padding: 20px 52px;
             background: #B10058;
@@ -155,8 +176,9 @@
             font-weight: 700;
             transition: background 0.2s, transform 0.2s;
             letter-spacing: 0.01em;
+            margin-top: 40px;
         }
-        .mentoring-cta .btn-cta:hover {
+        .btn-cta:hover {
             background: #970050;
             transform: translateY(-2px);
         }
@@ -181,8 +203,14 @@
 
     <!-- HERO -->
     <section class="mentoring-hero">
-        <h1>Club Easy Backstage</h1>
-        <p>1:1 Mentoring – für alle, die bereit sind. Ohne Blabla, ohne Überredungskunst.</p>
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
+        <div class="hero-blob hero-blob-4"></div>
+        <div class="mentoring-hero-content">
+            <h1>Club Easy Backstage</h1>
+            <p>1:1 Mentoring – für alle, die bereit sind. Ohne Blabla, ohne Überredungskunst.</p>
+        </div>
     </section>
 
     <!-- HAUPTTEXT MIT BILD -->
@@ -212,14 +240,10 @@
                     <li><span class="facts-check">✓</span> Dein Investment: 777 € – Ratenzahlung via CopeCart möglich</li>
                 </ul>
             </div>
+            <div style="text-align: center;">
+                <a href="https://copecart.com/products/6a3f3a47/checkout" target="_blank" rel="noopener noreferrer" class="btn-cta">Ja, ich bin soweit – direkt buchen</a>
+            </div>
         </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="mentoring-cta">
-        <h2>Bereit?</h2>
-        <p>Dann freue ich mich auf dich.</p>
-        <a href="https://copecart.com/products/6a3f3a47/checkout" target="_blank" rel="noopener noreferrer" class="btn-cta">Ja, ich bin soweit – direkt buchen</a>
     </section>
 
     <footer class="main-footer">
