@@ -27,7 +27,7 @@
             text-decoration: none;
         }
 
-        /* Hero with blobs */
+        /* Hero with background image */
         .ctn-hero {
             position: relative;
             flex: 1;
@@ -36,18 +36,15 @@
             justify-content: center;
             padding: 40px 5% 60px;
             overflow: hidden;
+            background: url('Sonnenuntergang.png') center center / cover no-repeat;
         }
-        .hero-blob {
+        .ctn-hero::before {
+            content: '';
             position: absolute;
-            border-radius: 50%;
-            filter: blur(70px);
-            opacity: 0.3;
+            inset: 0;
+            background: rgba(10, 31, 68, 0.25);
             pointer-events: none;
         }
-        .blob-1 { width: 500px; height: 500px; background: #B10058; top: -160px; left: -140px; }
-        .blob-2 { width: 400px; height: 400px; background: #6A6B4A; bottom: -120px; right: -100px; }
-        .blob-3 { width: 280px; height: 280px; background: #0A1F44; top: 10%; right: 10%; opacity: 0.15; }
-        .blob-4 { width: 200px; height: 200px; background: #B10058; bottom: 5%; left: 25%; opacity: 0.18; }
 
         /* Card */
         .ctn-card {
@@ -183,11 +180,6 @@
     </header>
 
     <main class="ctn-hero">
-        <div class="hero-blob blob-1"></div>
-        <div class="hero-blob blob-2"></div>
-        <div class="hero-blob blob-3"></div>
-        <div class="hero-blob blob-4"></div>
-
         <div class="ctn-card">
             <h1>Clear the noise</h1>
             <p class="sub">Wenn's im Kopf zu laut wird, hilft die hier. Kurz die E-Mail eingeben, dann kann's losgehen.</p>
