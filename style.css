@@ -186,7 +186,7 @@ h1, h2, h3, h4, .logo, .vibe-en {
 }
 .hero-video-content h1 { font-size: 56px; line-height: 1.1; margin-bottom: 20px; }
 .highlight-text { color: #FDFDF3; font-style: italic; }
-.hero-sub { font-size: 24px; font-family: 'Cormorant Garamond', serif; margin-bottom: 40px; }
+.hero-sub { font-size: clamp(1rem, 2.2vw, 1.2rem); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.7; margin-bottom: 40px; }
 .btn-hero-video {
     background-color: #B10058;
     color: #FFF;
