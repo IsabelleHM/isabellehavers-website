@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Werde Partnerin | Isabelle Havers</title>
+    <meta name="description" content="Empfiehl meine Kurse weiter und verdiene 40 % Provision auf jeden Verkauf. Alles was du brauchst, findest du hier.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #FDFDF3;
+        }
+
+        .p-header {
+            padding: 24px 5%;
+        }
+        .p-header .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0A1F44;
+            text-decoration: none;
+        }
+
+        .p-main {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 5% 80px;
+        }
+
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: 0.28;
+            pointer-events: none;
+        }
+        .blob-1 { width: 500px; height: 500px; background: #B10058; top: -160px; left: -140px; }
+        .blob-2 { width: 400px; height: 400px; background: #6A6B4A; bottom: -120px; right: -100px; }
+        .blob-3 { width: 260px; height: 260px; background: #0A1F44; top: 10%; right: 10%; opacity: 0.13; }
+
+        .p-content {
+            position: relative;
+            z-index: 2;
+            max-width: 620px;
+            width: 100%;
+        }
+
+        .p-content h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.6rem, 6vw, 3.6rem);
+            font-weight: 700;
+            color: #0A1F44;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .p-content .sub {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            color: #3D3D2E;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .p-content .body-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #6A6B4A;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        /* Facts box */
+        .facts-box {
+            background: #fff;
+            border: 1px solid #E8E8D8;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 36px;
+            box-shadow: 0 4px 20px rgba(10,31,68,0.06);
+        }
+        .fact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #3D3D2E;
+            line-height: 1.5;
+        }
+        .fact-item:last-child { margin-bottom: 0; }
+        .fact-check {
+            color: #B10058;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* CTA */
+        .p-cta {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            background: #B10058;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 32px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            margin-bottom: 12px;
+        }
+        .p-cta:hover {
+            background: #970050;
+            transform: translateY(-2px);
+        }
+
+        .p-cta-hint {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.75rem;
+            color: #A5A58D;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        /* Downloads */
+        .downloads-section {
+            width: 100%;
+            max-width: 620px;
+            position: relative;
+            z-index: 2;
+        }
+        .downloads-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0A1F44;
+            margin-bottom: 16px;
+        }
+        .download-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .download-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #fff;
+            border: 1px solid #E8E8D8;
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-decoration: none;
+            transition: box-shadow 0.2s;
+        }
+        .download-item:hover { box-shadow: 0 4px 16px rgba(10,31,68,0.08); }
+        .download-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .download-info { flex: 1; }
+        .download-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #3D3D2E;
+            display: block;
+        }
+        .download-sub {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.8rem;
+            color: #A5A58D;
+        }
+        .download-badge {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.72rem;
+            color: #A5A58D;
+            border: 1px solid #D8D8C8;
+            border-radius: 20px;
+            padding: 3px 10px;
+            flex-shrink: 0;
+        }
+
+        .p-footer {
+            text-align: center;
+            padding: 28px 5% 36px;
+        }
+        .p-footer a {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            color: #A5A58D;
+            text-decoration: none;
+            border-bottom: 1px solid #D8D8C8;
+            transition: color 0.2s;
+        }
+        .p-footer a:hover { color: #6A6B4A; }
+
+        @media (max-width: 600px) {
+            .facts-box { padding: 22px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="p-header">
+        <a href="index.html" class="logo">Isabelle Havers</a>
+    </header>
+
+    <main class="p-main">
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        <div class="hero-blob blob-3"></div>
+
+        <div class="p-content">
+            <h1>Werde Partnerin</h1>
+            <p class="sub">Du kennst Frauen, die genau das hier brauchen? Dann verdien mit, wenn du meine Kurse und Club Easy weiterempfiehlst.</p>
+            <p class="body-text">Ich mach's dir leicht. Hier findest du alles, was du brauchst, um loszulegen – ohne dass du selbst Texte schreiben oder Bilder basteln musst.</p>
+
+            <div class="facts-box">
+                <div class="fact-item">
+                    <span class="fact-check">✓</span>
+                    <span>40 % Provision auf jeden Verkauf</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-check">✓</span>
+                    <span>Fertige Post-Vorlagen zum direkten Nutzen</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-check">✓</span>
+                    <span>Ein PDF, das du einfach weiterschicken kannst</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-check">✓</span>
+                    <span>Anmeldung in 2 Minuten über CopeCart</span>
+                </div>
+            </div>
+
+            <a href="https://copecart.com/invite?product_ids=386002,386626,384584,386624,386627,385978,386004,386006,383905"
+               target="_blank" rel="noopener noreferrer"
+               class="p-cta">Jetzt Partnerin werden →</a>
+
+            <p class="p-cta-hint">Du landest auf der CopeCart-Registrierung. Falls du dort noch keinen Account hast, kannst du dich in wenigen Minuten kostenlos anmelden.</p>
+        </div>
+
+        <div class="downloads-section">
+            <h2>Deine Materialien</h2>
+            <div class="download-list">
+                <span class="download-item" style="cursor: default; opacity: 0.6;">
+                    <span class="download-icon">📄</span>
+                    <span class="download-info">
+                        <span class="download-title">Programm-Guide (PDF)</span>
+                        <span class="download-sub">Alles Wichtige kompakt zusammengefasst</span>
+                    </span>
+                    <span class="download-badge">folgt bald</span>
+                </span>
+                <span class="download-item" style="cursor: default; opacity: 0.6;">
+                    <span class="download-icon">🎨</span>
+                    <span class="download-info">
+                        <span class="download-title">Post-Vorlagen (Canva)</span>
+                        <span class="download-sub">Fertig gestaltet, einfach anpassen und teilen</span>
+                    </span>
+                    <span class="download-badge">folgt bald</span>
+                </span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-footer">
+        <a href="index.html">Zurück zur Startseite</a>
+    </footer>
+
+</body>
+</html>
