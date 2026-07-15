@@ -757,10 +757,17 @@ h1, h2, h3, h4, .logo, .vibe-en {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-color: #6A6B4A;
     background-attachment: fixed;
     z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .community-hero-background {
+        background-attachment: scroll;
+        background-position: center center;
+    }
 }
 .community-hero-overlay {
     position: absolute;
