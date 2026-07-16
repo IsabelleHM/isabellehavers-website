@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seite nicht gefunden | Isabelle Havers</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #FDFDF3;
+        }
+
+        .e404-header {
+            padding: 24px 5%;
+        }
+        .e404-header .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0A1F44;
+            text-decoration: none;
+        }
+
+        .e404-main {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 5% 80px;
+            text-align: center;
+        }
+
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: 0.28;
+            pointer-events: none;
+        }
+        .blob-1 { width: 500px; height: 500px; background: #B10058; top: -160px; left: -140px; }
+        .blob-2 { width: 400px; height: 400px; background: #6A6B4A; bottom: -120px; right: -100px; }
+        .blob-3 { width: 260px; height: 260px; background: #0A1F44; top: 10%; right: 10%; opacity: 0.13; }
+
+        .e404-content {
+            position: relative;
+            z-index: 2;
+            max-width: 520px;
+        }
+
+        .e404-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(5rem, 18vw, 9rem);
+            font-weight: 700;
+            color: #E8E8D8;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .e404-content h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            font-weight: 700;
+            color: #0A1F44;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .e404-content p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            color: #3D3D2E;
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .e404-btn {
+            display: inline-block;
+            background: #B10058;
+            color: #fff;
+            border-radius: 50px;
+            padding: 15px 36px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .e404-btn:hover {
+            background: #970050;
+            transform: translateY(-2px);
+        }
+
+        .e404-footer {
+            text-align: center;
+            padding: 28px 5% 36px;
+        }
+        .e404-footer a {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            color: #A5A58D;
+            text-decoration: none;
+            border-bottom: 1px solid #D8D8C8;
+            transition: color 0.2s;
+        }
+        .e404-footer a:hover { color: #6A6B4A; }
+    </style>
+</head>
+<body>
+
+    <header class="e404-header">
+        <a href="index.html" class="logo">Isabelle Havers</a>
+    </header>
+
+    <main class="e404-main">
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        <div class="hero-blob blob-3"></div>
+
+        <div class="e404-content">
+            <div class="e404-number">404</div>
+            <h1>Hier ist nichts –</h1>
+            <p>aber schau mal im Club Easy vorbei, da ist es netter.</p>
+            <a href="https://isabellehavers.com/club-easy" class="e404-btn">Club Easy Warteliste</a>
+        </div>
+    </main>
+
+    <footer class="e404-footer">
+        <a href="index.html">Zurück zur Startseite</a>
+    </footer>
+
+</body>
+</html>
