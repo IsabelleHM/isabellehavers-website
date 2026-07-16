@@ -82,6 +82,11 @@ export default {
     }
 
     // Anything else falls back to the static site.
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+    if (response.status === 404) {
+      const notFound = await env.ASSETS.fetch(new Request(new URL('/404.html', request.url)));
+      return new Response(notFound.body, { status: 404, headers: notFound.headers });
+    }
+    return response;
   },
 };
