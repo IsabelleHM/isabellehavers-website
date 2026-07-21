@@ -13,5 +13,13 @@
   // without that key ever being shipped to the browser.
   "run_worker_first": [
     "/api/*"
+  ],
+  // Verbindung zur KV-"Karteikarte", in der wir uns merken, welche
+  // E-Mail zu welcher Telegram-Person gehört
+  "kv_namespaces": [
+    {
+      "binding": "CLUB_EASY_KV",
+      "id": "2dbe80a8117e4c27b1e1e30705b83436"
+    }
   ]
 }
