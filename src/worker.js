@@ -132,7 +132,7 @@ async function grantAccess(email, env) {
     { expirationTtl: 60 * 60 * 24 * 7 }
   );
 
-  await sendInviteEmail(email, inviteLink, env);
+  await setTelegramLinkAttribute(email, inviteLink, env);
 }
 
 async function revokeAccess(email, env) {
@@ -241,29 +241,48 @@ function base64Encode(buffer) {
   return btoa(binary);
 }
 
-async function sendInviteEmail(email, inviteLink, env) {
-  const res = await fetch('https://api.brevo.com/v3/smtp/email', {
-    method: 'POST',
+async function setTelegramLinkAttribute(email, inviteLink, env) {
+  // Trägt den Invite-Link als Kontakt-Attribut bei Brevo ein.
+  // Die bestehende Willkommens-/Bestätigungsmail-Automation zieht sich den
+  // Wert dann selbst über {{ contact.TELEGRAM_LINK }} - keine eigene Mail
+  // von hier aus nötig.
+  const res = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       'api-key': env.BREVO_API_KEY,
     },
     body: JSON.stringify({
-      sender: { name: 'Isabelle Havers', email: 'hallo@isabellehavers.com' },
-      to: [{ email }],
-      subject: 'Dein Zugang zu Club Easy 🎉',
-      htmlContent: `
-        <p>Hey, schön dass du dabei bist!</p>
-        <p>Hier ist dein persönlicher Einladungslink zu Club Easy auf Telegram:</p>
-        <p><a href="${inviteLink}">${inviteLink}</a></p>
-        <p>Der Link funktioniert nur einmal, also nicht weitergeben.</p>
-      `,
+      attributes: { TELEGRAM_LINK: inviteLink },
     }),
   });
 
+  // Brevo gibt bei PUT auf einen noch nicht existierenden Kontakt einen
+  // Fehler zurück (Kontakt entsteht ja erst, wenn die Käuferin das Formular
+  // auf der Dankesseite ausfüllt). In dem Fall legen wir den Kontakt direkt an.
+  if (res.status === 404) {
+    const createRes = await fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': env.BREVO_API_KEY,
+      },
+      body: JSON.stringify({
+        email,
+        attributes: { TELEGRAM_LINK: inviteLink },
+        updateEnabled: true,
+      }),
+    });
+    if (!createRes.ok) {
+      const errText = await createRes.text();
+      throw new Error(`Brevo-Kontakt anlegen fehlgeschlagen: ${errText}`);
+    }
+    return;
+  }
+
   if (!res.ok) {
     const errText = await res.text();
-    throw new Error(`Brevo-Versand fehlgeschlagen: ${errText}`);
+    throw new Error(`Brevo-Attribut setzen fehlgeschlagen: ${errText}`);
   }
 }
 
