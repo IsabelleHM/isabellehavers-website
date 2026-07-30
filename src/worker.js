@@ -287,6 +287,73 @@ async function setTelegramLinkAttribute(email, inviteLink, env) {
 }
 
 // ---------------------------------------------------------------------------
+// Club Easy — Steady-Mitgliederabgleich (Cron)
+// ---------------------------------------------------------------------------
+//
+// Läuft alle 15 Minuten (siehe Cron Trigger). Steady schickt keine Webhooks,
+// deshalb fragt der Worker selbst nach: aktive + inaktive Mitgliedschaften
+// abholen, mit dem letzten bekannten Stand aus KV vergleichen, bei neuen
+// Mitgliedern grantAccess(), bei weggefallenen revokeAccess() aufrufen
+// (beides bereits oben definiert, wird hier nur wiederverwendet).
+
+const STEADY_ACTIVE_KEY = 'steady:known_active';
+
+async function syncSteadyMembers(env) {
+  const [activeEmails, inactiveEmails] = await Promise.all([
+    fetchSteadyEmails('https://steadyhq.com/api/v1/subscriptions', env),
+    fetchSteadyEmails('https://steadyhq.com/api/v1/subscriptions/inactive', env),
+  ]);
+
+  const knownRaw = await env.CLUB_EASY_KV.get(STEADY_ACTIVE_KEY);
+  const known = knownRaw ? JSON.parse(knownRaw) : [];
+
+  const newlyActive = activeEmails.filter((email) => !known.includes(email));
+  const newlyInactive = inactiveEmails.filter((email) => known.includes(email));
+
+  for (const email of newlyActive) {
+    try {
+      await grantAccess(email, env);
+    } catch (err) {
+      console.error(`grantAccess fehlgeschlagen für ${email}:`, err);
+    }
+  }
+
+  for (const email of newlyInactive) {
+    try {
+      await revokeAccess(email, env);
+    } catch (err) {
+      console.error(`revokeAccess fehlgeschlagen für ${email}:`, err);
+    }
+  }
+
+  await env.CLUB_EASY_KV.put(STEADY_ACTIVE_KEY, JSON.stringify(activeEmails));
+}
+
+async function fetchSteadyEmails(url, env) {
+  const res = await fetch(url, {
+    headers: {
+      Accept: 'application/vnd.api+json',
+      'X-Api-Key': env.STEADY_API_KEY,
+    },
+  });
+  if (!res.ok) {
+    throw new Error(`Steady-API-Aufruf fehlgeschlagen (${url}): ${res.status}`);
+  }
+  const json = await res.json();
+
+  const usersById = {};
+  for (const item of json.included || []) {
+    if (item.type === 'user') {
+      usersById[item.id] = item.attributes.email;
+    }
+  }
+
+  return json.data
+    .map((sub) => usersById[sub.relationships?.subscriber?.data?.id])
+    .filter(Boolean);
+}
+
+// ---------------------------------------------------------------------------
 
 export default {
   async fetch(request, env) {
@@ -320,5 +387,9 @@ export default {
       return new Response(notFound.body, { status: 404, headers: notFound.headers });
     }
     return response;
+  },
+
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(syncSteadyMembers(env));
   },
 };
