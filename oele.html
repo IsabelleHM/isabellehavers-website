@@ -46,19 +46,39 @@
         /* ── HERO ── */
         .oele-hero {
             position: relative;
-            background: #FDFDF3;
-            padding: 110px 5% 90px;
-            text-align: center;
             overflow: hidden;
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .oele-hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .oele-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 31, 68, 0.45);
+            z-index: 1;
+            pointer-events: none;
         }
         .oele-hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
+            padding: 80px 5%;
+            max-width: 720px;
         }
         .oele-hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.4rem, 6vw, 4.2rem);
-            color: #0A1F44;
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            color: #fff;
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 20px;
@@ -67,21 +87,11 @@
         .oele-hero p {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: clamp(1rem, 2.2vw, 1.2rem);
-            color: #3D3D2E;
+            color: rgba(255,255,255,0.88);
             line-height: 1.7;
-            max-width: 560px;
+            max-width: 520px;
             margin: 0 auto;
         }
-        .hero-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.32;
-            pointer-events: none;
-        }
-        .blob-1 { width: 480px; height: 480px; background: #B10058; top: -140px; left: -120px; }
-        .blob-2 { width: 380px; height: 380px; background: #6A6B4A; bottom: -100px; right: -80px; }
-        .blob-3 { width: 300px; height: 300px; background: #0A1F44; top: 20px; right: 15%; opacity: 0.16; }
 
         /* ── SECTIONS ── */
         .oele-section {
@@ -333,12 +343,10 @@
 
     <!-- HERO -->
     <section class="oele-hero">
-        <div class="hero-blob blob-1"></div>
-        <div class="hero-blob blob-2"></div>
-        <div class="hero-blob blob-3"></div>
+        <img src="Home Essential Kit LS 1.jpg" alt="doTERRA Home Essential Kit – ätherische Öle für den Alltag" class="oele-hero-img">
         <div class="oele-hero-content">
-            <h1>Öle, die ich wirklich täglich benutze</h1>
-            <p>Kein Wellness-Bingo, keine Versprechen. Nur was ich morgens auf den Tisch stelle, abends in den Diffuser gebe und meinen Kindern auf die Fußsohlen reibe.</p>
+            <h1>Manchmal reicht ein Tropfen, um den Tag zu retten 🌿</h1>
+            <p>Ätherische Öle sind für mich essentiell im Alltag.</p>
         </div>
     </section>
 
@@ -346,9 +354,8 @@
     <section class="oele-section oele-section--white">
         <div class="oele-inner">
             <h2>Wie ich überhaupt damit angefangen habe</h2>
-            <p>Ich war ehrlich gesagt skeptisch. Öle? Das klang nach Duftkerzen und Wellness-Wochenende für mich. Dann hat mir eine Freundin einfach eine Flasche Lavendel in die Hand gedrückt und gesagt: probier's aus, wenn du nicht einschlafen kannst.</p>
-            <p>Ich hab's ausprobiert. Und dann noch mal. Und irgendwann war es so normal wie Zähneputzen – nur angenehmer. Heute nutze ich Öle von doTERRA, weil mir nach ein paar Jahren Vergleichen wichtig war, dass das, was ich täglich einatme und auf der Haut trage, auch wirklich das ist, was draufsteht. Kein gestreckter Kram, keine synthetischen Zusätze.</p>
-            <p>Ich bin keine Aromatherapeutin. Ich bin jemand, der morgens um halb sieben verschlafen in der Küche steht und trotzdem schon weiß, welches Öl heute dran ist.</p>
+            <p>Ich saß in einem Seminar, mitten im Raum, und ich dachte, mein Kopf explodiert gleich – dieser Druck, bei dem du nur noch denkst: bitte aufhören. Jemand neben mir hat mir ein Fläschchen Pfefferminzöl in die Hand gedrückt und gesagt: probier' das mal. Ich dachte erst, ja klar, was soll ein bisschen Duft schon bringen. Hab's trotzdem gemacht. Und dann kam dieser Moment, in dem ich dachte: warte, was war das gerade?</p>
+            <p>Für mich war das mehr als ein netter Zufall. Ich darf aus gesundheitlichen Gründen nicht einfach zu Tabletten greifen, und plötzlich hatte ich etwas in der Hand, das mir half. Seitdem sind die Öle bei mir und meiner Familie im Alltag nicht mehr wegzudenken. Und zwar in allen Lebenslagen.</p>
         </div>
     </section>
 
@@ -388,6 +395,24 @@
                     <span class="ritual-oil">Geranium oder Jasmin</span>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- HOW OILS WORK -->
+    <section class="oele-section oele-section--white">
+        <div class="oele-inner">
+            <h2>Wie wirken ätherische Öle eigentlich?</h2>
+            <p>Riechen ist der schnellste Sinn, den du hast. Ein Duftmolekül dockt in Sekunden im limbischen System an, dem Teil deines Gehirns, der für Gefühle zuständig ist – schneller, als du bewusst nachdenken kannst. Deshalb kippt die Stimmung manchmal mit einem einzigen Atemzug.</p>
+            <p>Öle sind außerdem fettlöslich und ziehen schnell in die Haut ein. Deshalb spürst du bei vielen Ölen fast sofort einen Unterschied, egal ob du sie einatmest oder einreibst.</p>
+        </div>
+    </section>
+
+    <!-- WHAT YOU DIDN'T KNOW -->
+    <section class="oele-section oele-section--cream">
+        <div class="oele-inner">
+            <h2>Was du vielleicht auch noch nicht über ätherische Öle wusstest</h2>
+            <p>Öle wirken nicht nur physisch, sondern auch emotional. Ein vertrauter Duft kann dich in Sekunden runterbringen, weil dein Gehirn Gerüche direkter verarbeitet als fast jeden anderen Sinneseindruck. Emotionen werden zudem im gleichen Bereich im Gehirn verarbeitet, wie Gerüche.</p>
+            <p>Viele nutzen bestimmte Düfte deshalb ganz bewusst als kleine emotionale Anker im Alltag – Zitrus für mehr Fokus, Lavendel für eine bessere Kommunikation mit anderen und dir selbst.</p>
         </div>
     </section>
 
