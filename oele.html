@@ -77,12 +77,49 @@
         }
         .oele-hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+            font-size: 56px;
             color: #fff;
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 20px;
-            text-wrap: balance;
+        }
+        @media (max-width: 600px) {
+            .oele-hero h1 { font-size: 2rem; }
+        }
+        .btn-hero-oele {
+            display: inline-block;
+            margin-top: 28px;
+            background: #B10058;
+            color: #fff;
+            border-radius: 50px;
+            padding: 14px 32px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-hero-oele:hover { background: #970050; transform: translateY(-2px); }
+        .wirken-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .wirken-img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(10,31,68,0.10);
+        }
+        .wirken-caption {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.78rem;
+            color: #A5A58D;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+        @media (max-width: 680px) {
+            .wirken-grid { grid-template-columns: 1fr; }
         }
         .oele-hero p {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -347,6 +384,7 @@
         <div class="oele-hero-content">
             <h1>Manchmal reicht ein Tropfen,<br>um den Tag zu retten 🌿</h1>
             <p>Ätherische Öle sind für mich essentiell im Alltag.</p>
+            <a href="#oele-form" class="btn-hero-oele">Hier mehr erfahren</a>
         </div>
     </section>
 
@@ -359,20 +397,20 @@
         </div>
     </section>
 
-    <!-- KAKAO IMAGE -->
-    <section class="oele-section oele-section--cream" style="padding-top: 0; padding-bottom: 48px;">
-        <div class="oele-inner" style="text-align: center;">
-            <img src="Kakao_Oele.jpg" alt="Ätherische Öle im Kakao" style="max-width: 480px; width: 100%; border-radius: 16px; box-shadow: 0 4px 24px rgba(10,31,68,0.10);">
-            <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem; color: #A5A58D; margin-top: 10px; line-height: 1.5;">Die Öle schmecken auch im Kakao. Buch: Symphony of the Cells</p>
-        </div>
-    </section>
-
     <!-- HOW OILS WORK -->
     <section class="oele-section oele-section--white">
         <div class="oele-inner">
-            <h2>Wie wirken ätherische Öle eigentlich?</h2>
-            <p>Riechen ist der schnellste Sinn, den du hast. Ein Duftmolekül dockt in Sekunden im limbischen System an, dem Teil deines Gehirns, der für Gefühle zuständig ist – schneller, als du bewusst nachdenken kannst. Deshalb kippt die Stimmung manchmal mit einem einzigen Atemzug.</p>
-            <p>Öle sind außerdem fettlöslich und ziehen schnell in die Haut ein. Deshalb spürst du bei vielen Ölen fast sofort einen Unterschied, egal ob du sie einatmest oder einreibst.</p>
+            <div class="wirken-grid">
+                <div>
+                    <h2>Wie wirken ätherische Öle eigentlich?</h2>
+                    <p>Riechen ist der schnellste Sinn, den du hast. Ein Duftmolekül dockt in Sekunden im limbischen System an, dem Teil deines Gehirns, der für Gefühle zuständig ist – schneller, als du bewusst nachdenken kannst. Deshalb kippt die Stimmung manchmal mit einem einzigen Atemzug.</p>
+                    <p>Öle sind außerdem fettlöslich und ziehen schnell in die Haut ein. Deshalb spürst du bei vielen Ölen fast sofort einen Unterschied, egal ob du sie einatmest oder einreibst.</p>
+                </div>
+                <div>
+                    <img src="Kakao_Oele.jpg" alt="Ätherische Öle im Kakao" class="wirken-img">
+                    <p class="wirken-caption">Die Öle schmecken auch im Kakao. Buch: Symphony of the Cells</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -386,7 +424,7 @@
     </section>
 
     <!-- BREVO FORM -->
-    <div class="brevo-wrap">
+    <div class="brevo-wrap" id="oele-form">
         <div class="sib-form" style="text-align: center; background-color: transparent;">
           <div id="sib-form-container" class="sib-form-container">
             <div id="error-message" class="sib-form-message-panel" style="font-family:Helvetica, sans-serif; font-size:16px; text-align:left; color:#661d1d; background-color:#ffeded; border-color:#ff4949; border-radius:3px; max-width:540px;">
