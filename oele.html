@@ -46,19 +46,39 @@
         /* ── HERO ── */
         .oele-hero {
             position: relative;
-            background: #FDFDF3;
-            padding: 110px 5% 90px;
-            text-align: center;
             overflow: hidden;
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .oele-hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .oele-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 31, 68, 0.45);
+            z-index: 1;
+            pointer-events: none;
         }
         .oele-hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
+            padding: 80px 5%;
+            max-width: 720px;
         }
         .oele-hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.4rem, 6vw, 4.2rem);
-            color: #0A1F44;
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            color: #fff;
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 20px;
@@ -67,21 +87,11 @@
         .oele-hero p {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: clamp(1rem, 2.2vw, 1.2rem);
-            color: #3D3D2E;
+            color: rgba(255,255,255,0.88);
             line-height: 1.7;
-            max-width: 560px;
+            max-width: 520px;
             margin: 0 auto;
         }
-        .hero-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.32;
-            pointer-events: none;
-        }
-        .blob-1 { width: 480px; height: 480px; background: #B10058; top: -140px; left: -120px; }
-        .blob-2 { width: 380px; height: 380px; background: #6A6B4A; bottom: -100px; right: -80px; }
-        .blob-3 { width: 300px; height: 300px; background: #0A1F44; top: 20px; right: 15%; opacity: 0.16; }
 
         /* ── SECTIONS ── */
         .oele-section {
@@ -333,12 +343,10 @@
 
     <!-- HERO -->
     <section class="oele-hero">
-        <div class="hero-blob blob-1"></div>
-        <div class="hero-blob blob-2"></div>
-        <div class="hero-blob blob-3"></div>
+        <img src="Home Essential Kit LS 1.jpg" alt="doTERRA Home Essential Kit – ätherische Öle für den Alltag" class="oele-hero-img">
         <div class="oele-hero-content">
-            <h1>Öle, die ich wirklich täglich benutze</h1>
-            <p>Kein Wellness-Bingo, keine Versprechen. Nur was ich morgens auf den Tisch stelle, abends in den Diffuser gebe und meinen Kindern auf die Fußsohlen reibe.</p>
+            <h1>Manchmal reicht ein Tropfen, um den Tag zu retten 🌿</h1>
+            <p>Ätherische Öle sind für mich essentiell im Alltag.</p>
         </div>
     </section>
 
@@ -346,9 +354,8 @@
     <section class="oele-section oele-section--white">
         <div class="oele-inner">
             <h2>Wie ich überhaupt damit angefangen habe</h2>
-            <p>Ich war ehrlich gesagt skeptisch. Öle? Das klang nach Duftkerzen und Wellness-Wochenende für mich. Dann hat mir eine Freundin einfach eine Flasche Lavendel in die Hand gedrückt und gesagt: probier's aus, wenn du nicht einschlafen kannst.</p>
-            <p>Ich hab's ausprobiert. Und dann noch mal. Und irgendwann war es so normal wie Zähneputzen – nur angenehmer. Heute nutze ich Öle von doTERRA, weil mir nach ein paar Jahren Vergleichen wichtig war, dass das, was ich täglich einatme und auf der Haut trage, auch wirklich das ist, was draufsteht. Kein gestreckter Kram, keine synthetischen Zusätze.</p>
-            <p>Ich bin keine Aromatherapeutin. Ich bin jemand, der morgens um halb sieben verschlafen in der Küche steht und trotzdem schon weiß, welches Öl heute dran ist.</p>
+            <p>Ich saß in einem Seminar, mitten im Raum, und ich dachte, mein Kopf explodiert gleich – dieser Druck, bei dem du nur noch denkst: bitte aufhören. Jemand neben mir hat mir ein Fläschchen Pfefferminzöl in die Hand gedrückt und gesagt: probier' das mal. Ich dachte erst, ja klar, was soll ein bisschen Duft schon bringen. Hab's trotzdem gemacht. Und dann kam dieser Moment, in dem ich dachte: warte, was war das gerade?</p>
+            <p>Für mich war das mehr als ein netter Zufall. Ich darf aus gesundheitlichen Gründen nicht einfach zu Tabletten greifen, und plötzlich hatte ich etwas in der Hand, das mir half. Seitdem sind die Öle bei mir und meiner Familie im Alltag nicht mehr wegzudenken. Und zwar in allen Lebenslagen.</p>
         </div>
     </section>
 
@@ -391,14 +398,22 @@
         </div>
     </section>
 
-    <!-- WHATSAPP CTA -->
-    <section class="cta-block">
-        <h2>Du willst wissen, womit du anfangen sollst?</h2>
-        <p>Ich schreibe keine langen Empfehlungslisten per E-Mail. Aber ich quatsche gerne 15 Minuten mit dir – was du suchst, was zu deinem Alltag passt, womit es Sinn ergibt zu starten. Einfach schreiben.</p>
-        <a href="https://wa.me/DEINENUMMER?text=Hey%20Isabelle%2C%20ich%20hab%20Lust%20auf%20ein%20%C3%96le-Gespr%C3%A4ch%21" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Hey Isabelle, ich hab Lust auf ein Öle-Gespräch!
-        </a>
+    <!-- HOW OILS WORK -->
+    <section class="oele-section oele-section--white">
+        <div class="oele-inner">
+            <h2>Wie wirken ätherische Öle eigentlich?</h2>
+            <p>Riechen ist der schnellste Sinn, den du hast. Ein Duftmolekül dockt in Sekunden im limbischen System an, dem Teil deines Gehirns, der für Gefühle zuständig ist – schneller, als du bewusst nachdenken kannst. Deshalb kippt die Stimmung manchmal mit einem einzigen Atemzug.</p>
+            <p>Öle sind außerdem fettlöslich und ziehen schnell in die Haut ein. Deshalb spürst du bei vielen Ölen fast sofort einen Unterschied, egal ob du sie einatmest oder einreibst.</p>
+        </div>
+    </section>
+
+    <!-- WHAT YOU DIDN'T KNOW -->
+    <section class="oele-section oele-section--cream">
+        <div class="oele-inner">
+            <h2>Was du vielleicht auch noch nicht über ätherische Öle wusstest</h2>
+            <p>Öle wirken nicht nur physisch, sondern auch emotional. Ein vertrauter Duft kann dich in Sekunden runterbringen, weil dein Gehirn Gerüche direkter verarbeitet als fast jeden anderen Sinneseindruck. Emotionen werden zudem im gleichen Bereich im Gehirn verarbeitet, wie Gerüche.</p>
+            <p>Viele nutzen bestimmte Düfte deshalb ganz bewusst als kleine emotionale Anker im Alltag – Zitrus für mehr Fokus, Lavendel für eine bessere Kommunikation mit anderen und dir selbst.</p>
+        </div>
     </section>
 
     <!-- BREVO FORM -->
