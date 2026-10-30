@@ -6,16 +6,18 @@
     <title>Dein Energie-Boost in 2 Minuten | Isabelle Havers</title>
     <meta name="description" content="Drei einfache Schritte, mit denen du mitten im Alltag in nur 2 Minuten echte Energie auftankst.">
     <meta name="robots" content="noindex, nofollow">
+    <!-- Fonts async – kein render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400&display=swap" rel="stylesheet"></noscript>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: #3F5E48;
             color: #D9E7DB;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -34,7 +36,7 @@
         }
 
         h1 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', system-ui, sans-serif;
             font-size: clamp(1.6rem, 5vw, 2.4rem);
             font-weight: 700;
             color: #D9E7DB;
@@ -43,7 +45,6 @@
         }
 
         .teaser {
-            font-family: 'Inter', sans-serif;
             font-size: clamp(0.95rem, 2.5vw, 1.05rem);
             color: rgba(217, 231, 219, 0.82);
             text-align: center;
@@ -51,18 +52,44 @@
             max-width: 480px;
         }
 
-        .video-wrap {
+        /* YouTube facade – lädt kein YouTube-JS bis zum Klick */
+        .yt-facade {
             width: 100%;
+            aspect-ratio: 16 / 9;
             border-radius: 16px;
             overflow: hidden;
-            aspect-ratio: 16 / 9;
             box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+            position: relative;
+            cursor: pointer;
+            background: #000;
         }
-        .video-wrap iframe {
+        .yt-facade img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.2s;
+        }
+        .yt-facade:hover img { opacity: 0.85; }
+        .yt-play {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .yt-play svg {
+            width: 72px;
+            height: 72px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+        }
+        .yt-facade iframe {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             border: none;
-            display: block;
         }
 
         .cta-btn {
@@ -72,7 +99,7 @@
             gap: 10px;
             background: #D9E7DB;
             color: #3F5E48;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', system-ui, sans-serif;
             font-size: 1rem;
             font-weight: 700;
             text-decoration: none;
@@ -86,14 +113,9 @@
             background: #c4d8c7;
             transform: translateY(-2px);
         }
-        .cta-btn svg {
-            flex-shrink: 0;
-            width: 22px;
-            height: 22px;
-        }
+        .cta-btn svg { flex-shrink: 0; width: 22px; height: 22px; }
 
         .hint {
-            font-family: 'Inter', sans-serif;
             font-size: 0.78rem;
             color: rgba(217, 231, 219, 0.5);
             text-align: center;
@@ -108,13 +130,28 @@
 
         <p class="teaser">In diesem kurzen Video zeig ich dir mein Energie-Prinzip: Bewusst werden. Auftanken. Integrieren. Drei einfache Schritte, mit denen du mitten im Alltag in nur 2 Minuten echte Energie auftankst.</p>
 
-        <div class="video-wrap">
-            <iframe
-                src="https://www.youtube.com/embed/xfNojL-V0vY?rel=0&modestbranding=1"
-                title="Dein Energie-Boost in 2 Minuten"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
+        <!-- YouTube Facade: lädt Thumbnail sofort, iframe erst beim Klick -->
+        <div class="yt-facade" id="yt" onclick="
+            var f=document.createElement('iframe');
+            f.src='https://www.youtube.com/embed/xfNojL-V0vY?autoplay=1&rel=0&modestbranding=1';
+            f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            f.allowFullscreen=true;
+            this.innerHTML='';
+            this.appendChild(f);
+        ">
+            <img
+                src="https://i.ytimg.com/vi/xfNojL-V0vY/hqdefault.jpg"
+                alt="Video abspielen: Dein Energie-Boost in 2 Minuten"
+                loading="eager"
+                decoding="async"
+                width="480" height="270"
+            >
+            <div class="yt-play">
+                <svg viewBox="0 0 68 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="68" height="48" rx="12" fill="#FF0000" fill-opacity="0.9"/>
+                    <path d="M28 16L46 24L28 32V16Z" fill="white"/>
+                </svg>
+            </div>
         </div>
 
         <a href="https://wa.me/4915223205184" target="_blank" rel="noopener noreferrer" class="cta-btn">
